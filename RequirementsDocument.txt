@@ -1,0 +1,5 @@
+What system should do? From the user's point of view.
+
+Input data
+
+Output data

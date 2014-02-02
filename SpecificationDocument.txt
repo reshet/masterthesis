@@ -1,0 +1,7 @@
+What the system do from developer's point of view.
+
+Specific details. 
+
+Acceptence tests statements.
+
+Precise input and output data formats.
