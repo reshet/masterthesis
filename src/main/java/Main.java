@@ -7,6 +7,6 @@
  */
 public class Main {
   public static void main(String args[]){
-    System.out.println("Master Thesis Ihor Reshetnev work 3");
+    System.out.println("Master Thesis Ihor Reshetnev work 34");
   }
 }
