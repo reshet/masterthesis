@@ -12,5 +12,6 @@
     </head>
     <body>
         <h1>NaUKMA diploma work. Ihor Reshetnov</h1>
+        <p>This work is about iterative terminology construction in RDF format</p>
     </body>
 </html>
