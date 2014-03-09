@@ -4,6 +4,9 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -11,6 +14,8 @@ import javax.ws.rs.client.WebTarget;
 
 import static org.junit.Assert.assertEquals;
 
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration
 public class MyResourceTest {
 
     private HttpServer server;
@@ -40,9 +45,9 @@ public class MyResourceTest {
     /**
      * Test to see that the message "Got it!" is sent in the response.
      */
-    @Test
-    public void testGetIt() {
-        String responseMsg = target.path("myresource").request().get(String.class);
-        assertEquals("Got it!", responseMsg);
-    }
+//    @Test
+//    public void testGetIt() {
+//        String responseMsg = target.path("myresource").request().get(String.class);
+//        assertEquals("Got it!", responseMsg);
+//    }
 }
