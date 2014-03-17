@@ -50,4 +50,18 @@ public class MyResourceTest {
 //        String responseMsg = target.path("myresource").request().get(String.class);
 //        assertEquals("Got it!", responseMsg);
 //    }
+
+//    @Test
+//    public void testPost() {
+//
+//      byte[] payload = "This is just a dumb text used for testing
+//      binary data".getBytes();
+//
+//      ClientResponse response = resource()
+//              .path("/")
+//              .entity(payload, MediaType.APPLICATION_OCTET_STREAM)
+//              .post(ClientResponse.class);
+//
+//      assertEquals(200, response.getStatus());
+//    }
 }

@@ -17,5 +17,12 @@
         <p><a href="webapi/myresource">Jersey resource</a>
         <p>Visit <a href="http://jersey.java.net">Project Jersey website</a>
             for more information on Jersey!
+
+        <p>Upload Files Section</p>
+        <form enctype="multipart/form-data" action="webapi/myresource/upload" method="post">
+            <input id="pdf-file" type="file" name="file"/>
+            <label for="pdf-file">Оберіть pdf файл для індексування</label>
+            <input type="submit" value="Завантажити"/>
+        </form>
     </body>
 </html>

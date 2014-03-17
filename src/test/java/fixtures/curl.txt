@@ -1,0 +1,9 @@
+curl -X POST \
+    --header "Content-Type: application/octet-stream" \
+    --data-binary @readme.txt \
+    http://localhost:8181/ukmamaster/webapi/myresource/index
+
+curl -X POST \
+    --header "Content-Type: application/octet-stream" \
+    --data-binary @sample.pdf \
+    http://localhost:8181/ukmamaster/webapi/myresource/index
