@@ -1,5 +1,7 @@
 package edu.naukma.reshet.shared;
 
+import org.apache.lucene.document.Document;
+
 /**
  * Created with IntelliJ IDEA.
  * User: reshet
@@ -10,4 +12,5 @@ package edu.naukma.reshet.shared;
 public interface Indexer {
   public String  getStepName();
   public String indexDocuments();
+  public String indexDocument(Document doc);
 }

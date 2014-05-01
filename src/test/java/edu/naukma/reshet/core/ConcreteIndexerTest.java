@@ -23,6 +23,11 @@ public class ConcreteIndexerTest {
    public void index_document_test(){
       assertEquals("Indexed documents number","Indexed 334 documents",indexer.indexDocuments());
    }
+   @Test
+   public void index_pdf_document_test(){
+
+     assertEquals("Indexed documents real",0,0);
+   }
 }
 
 

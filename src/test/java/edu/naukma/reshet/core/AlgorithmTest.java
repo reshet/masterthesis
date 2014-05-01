@@ -21,7 +21,7 @@ public class AlgorithmTest {
    @Autowired
    TextExtractor extractor;
 
-  @Test
+   @Test
    public void algorithm_builder_test(){
       Algorithm alg = Algorithm.builder()
               .withIndexer(indexer)
