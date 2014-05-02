@@ -1,16 +1,17 @@
-package integration;
+package edu.naukma.reshet;
 
 import edu.naukma.reshet.core.ConcreteIndexer;
+import edu.naukma.reshet.core.MongoCacheImpl;
 import edu.naukma.reshet.core.PdfFileExtractor;
 import edu.naukma.reshet.core.SimpleTextSearcher;
-import edu.naukma.reshet.model.TerminRepository;
 import edu.naukma.reshet.shared.Indexer;
+import edu.naukma.reshet.shared.MongoCache;
 import edu.naukma.reshet.shared.Searcher;
 import edu.naukma.reshet.shared.TextExtractor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Repository;
+import org.springframework.test.context.ContextConfiguration;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,7 +21,7 @@ import org.springframework.stereotype.Repository;
  * To change this template use File | Settings | File Templates.
  */
 @Configuration
-@ComponentScan("integration")
+@ContextConfiguration
 class IntegrationConfig {
   @Bean
   public Indexer configureIndexer() {
@@ -36,4 +37,10 @@ class IntegrationConfig {
   public Searcher configureSearcher(){
     return new SimpleTextSearcher("/home/reshet/masterthesis/index/");
   }
+
+  @Bean
+  public MongoCache mongoCacher(){
+    return new MongoCacheImpl();
+  }
+
 }
