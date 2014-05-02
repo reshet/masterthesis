@@ -1,5 +1,8 @@
 package edu.naukma.reshet.shared;
 
+import edu.naukma.reshet.model.Termin;
+
+
 /**
  * Created with IntelliJ IDEA.
  * User: reshet
@@ -8,5 +11,6 @@ package edu.naukma.reshet.shared;
  * To change this template use File | Settings | File Templates.
  */
 public interface MongoCache {
-  public void saveTerm(String term);
+  public void saveTerm(Termin term);
+  public Termin findTerm(String term);
 }

@@ -22,6 +22,7 @@ import org.springframework.test.context.ContextConfiguration;
  */
 @Configuration
 @ContextConfiguration
+@ComponentScan(value = "edu.naukma.reshet.core")
 class IntegrationConfig {
   @Bean
   public Indexer configureIndexer() {
@@ -38,9 +39,9 @@ class IntegrationConfig {
     return new SimpleTextSearcher("/home/reshet/masterthesis/index/");
   }
 
-  @Bean
+  /*@Bean
   public MongoCache mongoCacher(){
     return new MongoCacheImpl();
-  }
+  }*/
 
 }

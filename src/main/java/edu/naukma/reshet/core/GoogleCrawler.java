@@ -23,8 +23,6 @@ import java.net.URLEncoder;
 
 @Component
 public class GoogleCrawler implements DocumentaryFrequencyCrawler {
-  //private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-
   private Long httpPlainCrawler(String term){
     try {
       String query = "https://www.googleapis.com/customsearch/v1?q="+
@@ -32,11 +30,7 @@ public class GoogleCrawler implements DocumentaryFrequencyCrawler {
               "&cx="+URLEncoder.encode("002125048308312569436:ezbjh_ejg_e", "UTF-8")+
               "&fields="+URLEncoder.encode("searchInformation/totalResults", "UTF-8")+
               "&key=AIzaSyDVmwTtdEmD7fQN2Jt2pTIifYI5WaLPnUM";
-     /* URL url = new URL(
-              "https://www.googleapis.com/customsearch/v1?q=flowers&cx=002125048308312569436%3Aezbjh_ejg_e&key=AIzaSyDVmwTtdEmD7fQN2Jt2pTIifYI5WaLPnUM");
-     */
       URL url = new URL(query);
-
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setRequestMethod("GET");
       conn.setRequestProperty("Accept", "application/json");
@@ -64,44 +58,9 @@ public class GoogleCrawler implements DocumentaryFrequencyCrawler {
     }
     return 0L;
   }
-  private void restCrawler(String term){
-    HttpComponentsClientHttpRequestFactory f = new HttpComponentsClientHttpRequestFactory();
-    RestTemplate restTemplate = new RestTemplate();
-    restTemplate.setRequestFactory(f);
-   /* String qu2ry = "https://www.googleapis.com/customsearch/v1?q="+term+"&cx=002125048308312569436:ezbjh_ejg_e"+
-            "&fields=searchInformation/totalResults"+
-            "&key=AIzaSyDVmwTtdEmD7fQN2Jt2pTIifYI5WaLPnUM";
-   */
-    String json = null;
-    try {
-      String query = "https://www.googleapis.com/customsearch/v1?q="+
-              term+
-              "&cx="+URLEncoder.encode("002125048308312569436:ezbjh_ejg_e", "UTF-8")+
-              "&fields="+URLEncoder.encode("searchInformation/totalResults", "UTF-8")+
-              "&key=AIzaSyDVmwTtdEmD7fQN2Jt2pTIifYI5WaLPnUM";
-      json = restTemplate.getForObject(query, String.class);
-      System.out.println(json);
-    } catch (UnsupportedEncodingException e) {
-      e.printStackTrace();
-    }
-    //GoogleSearchResult result = restTemplate.getForObject(query, GoogleSearchResult.class);
-    //System.out.println(term+": "+result.getTotalResults());
-
-  }
-
-  private void crFB(){
-    RestTemplate restTemplate = new RestTemplate();
-    Page page = restTemplate.getForObject("http://graph.facebook.com/gopivotal", Page.class);
-    System.out.println("Name:    " + page.getName());
-    System.out.println("About:   " + page.getAbout());
-    System.out.println("Phone:   " + page.getPhone());
-    System.out.println("Website: " + page.getWebsite());
-  }
   @Override
   public Long getDocumentaryFrequency(String term) {
-    //restCrawler(term);
-    //crFB();
+    System.out.println("Searching google for doc freq of term "+term+"...");
     return httpPlainCrawler(term);
-    //return 22L;
   }
 }

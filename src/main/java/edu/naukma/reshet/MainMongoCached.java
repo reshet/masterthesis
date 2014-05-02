@@ -1,5 +1,7 @@
 package edu.naukma.reshet;
 
+import edu.naukma.reshet.core.GoogleCachedCrawler;
+import edu.naukma.reshet.core.GoogleCrawler;
 import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.shared.MongoCache;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -11,7 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * Time: 11:02 AM
  * To change this template use File | Settings | File Templates.
  */
-public class MainMongo {
+public class MainMongoCached {
   public static void main(String args[]){
     AnnotationConfigApplicationContext ctx =
             new AnnotationConfigApplicationContext();
@@ -20,10 +22,9 @@ public class MainMongo {
     ctx.register(IntegrationConfig.class);
     ctx.refresh();
 
-    MongoCache cache = ctx.getBean(MongoCache.class);
-    cache.saveTerm(new Termin("ababababa",200L));
-    //MyService myService = ctx.getBean(MyService.class);
-    //myService.doStuff();
-    System.out.println("Master Thesis Ihor Reshetnev work 777");
+    GoogleCrawler crawler = ctx.getBean(GoogleCachedCrawler.class);
+    Long docFreq = crawler.getDocumentaryFrequency("генеологія");
+    System.out.println(docFreq);
+    System.out.println("Master Thesis Ihor Reshetnev work 888");
   }
 }

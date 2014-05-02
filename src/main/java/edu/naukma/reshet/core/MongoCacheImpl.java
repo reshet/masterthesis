@@ -18,7 +18,13 @@ public class MongoCacheImpl implements MongoCache{
   @Autowired
   TerminRepository repository;
   @Override
-  public void saveTerm(String term) {
-    repository.save(new Termin(term, 200L));
+  public void saveTerm(Termin term) {
+    repository.save(term);
   }
+
+  @Override
+  public Termin findTerm(String term) {
+    return repository.findByText(term);
+  }
+
 }
