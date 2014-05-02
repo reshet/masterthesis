@@ -95,6 +95,33 @@ public class SimpleTextSearcher implements Searcher {
     return terms_str;
   }
 
+  @Override
+  public Map<String, Integer> getFrequencies() {
+    Map<String, Integer> frequencies = Maps.newHashMap();
+    File indexDirFile = new File(this.indexDir);
+    Directory dir = null;
+    try {
+      dir = FSDirectory.open(indexDirFile);
+      IndexReader indexReader  = DirectoryReader.open(dir);
+      Terms terms = indexReader.getTermVector(0,"content");
+      if(terms==null){
+        return frequencies;
+      }
+      //terms.iterator("s");
+      TermsEnum termsEnum = null;
+      termsEnum = terms.iterator(TermsEnum.EMPTY);
+      BytesRef text = null;
+      while ((text = termsEnum.next()) != null) {
+        String term = text.utf8ToString();
+        int freq = (int) termsEnum.totalTermFreq();
+        frequencies.put(term, freq);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+    }
+    return frequencies;
+  }
+
   public TopDocs performSearch(String queryString)
           throws IOException, ParseException {
     BooleanQuery query = new BooleanQuery();

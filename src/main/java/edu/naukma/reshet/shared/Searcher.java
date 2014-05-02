@@ -1,6 +1,7 @@
 package edu.naukma.reshet.shared;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,4 +13,5 @@ import java.util.List;
 public interface Searcher {
    public String search(String query);
    public List<String> getTerms();
+   public Map<String, Integer> getFrequencies();
 }

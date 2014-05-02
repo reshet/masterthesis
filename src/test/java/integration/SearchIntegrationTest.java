@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -34,6 +35,12 @@ public class SearchIntegrationTest {
     List<String> list =  searcher.getTerms();
     System.out.println(list);
     assertEquals("Terms in doc", 0, 0);
+  }
+  @Test
+  public void pdf_document_get_terms_freq_test(){
+    Map<String, Integer> map = searcher.getFrequencies();
+    System.out.println(map);
+    assertEquals("Freq in doc", 0, 0);
   }
 }
 
