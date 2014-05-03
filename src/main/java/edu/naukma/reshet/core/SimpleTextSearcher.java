@@ -1,12 +1,8 @@
 package edu.naukma.reshet.core;
 
 import edu.naukma.reshet.shared.Searcher;
-import edu.naukma.reshet.shared.TextExtractor;
 import jersey.repackaged.com.google.common.collect.Maps;
 import org.apache.lucene.analysis.ru.RussianAnalyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
 import org.apache.lucene.index.*;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
@@ -16,16 +12,10 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.Version;
-import org.apache.pdfbox.cos.COSDocument;
-import org.apache.pdfbox.pdfparser.PDFParser;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.util.PDFTextStripper;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +25,10 @@ public class SimpleTextSearcher implements Searcher {
   private String indexDir;
   private IndexSearcher searcher = null;
   private QueryParser parser = null;
+  public SimpleTextSearcher(){}
   public SimpleTextSearcher(String indexDir){
-    this.indexDir = indexDir;
-    File indexDirFile = new File(this.indexDir);
+    this.setIndexDir(indexDir);
+    File indexDirFile = new File(this.getIndexDir());
     Directory dir = null;
     try {
       dir = FSDirectory.open(indexDirFile);
@@ -69,7 +60,7 @@ public class SimpleTextSearcher implements Searcher {
   @Override
   public List<String> getTerms() {
     List<String> terms_str = new ArrayList<String>();
-    File indexDirFile = new File(this.indexDir);
+    File indexDirFile = new File(this.getIndexDir());
     Directory dir = null;
     try {
       dir = FSDirectory.open(indexDirFile);
@@ -98,7 +89,7 @@ public class SimpleTextSearcher implements Searcher {
   @Override
   public Map<String, Integer> getFrequencies() {
     Map<String, Integer> frequencies = Maps.newHashMap();
-    File indexDirFile = new File(this.indexDir);
+    File indexDirFile = new File(this.getIndexDir());
     Directory dir = null;
     try {
       dir = FSDirectory.open(indexDirFile);
@@ -128,5 +119,13 @@ public class SimpleTextSearcher implements Searcher {
     query.add(new TermQuery(new Term("content", queryString)), BooleanClause.Occur.MUST);
     TopDocs hits = searcher.search(query,100);
     return hits;
+  }
+
+  public String getIndexDir() {
+    return indexDir;
+  }
+
+  public void setIndexDir(String indexDir) {
+    this.indexDir = indexDir;
   }
 }

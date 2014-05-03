@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 public class ConcreteIndexerTest {
 
    @Autowired
-   Indexer indexer;
+   ConcreteIndexer indexer;
    @Test
    public void index_document_test(){
       assertEquals("Indexed documents number","Indexed 334 documents",indexer.indexDocuments());

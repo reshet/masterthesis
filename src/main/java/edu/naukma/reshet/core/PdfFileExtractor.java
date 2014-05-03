@@ -4,12 +4,11 @@ import edu.naukma.reshet.shared.TextExtractor;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.FieldType;
-import org.apache.pdfbox.PDFBox;
 import org.apache.pdfbox.cos.COSDocument;
-import org.apache.pdfbox.lucene.LucenePDFDocument;
 import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,14 +21,16 @@ import java.io.IOException;
  * Time: 8:49 PM
  * To change this template use File | Settings | File Templates.
  */
+@Component
 public class PdfFileExtractor implements TextExtractor{
-  private final String fileName;
+  private String fileName;
+  public PdfFileExtractor(){}
   public PdfFileExtractor(String filename){
-     this.fileName = filename;
+     this.setFileName(filename);
   }
   @Override
   public Document getDocument() throws IOException {
-    File f = new File(fileName);
+    File f = new File(getFileName());
 
     if(f.exists()){
       //Document luceneDocument = LucenePDFDocument.getDocument(f);
@@ -52,5 +53,13 @@ public class PdfFileExtractor implements TextExtractor{
       return doc;
     }
     return null;
+  }
+
+  public String getFileName() {
+    return fileName;
+  }
+
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
   }
 }
