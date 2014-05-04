@@ -14,13 +14,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: reshet
- * Date: 3/16/14
- * Time: 8:49 PM
- * To change this template use File | Settings | File Templates.
- */
 @Component
 public class PdfFileExtractor implements TextExtractor{
   private String fileName;
@@ -43,7 +36,7 @@ public class PdfFileExtractor implements TextExtractor{
       String text = stripper.getText(new PDDocument(cd));
       Document doc = new Document();
       FieldType type = new FieldType();
-      type.setStored(false);
+      type.setStored(true);
       type.setIndexed(true);
       type.setTokenized(true);
       type.setStoreTermVectors(true);

@@ -52,7 +52,7 @@ public class MainUkrLemmatizerFreqs {
     ctx.register(MongoConfiguration.class);
     ctx.register(IntegrationConfig.class);
     ctx.refresh();
-
+    indexSampleDoc();
     GoogleCrawler crawler = ctx.getBean(GoogleCachedCrawler.class);
     Map <String, Integer> map = findTermFrequenciesOfFirstDocInIndex();
     List<TerminInDoc> sortedList = getSortedTermsList(map, crawler);

@@ -11,7 +11,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public interface Searcher {
-   public String search(String query);
+   public List<String> search(String query);
    public List<String> getTerms();
    public Map<String, Integer> getFrequencies();
 }

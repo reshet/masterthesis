@@ -25,8 +25,7 @@ public class SearchIntegrationTest {
 
   @Test
   public void search_pdf_document_test(){
-    String resp = searcher.search("граф");
-    System.out.println(resp);
+    System.out.println(searcher.search("граф"));
     assertEquals("Search for graph in doc", 0, 0);
   }
 

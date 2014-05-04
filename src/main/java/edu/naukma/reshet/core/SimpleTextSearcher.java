@@ -1,10 +1,12 @@
 package edu.naukma.reshet.core;
 
+import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
 import edu.naukma.reshet.shared.Searcher;
+import jersey.repackaged.com.google.common.base.Optional;
 import jersey.repackaged.com.google.common.collect.Maps;
 import org.apache.lucene.analysis.ru.RussianAnalyzer;
+import org.apache.lucene.document.Document;
 import org.apache.lucene.index.*;
-import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
 
@@ -24,6 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 public class SimpleTextSearcher implements Searcher {
   private String indexDir;
   private IndexSearcher searcher = null;
+  private IndexReader reader = null;
   private QueryParser parser = null;
   public SimpleTextSearcher(){}
   public SimpleTextSearcher(String indexDir){
@@ -32,8 +35,8 @@ public class SimpleTextSearcher implements Searcher {
     Directory dir = null;
     try {
       dir = FSDirectory.open(indexDirFile);
-      IndexReader indexReader  = DirectoryReader.open(dir);
-      this.searcher = new IndexSearcher(indexReader);
+      this.reader  = DirectoryReader.open(dir);
+      this.searcher = new IndexSearcher(reader);
       this.parser = new QueryParser(Version.LUCENE_47,"content", new RussianAnalyzer(Version.LUCENE_47));
     } catch (IOException e) {
       e.printStackTrace();
@@ -41,20 +44,23 @@ public class SimpleTextSearcher implements Searcher {
 
   }
   @Override
-  public String search(String query) {
-    try {
+  public List<String> search(String query) {
       TopDocs top = performSearch(query);
       ScoreDoc[] scores = top.scoreDocs;
+      List<String> snippets = Lists.newArrayList();
       for(ScoreDoc score: scores){
-
+        try {
+          Document doc = reader.document(score.doc);
+          IndexableField field = doc.getField("content");
+          if (field != null){
+            String str = field.stringValue();
+            snippets.add(str);
+          }
+        } catch (IOException e) {
+          e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
       }
-      return scores.toString();
-    } catch (IOException e) {
-      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-    } catch (ParseException e) {
-      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-    }
-    return null;
+      return snippets;
   }
 
   @Override
@@ -65,7 +71,8 @@ public class SimpleTextSearcher implements Searcher {
     try {
       dir = FSDirectory.open(indexDirFile);
       IndexReader indexReader  = DirectoryReader.open(dir);
-      Terms terms = indexReader.getTermVector(0,"content");
+
+      Terms terms = indexReader.getTermVector(0, "content");
       if(terms==null){
          return terms_str;
       }
@@ -113,11 +120,16 @@ public class SimpleTextSearcher implements Searcher {
     return frequencies;
   }
 
-  public TopDocs performSearch(String queryString)
-          throws IOException, ParseException {
+  public TopDocs performSearch(String queryString){
     BooleanQuery query = new BooleanQuery();
     query.add(new TermQuery(new Term("content", queryString)), BooleanClause.Occur.MUST);
-    TopDocs hits = searcher.search(query,100);
+    //query.add(new MatchAllDocsQuery(), BooleanClause.Occur.MUST);
+    TopDocs hits = null;
+    try {
+      hits = searcher.search(query,100);
+    } catch (IOException e) {
+      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+    }
     return hits;
   }
 
