@@ -9,18 +9,20 @@ import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
 import edu.naukma.reshet.shared.Searcher;
 import eu.hlavki.text.lemmagen.LemmatizerFactory;
 import eu.hlavki.text.lemmagen.api.Lemmatizer;
-import org.apache.lucene.search.TopDocs;
+import org.languagetool.AnalyzedSentence;
+import org.languagetool.JLanguageTool;
+import org.languagetool.language.BritishEnglish;
+import org.languagetool.language.Ukrainian;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
 import java.text.BreakIterator;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 
-public class MainGetTextSnippet {
+public class MainAlgorithmSecondStepPOS {
   public static void indexSampleDoc(){
     UkrLemmatizedIndexer indexer = new UkrLemmatizedIndexer();
     indexer.setDirectory("/home/reshet/masterthesis/index2/");
@@ -94,6 +96,20 @@ public class MainGetTextSnippet {
     List<String> snippets = searcher.search(term.getTermin().getText());
     return proceessSingleSentenceSnippetBuilder(snippets, term.getTermin().getText());
   }
+  public static void posTagSnippet(String snippet){
+    JLanguageTool langTool = null;
+    try {
+      langTool = new JLanguageTool(new Ukrainian());
+      langTool.activateDefaultPatternRules();
+      List<AnalyzedSentence> analyzed = langTool.analyzeText(snippet);
+      for(AnalyzedSentence analyzedSentence:analyzed){
+        System.out.println(analyzedSentence);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+    }
+
+  }
   public static void main(String args[]){
     System.out.println("Master Thesis Ihor Reshetnev GetTextSnippet subprogram");
     AnnotationConfigApplicationContext ctx =
@@ -113,7 +129,10 @@ public class MainGetTextSnippet {
     }
     TerminInDoc termin = sortedList.get(5);
     List<String> snippets = findTextSnippetsForTerm(termin, searcher);
-    System.out.println("Term to find: "+termin.getTermin().getText());
+    for(String snip:snippets){
+      posTagSnippet(snip);
+    }
+    System.out.println("Term to find: " + termin.getTermin().getText());
     System.out.println(snippets);
   }
 }

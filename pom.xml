@@ -189,6 +189,11 @@
             <scope>system</scope>
             <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/jlemmagen-lucene-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>org.languagetool</groupId>
+            <artifactId>language-all</artifactId>
+            <version>2.5</version>
+        </dependency>
     </dependencies>
   <build>
       <testResources>
