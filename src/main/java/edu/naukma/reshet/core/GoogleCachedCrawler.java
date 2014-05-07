@@ -2,39 +2,29 @@ package edu.naukma.reshet.core;
 
 //import com.google.api.client.json.JsonFactory;
 //import com.google.api.client.json.jackson2.JacksonFactory;
-import edu.naukma.reshet.model.Page;
 import edu.naukma.reshet.model.Termin;
-import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
-import edu.naukma.reshet.shared.MongoCache;
-import jersey.repackaged.com.google.common.base.Optional;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.map.ObjectMapper;
+import edu.naukma.reshet.repositories.TerminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
+import javax.inject.Inject;
 
-@Component(value = "cached")
+@Component
 public class GoogleCachedCrawler extends GoogleCrawler{
 
-  @Autowired
-  MongoCache cacher;
+  @Inject
+  TerminRepository cacher;
+
   @Override
   public Long getDocumentaryFrequency(String term) {
-    Termin termin = cacher.findTerm(term);
+    Termin termin = cacher.findByText(term);
     System.out.println("Looking for cached docFreq of term: "+term);
     if (termin == null){
       Long docFreq = super.getDocumentaryFrequency(term);
       termin = new Termin(term, docFreq);
-      cacher.saveTerm(termin);
+      cacher.save(termin);
     }
     return termin.getDocFrequency();
   }

@@ -1,13 +1,10 @@
 package integration;
 
 import edu.naukma.reshet.core.GoogleCrawler;
-import edu.naukma.reshet.model.TerminRepository;
-import edu.naukma.reshet.shared.MongoCache;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;

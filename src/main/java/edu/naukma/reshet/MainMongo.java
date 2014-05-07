@@ -1,5 +1,6 @@
 package edu.naukma.reshet;
 
+import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.shared.MongoCache;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -17,7 +18,6 @@ public class MainMongo {
             new AnnotationConfigApplicationContext();
 
     ctx.register(MongoConfiguration.class);
-    ctx.register(IntegrationConfig.class);
     ctx.refresh();
 
     MongoCache cache = ctx.getBean(MongoCache.class);

@@ -2,6 +2,8 @@ package edu.naukma.reshet;
 
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Ordering;
+//import edu.naukma.reshet.configuration.IntegrationConfig;
+import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.*;
 import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.model.TerminInDoc;
@@ -9,12 +11,10 @@ import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
 import edu.naukma.reshet.shared.Searcher;
 import eu.hlavki.text.lemmagen.LemmatizerFactory;
 import eu.hlavki.text.lemmagen.api.Lemmatizer;
-import org.apache.lucene.search.TopDocs;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
 import java.text.BreakIterator;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -100,7 +100,7 @@ public class MainGetTextSnippet {
             new AnnotationConfigApplicationContext();
 
     ctx.register(MongoConfiguration.class);
-    ctx.register(IntegrationConfig.class);
+    //ctx.register(IntegrationConfig.class);
     ctx.refresh();
 
     GoogleCrawler crawler = ctx.getBean(GoogleCachedCrawler.class);
@@ -113,7 +113,7 @@ public class MainGetTextSnippet {
     }
     TerminInDoc termin = sortedList.get(5);
     List<String> snippets = findTextSnippetsForTerm(termin, searcher);
-    System.out.println("Term to find: "+termin.getTermin().getText());
+    System.out.println("Term to find: " + termin.getTermin().getText());
     System.out.println(snippets);
   }
 }

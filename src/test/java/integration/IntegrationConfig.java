@@ -4,7 +4,6 @@ import edu.naukma.reshet.core.ConcreteIndexer;
 import edu.naukma.reshet.core.MongoCacheImpl;
 import edu.naukma.reshet.core.PdfFileExtractor;
 import edu.naukma.reshet.core.SimpleTextSearcher;
-import edu.naukma.reshet.model.TerminRepository;
 import edu.naukma.reshet.shared.Indexer;
 import edu.naukma.reshet.shared.MongoCache;
 import edu.naukma.reshet.shared.Searcher;
@@ -12,7 +11,6 @@ import edu.naukma.reshet.shared.TextExtractor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Repository;
 import org.springframework.test.context.ContextConfiguration;
 
 /**

@@ -1,9 +1,9 @@
 package edu.naukma.reshet;
 
+//import edu.naukma.reshet.configuration.IntegrationConfig;
+import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.GoogleCachedCrawler;
 import edu.naukma.reshet.core.GoogleCrawler;
-import edu.naukma.reshet.model.Termin;
-import edu.naukma.reshet.shared.MongoCache;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -19,7 +19,7 @@ public class MainMongoCached {
             new AnnotationConfigApplicationContext();
 
     ctx.register(MongoConfiguration.class);
-    ctx.register(IntegrationConfig.class);
+    //ctx.register(IntegrationConfig.class);
     ctx.refresh();
 
     GoogleCrawler crawler = ctx.getBean(GoogleCachedCrawler.class);

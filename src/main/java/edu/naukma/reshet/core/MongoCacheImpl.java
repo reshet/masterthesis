@@ -1,7 +1,7 @@
 package edu.naukma.reshet.core;
 
 import edu.naukma.reshet.model.Termin;
-import edu.naukma.reshet.model.TerminRepository;
+import edu.naukma.reshet.repositories.TerminRepository;
 import edu.naukma.reshet.shared.MongoCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 public class MongoCacheImpl implements MongoCache{
   @Autowired
   TerminRepository repository;
+
   @Override
   public void saveTerm(Termin term) {
     repository.save(term);

@@ -1,7 +1,8 @@
 package edu.naukma.reshet;
 
+//import edu.naukma.reshet.configuration.IntegrationConfig;
+import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.*;
-import edu.naukma.reshet.shared.Searcher;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class MainUkrLemmatizer {
             new AnnotationConfigApplicationContext();
 
     ctx.register(MongoConfiguration.class);
-    ctx.register(IntegrationConfig.class);
+    //ctx.register(IntegrationConfig.class);
     ctx.refresh();
 
     //GoogleCrawler crawler = ctx.getBean(GoogleCachedCrawler.class);

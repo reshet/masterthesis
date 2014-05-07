@@ -1,8 +1,9 @@
 package edu.naukma.reshet;
 
-import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.FluentIterable;
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Ordering;
+//import edu.naukma.reshet.configuration.IntegrationConfig;
+import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.*;
 import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.model.TerminInDoc;
@@ -50,7 +51,7 @@ public class MainUkrLemmatizerFreqs {
             new AnnotationConfigApplicationContext();
 
     ctx.register(MongoConfiguration.class);
-    ctx.register(IntegrationConfig.class);
+    //ctx.register(IntegrationConfig.class);
     ctx.refresh();
     indexSampleDoc();
     GoogleCrawler crawler = ctx.getBean(GoogleCachedCrawler.class);

@@ -1,8 +1,7 @@
-package edu.naukma.reshet;
+package edu.naukma.reshet.integration.single;
 
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Ordering;
-//import edu.naukma.reshet.configuration.IntegrationConfig;
 import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.*;
 import edu.naukma.reshet.model.Termin;
@@ -124,12 +123,12 @@ public class MainAlgorithmSecondStepPOS {
 
   }
   public static void main(String args[]){
-    System.out.println("Master Thesis Ihor Reshetnev GetTextSnippet subprogram");
+    System.out.println("GetTextSnippet subprogram");
     AnnotationConfigApplicationContext ctx =
             new AnnotationConfigApplicationContext();
 
     ctx.register(MongoConfiguration.class);
-    //ctx.register(IntegrationConfig.class);
+    ctx.register(SingleDocumentInitialExtractApplication.class);
     ctx.refresh();
 
     GoogleCrawler crawler = ctx.getBean(GoogleCachedCrawler.class);

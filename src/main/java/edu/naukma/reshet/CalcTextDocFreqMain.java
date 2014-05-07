@@ -1,10 +1,11 @@
 package edu.naukma.reshet;
 
+//import edu.naukma.reshet.configuration.IntegrationConfig;
+import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.GoogleCachedCrawler;
 import edu.naukma.reshet.core.GoogleCrawler;
 import edu.naukma.reshet.core.SimpleTextSearcher;
 import edu.naukma.reshet.shared.Searcher;
-import jersey.repackaged.com.google.common.base.Optional;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Map;
@@ -23,7 +24,7 @@ public class CalcTextDocFreqMain {
             new AnnotationConfigApplicationContext();
 
     ctx.register(MongoConfiguration.class);
-    ctx.register(IntegrationConfig.class);
+    //ctx.register(IntegrationConfig.class);
     ctx.refresh();
 
 
