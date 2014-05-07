@@ -1,9 +1,9 @@
 package edu.naukma.reshet.shared.algorithm;
 
-import edu.naukma.reshet.model.TerminInDoc;
+import edu.naukma.reshet.model.TermInDoc;
 
 import java.util.List;
 
 public interface InitialTerminologyExtract {
-  List<TerminInDoc> extractValuableTerms(String repository);
+  List<TermInDoc> extractValuableTerms(String repository);
 }

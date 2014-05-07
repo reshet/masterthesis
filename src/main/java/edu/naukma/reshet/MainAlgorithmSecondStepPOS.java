@@ -5,8 +5,8 @@ import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.
 //import edu.naukma.reshet.configuration.IntegrationConfig;
 import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.*;
+import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.Termin;
-import edu.naukma.reshet.model.TerminInDoc;
 import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
 import edu.naukma.reshet.shared.Searcher;
 import eu.hlavki.text.lemmagen.LemmatizerFactory;
@@ -41,13 +41,13 @@ public class MainAlgorithmSecondStepPOS {
       Map<String, Integer> map = searcher.getFrequencies();
       return map;
   }
-  public static List<TerminInDoc> getSortedTermsList(Map<String, Integer> map, DocumentaryFrequencyCrawler crawler){
-    List<TerminInDoc> termins = Lists.newArrayList();
+  public static List<TermInDoc> getSortedTermsList(Map<String, Integer> map, DocumentaryFrequencyCrawler crawler){
+    List<TermInDoc> termins = Lists.newArrayList();
     for(String term: map.keySet()){
       Integer frequency =  map.get(term);
       Long docFreq = crawler.getDocumentaryFrequency(term);
       Double totalFreq = 1.0*frequency/docFreq;
-      termins.add(new TerminInDoc(new Termin(term, docFreq),totalFreq));
+      termins.add(new TermInDoc(new Termin(term, docFreq),totalFreq));
     }
     return Ordering
             .natural()
@@ -94,7 +94,7 @@ public class MainAlgorithmSecondStepPOS {
     }
     return processedSnippets;
   }
-  public static List<String> findTextSnippetsForTerm(TerminInDoc term, Searcher searcher){
+  public static List<String> findTextSnippetsForTerm(TermInDoc term, Searcher searcher){
     List<String> snippets = searcher.search(term.getTermin().getText());
     return proceessSingleSentenceSnippetBuilder(snippets, term.getTermin().getText());
   }
@@ -136,11 +136,11 @@ public class MainAlgorithmSecondStepPOS {
     SimpleTextSearcher searcher = new SimpleTextSearcher("/home/reshet/masterthesis/index2/");
 
     Map <String, Integer> map = findTermFrequenciesOfFirstDocInIndex(searcher);
-    List<TerminInDoc> sortedList = getSortedTermsList(map, crawler);
-    for(TerminInDoc term:sortedList){
+    List<TermInDoc> sortedList = getSortedTermsList(map, crawler);
+    for(TermInDoc term:sortedList){
       System.out.println(term);
     }
-    TerminInDoc termin = sortedList.get(5);
+    TermInDoc termin = sortedList.get(5);
     List<String> snippets = findTextSnippetsForTerm(termin, searcher);
     for(String snip:snippets){
       posTagSnippet(snip);

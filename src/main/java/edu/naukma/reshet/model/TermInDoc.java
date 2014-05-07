@@ -5,16 +5,16 @@ import org.springframework.data.annotation.Id;
 
 import javax.annotation.Nullable;
 
-public class TerminInDoc implements Comparable<TerminInDoc>{
+public class TermInDoc implements Comparable<TermInDoc>{
   @Id
   private String id;
 
   private Termin termin;
   private Double tfidf;
 
-  public TerminInDoc() {}
+  public TermInDoc() {}
 
-  public TerminInDoc(Termin termin, Double tfidf) {
+  public TermInDoc(Termin termin, Double tfidf) {
     this.termin = termin;
     this.tfidf = tfidf;
   }
@@ -22,7 +22,7 @@ public class TerminInDoc implements Comparable<TerminInDoc>{
   @Override
   public String toString() {
     return String.format(
-            "TerminInDoc[id=%s, termin='%s', tfidf='%.12f']",
+            "TermInDoc[id=%s, termin='%s', tfidf='%.12f']",
             id, getTermin().getText(), getTfidf());
   }
 
@@ -45,15 +45,15 @@ public class TerminInDoc implements Comparable<TerminInDoc>{
   }
 
   @Override
-  public int compareTo(TerminInDoc other) {
+  public int compareTo(TermInDoc other) {
     return ORDERING_BY_TFIDF.compare(this, other);
   }
 
-  public static Ordering<TerminInDoc> ORDERING_BY_TFIDF = new Ordering<TerminInDoc>(){
+  public static Ordering<TermInDoc> ORDERING_BY_TFIDF = new Ordering<TermInDoc>(){
 
     @Override
-    public int compare(@Nullable TerminInDoc terminInDoc, @Nullable TerminInDoc terminInDoc2) {
-      double value = terminInDoc.tfidf - terminInDoc2.tfidf;
+    public int compare(@Nullable TermInDoc termInDoc, @Nullable TermInDoc termInDoc2) {
+      double value = termInDoc.tfidf - termInDoc2.tfidf;
       if(value == 0D) {
         return 0;
       }
