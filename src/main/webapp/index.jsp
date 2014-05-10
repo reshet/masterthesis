@@ -13,7 +13,7 @@
     <body>
         <h1>NaUKMA diploma work. Ihor Reshetnov</h1>
         <p>This work is about iterative terminology construction in RDF format</p>
-        <h2>Jersey RESTful Web Application!</h2>
+        <h2>Jersey RESTful Web edu.naukma.reshet.Application!</h2>
         <p><a href="webapi/myresource">Jersey resource</a>
         <p>Visit <a href="http://jersey.java.net">Project Jersey website</a>
             for more information on Jersey!
