@@ -1,11 +1,11 @@
 package edu.naukma.reshet.core;
 
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import edu.naukma.reshet.model.DocText;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.shared.Searcher;
 import edu.naukma.reshet.shared.Searcher2;
-import jersey.repackaged.com.google.common.collect.Maps;
 import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.*;

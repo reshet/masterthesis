@@ -2,12 +2,10 @@ package edu.naukma.reshet.core;
 
 //import com.google.api.client.json.JsonFactory;
 //import com.google.api.client.json.jackson2.JacksonFactory;
+
 import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.repositories.TerminRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 

@@ -10,7 +10,7 @@
     <packaging>war</packaging>
     <properties>
         <spring.version>4.0.2.RELEASE</spring.version>
-        <jersey.version>2.6</jersey.version>
+        <!--<jersey.version>2.6</jersey.version>-->
     </properties>
     <repositories>
         <repository>
@@ -23,19 +23,28 @@
             <layout>default</layout>
         </repository>
     </repositories>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.glassfish.jersey</groupId>
-                <artifactId>jersey-bom</artifactId>
-                <version>${jersey.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.0.2.RELEASE</version>
+    </parent>
+    <!--<dependencyManagement>-->
+        <!--<dependencies>-->
+            <!--<dependency>-->
+                <!--<groupId>org.glassfish.jersey</groupId>-->
+                <!--<artifactId>jersey-bom</artifactId>-->
+                <!--<version>${jersey.version}</version>-->
+                <!--<type>pom</type>-->
+                <!--<scope>import</scope>-->
+            <!--</dependency>-->
+        <!--</dependencies>-->
+    <!--</dependencyManagement>-->
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -57,6 +66,11 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-rest-webmvc</artifactId>
+            <version>2.0.2.RELEASE</version>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
@@ -67,36 +81,36 @@
             <version>2.1</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-servlet-core</artifactId>
-            <!-- use the following artifactId if you don't need servlet 2.x compatibility -->
-            <!-- artifactId>jersey-container-servlet</artifactId -->
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-moxy</artifactId>
-            <version>2.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-grizzly2-http</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.ext</groupId>
-            <artifactId>jersey-spring3</artifactId>
-            <version>2.6</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.glassfish.jersey.containers</groupId>-->
+            <!--<artifactId>jersey-container-servlet-core</artifactId>-->
+            <!--&lt;!&ndash; use the following artifactId if you don't need servlet 2.x compatibility &ndash;&gt;-->
+            <!--&lt;!&ndash; artifactId>jersey-container-servlet</artifactId &ndash;&gt;-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.glassfish.jersey.media</groupId>-->
+            <!--<artifactId>jersey-media-moxy</artifactId>-->
+            <!--<version>2.6</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.glassfish.jersey.containers</groupId>-->
+            <!--<artifactId>jersey-container-grizzly2-http</artifactId>-->
+        <!--</dependency>-->
+        <!--mkdir s<dependency>-->
+            <!--<groupId>org.glassfish.jersey.ext</groupId>-->
+            <!--<artifactId>jersey-spring3</artifactId>-->
+            <!--<version>2.6</version>-->
+        <!--</dependency>-->
         <!--<dependency>-->
             <!--<groupId>org.glassfish.jersey.media</groupId>-->
             <!--<artifactId>jersey-media-multipart</artifactId>-->
             <!--<version>2.6</version>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>com.sun.jersey.contribs</groupId>
-            <artifactId>jersey-multipart</artifactId>
-            <version>1.18.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.sun.jersey.contribs</groupId>-->
+            <!--<artifactId>jersey-multipart</artifactId>-->
+            <!--<version>1.18.1</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -193,6 +207,11 @@
             <groupId>org.languagetool</groupId>
             <artifactId>language-all</artifactId>
             <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
         </dependency>
     </dependencies>
   <build>

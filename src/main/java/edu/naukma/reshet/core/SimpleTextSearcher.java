@@ -1,15 +1,13 @@
 package edu.naukma.reshet.core;
 
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import edu.naukma.reshet.shared.Searcher;
-import jersey.repackaged.com.google.common.base.Optional;
-import jersey.repackaged.com.google.common.collect.Maps;
 import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.*;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
-
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
@@ -20,8 +18,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class SimpleTextSearcher implements Searcher {
   private String indexDir;

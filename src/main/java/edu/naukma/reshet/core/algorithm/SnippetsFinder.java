@@ -4,15 +4,10 @@ import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.
 import edu.naukma.reshet.model.DocText;
 import edu.naukma.reshet.model.Snippet;
 import edu.naukma.reshet.model.TermInDoc;
-import edu.naukma.reshet.shared.Searcher;
 import edu.naukma.reshet.shared.Searcher2;
-import eu.hlavki.text.lemmagen.LemmatizerFactory;
 import eu.hlavki.text.lemmagen.api.Lemmatizer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Inject;
-import java.io.IOException;
 import java.text.BreakIterator;
 import java.util.List;
 import java.util.Locale;
