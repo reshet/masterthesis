@@ -2,7 +2,13 @@ package edu.naukma.reshet.integration.single;
 
 import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.*;
+import edu.naukma.reshet.core.algorithm.RelationFinder;
+import edu.naukma.reshet.core.algorithm.SnippetsFinder;
+import edu.naukma.reshet.model.Snippet;
 import edu.naukma.reshet.model.TermInDoc;
+import edu.naukma.reshet.model.TermRelation;
+import edu.naukma.reshet.repositories.TermInDocRepository;
+import edu.naukma.reshet.repositories.TermRelationRepository;
 import edu.naukma.reshet.shared.*;
 import edu.naukma.reshet.shared.algorithm.InitialTerminologyExtract;
 import eu.hlavki.text.lemmagen.LemmatizerFactory;
@@ -15,11 +21,12 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
-//@Configuration
+@Configuration
 @EnableMongoRepositories
 @ComponentScan(basePackages = {"edu.naukma.reshet.core"})
-public class SingleDocumentInitialExtractApplication {
+public class SingleDocumentSecondTourAssociation {
   @Bean
   public Indexer ukrLemmaIndexer() {
     UkrLemmatizedIndexer indexer = new UkrLemmatizedIndexer();
@@ -33,8 +40,8 @@ public class SingleDocumentInitialExtractApplication {
     return extractor;
   }
   @Bean
-  public Searcher configureSearcher(){
-    return new SimpleTextSearcher("/home/reshet/masterthesis/index2/");
+  public Searcher2 configureSearcher(){
+    return new AdvancedTextSearcher("/home/reshet/masterthesis/index2/");
   }
 
   @Bean
@@ -47,23 +54,35 @@ public class SingleDocumentInitialExtractApplication {
     return null;
   }
 
-  @Bean
-  public DocumentaryFrequencyCrawler crawler(){
-    return new GoogleCachedCrawler();
-  }
+//  @Bean
+//  public DocumentaryFrequencyCrawler crawler(){
+//    return new GoogleCachedCrawler();
+//  }
 
   public static void main(String args[]){
-    System.out.println("Single document initial term extract application");
+    System.out.println("Single document Second step load terms application");
     AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
     ctx.register(MongoConfiguration.class);
-    ctx.register(SingleDocumentInitialExtractApplication.class);
+    ctx.register(SingleDocumentSecondTourAssociation.class);
     ctx.refresh();
 
-    InitialTerminologyExtract extractor = ctx.getBean(InitialTerminologyExtract.class);
-    List<TermInDoc> sortedList = extractor.extractValuableTerms("");
-    for(TermInDoc term:sortedList){
-      System.out.println(term);
+    //InitialTerminologyExtract extractor = ctx.getBean(InitialTerminologyExtract.class);
+    TermInDocRepository repo = ctx.getBean(TermInDocRepository.class);
+    SnippetsFinder finder = ctx.getBean(SnippetsFinder.class);
+    RelationFinder relFinder = ctx.getBean(RelationFinder.class);
+    Lemmatizer lm = ctx.getBean(Lemmatizer.class);
+    Searcher2 searcher = ctx.getBean(Searcher2.class);
+    finder.setLm(lm);
+    finder.setSearcher(searcher);
+    relFinder.setLm(lm);
+    List<TermInDoc> terms = repo.findAll();
+    List<Snippet> snippets = finder.findSnippets(terms);
+    Set<TermRelation> relations = relFinder.getRelations(terms,snippets);
+    for(TermRelation relation:relations){
+      System.out.println(relation);
     }
+    TermRelationRepository repoRel = ctx.getBean(TermRelationRepository.class);
+    repoRel.save(relations);
   }
 
 }

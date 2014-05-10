@@ -8,13 +8,15 @@ import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
 import edu.naukma.reshet.shared.Searcher;
 import edu.naukma.reshet.shared.algorithm.InitialTerminologyExtract;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
-@Component
+//@Component
 public class TopTfIdfInitialTerminologyExtract implements InitialTerminologyExtract {
+
 
   @Autowired
   Searcher searcher;

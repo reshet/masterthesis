@@ -2,21 +2,15 @@ package edu.naukma.reshet.core;
 
 //import com.google.api.client.json.JsonFactory;
 //import com.google.api.client.json.jackson2.JacksonFactory;
-import com.fasterxml.jackson.core.JsonFactory;
-import edu.naukma.reshet.model.GoogleSearchResult;
-import edu.naukma.reshet.model.Page;
+
 import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
-import sun.org.mozilla.javascript.internal.json.JsonParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -60,7 +54,7 @@ public class GoogleCrawler implements DocumentaryFrequencyCrawler {
   }
   @Override
   public Long getDocumentaryFrequency(String term) {
-    System.out.println("Searching google for doc freq of term "+term+"...");
+    System.out.println("Searching google for doc freq of term " + term + "...");
     return httpPlainCrawler(term);
   }
 }
