@@ -3,6 +3,7 @@ package edu.naukma.reshet.resource;
 import edu.naukma.reshet.model.dto.IndexDTO;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
+import edu.naukma.reshet.orchestration.IndexFacade;
 import edu.naukma.reshet.shared.IndexManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -20,7 +21,8 @@ import java.io.FileOutputStream;
 @RequestMapping("/index")
 public class IndexController {
   @Autowired
-  private IndexManager indexManager;
+  private IndexFacade indexFacade;
+
   @RequestMapping(value = "/", method = RequestMethod.GET)
   @ResponseBody
   public HttpEntity<IndexDTO> getIndexGen(){
@@ -34,7 +36,7 @@ public class IndexController {
   public HttpEntity<IndexDTO> createIndex(@PathVariable String name){
     IndexDTO index = new IndexDTO(0L, name);
     index.add(linkTo(methodOn(IndexController.class).getIndexGen()).withSelfRel());
-    if(indexManager.createIndex(name)){
+    if(indexFacade.createTermIndex(name) != null){
       return new ResponseEntity<IndexDTO>(index, HttpStatus.CREATED);
     }
     return new ResponseEntity<IndexDTO>(index, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -45,7 +47,7 @@ public class IndexController {
   public HttpEntity<IndexDTO> deleteIndex(@PathVariable String name){
     IndexDTO index = new IndexDTO(0L, name);
     index.add(linkTo(methodOn(IndexController.class).getIndexGen()).withSelfRel());
-    if(indexManager.deleteIndex(name)){
+    if(indexFacade.deleteTermIndex(name)){
       return new ResponseEntity<IndexDTO>(index, HttpStatus.OK);
     }
     return new ResponseEntity<IndexDTO>(index, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -62,7 +64,7 @@ public class IndexController {
     if (!file.isEmpty()) {
       try {
         byte[] bytes = file.getBytes();
-        if(indexManager.addDocument(indexname, name, bytes)){
+        if(indexFacade.addDocument(indexname, name, bytes)){
           return "You successfully uploaded " + name + " into " + indexname + "!";
         } else {
           return "You failed to upload " + name + "";
