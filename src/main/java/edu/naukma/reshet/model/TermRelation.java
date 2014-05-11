@@ -1,12 +1,16 @@
 package edu.naukma.reshet.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public class TermRelation {
   @Id
   private String id;
 
+  @DBRef
   private TermInDoc term1;
+
+  @DBRef
   private TermInDoc term2;
 
   private String relationType;

@@ -6,6 +6,7 @@ import edu.naukma.reshet.model.Snippet;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.shared.Searcher2;
 import eu.hlavki.text.lemmagen.api.Lemmatizer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.text.BreakIterator;
@@ -14,7 +15,6 @@ import java.util.Locale;
 
 @Component
 public class SnippetsFinder {
-
   private Lemmatizer lm;
   private Searcher2 searcher;
   public List<Snippet> findSnippets(List<TermInDoc> terms){

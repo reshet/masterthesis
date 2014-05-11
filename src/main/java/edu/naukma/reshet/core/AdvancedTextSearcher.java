@@ -15,6 +15,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.Version;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class AdvancedTextSearcher implements Searcher, Searcher2 {
+public class AdvancedTextSearcher implements  Searcher2 {
   private String indexDir;
   private IndexSearcher searcher = null;
   private IndexReader reader = null;
@@ -42,83 +43,6 @@ public class AdvancedTextSearcher implements Searcher, Searcher2 {
     }
 
   }
-  @Override
-  public List<String> search(String query) {
-      TopDocs top = performSearch(query);
-      ScoreDoc[] scores = top.scoreDocs;
-      List<String> snippets = Lists.newArrayList();
-      for(ScoreDoc score: scores){
-        try {
-          Document doc = reader.document(score.doc);
-          IndexableField field = doc.getField("content");
-          if (field != null){
-            String str = field.stringValue();
-            snippets.add(str);
-          }
-        } catch (IOException e) {
-          e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-      }
-      return snippets;
-  }
-
-  @Override
-  public List<String> getTerms() {
-    List<String> terms_str = new ArrayList<String>();
-    File indexDirFile = new File(this.getIndexDir());
-    Directory dir = null;
-    try {
-      dir = FSDirectory.open(indexDirFile);
-      IndexReader indexReader  = DirectoryReader.open(dir);
-
-      Terms terms = indexReader.getTermVector(0, "content");
-      if(terms==null){
-         return terms_str;
-      }
-      //terms.iterator("s");
-      TermsEnum termsEnum = null;
-      termsEnum = terms.iterator(TermsEnum.EMPTY);
-      Map<String, Integer> frequencies = Maps.newHashMap();
-      BytesRef text = null;
-      while ((text = termsEnum.next()) != null) {
-        String term = text.utf8ToString();
-        int freq = (int) termsEnum.totalTermFreq();
-        frequencies.put(term, freq);
-        terms_str.add(term);
-      }
-    } catch (IOException e) {
-      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-    }
-    return terms_str;
-  }
-
-  @Override
-  public Map<String, Integer> getFrequencies() {
-    Map<String, Integer> frequencies = Maps.newHashMap();
-    File indexDirFile = new File(this.getIndexDir());
-    Directory dir = null;
-    try {
-      dir = FSDirectory.open(indexDirFile);
-      IndexReader indexReader  = DirectoryReader.open(dir);
-      Terms terms = indexReader.getTermVector(0,"content");
-      if(terms==null){
-        return frequencies;
-      }
-      //terms.iterator("s");
-      TermsEnum termsEnum = null;
-      termsEnum = terms.iterator(TermsEnum.EMPTY);
-      BytesRef text = null;
-      while ((text = termsEnum.next()) != null) {
-        String term = text.utf8ToString();
-        int freq = (int) termsEnum.totalTermFreq();
-        frequencies.put(term, freq);
-      }
-    } catch (IOException e) {
-      e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-    }
-    return frequencies;
-  }
-
   public TopDocs performSearch(String queryString){
     BooleanQuery query = new BooleanQuery();
     query.add(new TermQuery(new Term("content", queryString)), BooleanClause.Occur.MUST);

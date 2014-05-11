@@ -21,15 +21,44 @@ public class RelationFinder {
    private Lemmatizer lm;
    public Set<TermRelation> getRelations(List<TermInDoc> terms, List<Snippet> snippets){
      Set<TermRelation> termRelations = Sets.newHashSet();
+     this.addAssociations(termRelations, terms, snippets);
+     this.addIsA(termRelations, terms, snippets);
+     this.addIsPartOf(termRelations, terms, snippets);
+     return termRelations;
+   }
+   private void addAssociations(Set<TermRelation> relations, List<TermInDoc> terms, List<Snippet> snippets){
      for(Snippet snip:snippets){
        List<TermInDoc> relatedTerms = getTermsListFromSentence(snip.getText(), terms);
        for(TermInDoc term:relatedTerms){
-         termRelations.add(new TermRelation(snip.getTerm(),term,"association"));
-         termRelations.add(new TermRelation(term,snip.getTerm(),"association"));
+         if(!term.getTermin().getText().equals(snip.getTerm().getTermin().getText())){
+           relations.add(new TermRelation(snip.getTerm(),term,"association"));
+           relations.add(new TermRelation(term,snip.getTerm(),"association"));
+         }
        }
      }
-     return termRelations;
    }
+  private void addIsA(Set<TermRelation> relations, List<TermInDoc> terms, List<Snippet> snippets){
+   /* for(Snippet snip:snippets){
+      List<TermInDoc> relatedTerms = getTermsListFromSentence(snip.getText(), terms);
+      *//*for(TermInDoc term:relatedTerms){
+        if(!term.getTermin().getText().equals(snip.getTerm().getTermin().getText())){
+          relations.add(new TermRelation(snip.getTerm(),term,"association"));
+          relations.add(new TermRelation(term,snip.getTerm(),"association"));
+        }
+      }*//*
+    }*/
+  }
+  private void addIsPartOf(Set<TermRelation> relations, List<TermInDoc> terms, List<Snippet> snippets){
+   /* for(Snippet snip:snippets){
+      List<TermInDoc> relatedTerms = getTermsListFromSentence(snip.getText(), terms);
+      *//*for(TermInDoc term:relatedTerms){
+        if(!term.getTermin().getText().equals(snip.getTerm().getTermin().getText())){
+          relations.add(new TermRelation(snip.getTerm(),term,"association"));
+          relations.add(new TermRelation(term,snip.getTerm(),"association"));
+        }
+      }*//*
+    }*/
+  }
    private List<TermInDoc> getTermsListFromSentence(String sentence, List<TermInDoc> allTerms){
        List<TermInDoc> terms = Lists.newArrayList();
        String [] words = sentence.split("(?=[,.])|\\s+");

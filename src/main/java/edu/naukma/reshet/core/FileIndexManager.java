@@ -2,6 +2,8 @@ package edu.naukma.reshet.core;
 
 
 import edu.naukma.reshet.shared.IndexManager;
+import edu.naukma.reshet.shared.Searcher;
+import edu.naukma.reshet.shared.Searcher2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -61,6 +63,21 @@ public class FileIndexManager implements IndexManager{
     } catch (Exception e){
       return false;
     }
+  }
+
+  @Override
+  public File getDocument(String indexName, String fileName) {
+    return new File(indexPath + indexName + "/files/" + fileName);
+  }
+
+  @Override
+  public Searcher getSearcher(String indexName) {
+    return new SimpleTextSearcher(indexPath + indexName + "/lucene/");
+  }
+
+  @Override
+  public Searcher2 getSearcher2(String indexName) {
+    return new AdvancedTextSearcher(indexPath + indexName + "/lucene");
   }
 
   @Override

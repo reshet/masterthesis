@@ -88,16 +88,19 @@ public class SimpleTextSearcher implements Searcher {
     }
     return terms_str;
   }
-
   @Override
   public Map<String, Integer> getFrequencies() {
+    return this.getFrequencies(0);
+  }
+  @Override
+  public Map<String, Integer> getFrequencies(Integer docId) {
     Map<String, Integer> frequencies = Maps.newHashMap();
     File indexDirFile = new File(this.getIndexDir());
     Directory dir = null;
     try {
       dir = FSDirectory.open(indexDirFile);
       IndexReader indexReader  = DirectoryReader.open(dir);
-      Terms terms = indexReader.getTermVector(0,"content");
+      Terms terms = indexReader.getTermVector(docId,"content");
       if(terms==null){
         return frequencies;
       }

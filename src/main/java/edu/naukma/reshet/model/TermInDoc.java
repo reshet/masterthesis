@@ -2,6 +2,7 @@ package edu.naukma.reshet.model;
 
 import com.google.common.collect.Ordering;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import javax.annotation.Nullable;
 
@@ -9,7 +10,9 @@ public class TermInDoc implements Comparable<TermInDoc>{
   @Id
   private String id;
 
+  @DBRef
   private Termin termin;
+
   private Double tfidf;
 
   public TermInDoc() {}

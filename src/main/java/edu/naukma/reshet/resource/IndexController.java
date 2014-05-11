@@ -42,6 +42,14 @@ public class IndexController {
     return new ResponseEntity<IndexDTO>(index, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
+  @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+  @ResponseBody
+  public HttpEntity<IndexDTO> getIndex(@PathVariable String name){
+    IndexDTO index = new IndexDTO(new Long(indexFacade.getTermIndex(name).docCount()), name);
+    index.add(linkTo(methodOn(IndexController.class).getIndexGen()).withSelfRel());
+    return new ResponseEntity<IndexDTO>(index, HttpStatus.OK);
+  }
+
   @RequestMapping(value = "/{name}", method = RequestMethod.DELETE)
   @ResponseBody
   public HttpEntity<IndexDTO> deleteIndex(@PathVariable String name){

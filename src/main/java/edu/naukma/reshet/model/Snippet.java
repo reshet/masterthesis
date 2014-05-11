@@ -1,9 +1,18 @@
 package edu.naukma.reshet.model;
 
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+
 public class Snippet {
+  @Id
+  private String id;
+
   private String text;
+
+  @DBRef
   private TermInDoc term;
+
   private Long docId;
 
   public Snippet(String text, TermInDoc term, Long docId) {

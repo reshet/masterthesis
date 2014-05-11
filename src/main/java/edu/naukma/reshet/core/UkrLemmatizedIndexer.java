@@ -3,7 +3,6 @@ package edu.naukma.reshet.core;
 import edu.naukma.reshet.shared.Indexer;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.lemmagen.LemmagenFilter;
-import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
@@ -38,7 +37,7 @@ public class UkrLemmatizedIndexer implements Indexer {
   }
 
   @Override
-  public String indexDocument(Document doc) {
+  public Integer indexDocument(Document doc) {
     IndexWriter writer = null;
     try {
       writer = getIndexWriter(false);
@@ -47,8 +46,14 @@ public class UkrLemmatizedIndexer implements Indexer {
     } catch (IOException e) {
       e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
     }
-    return "OK";
+    return writer.maxDoc();
   }
+
+  @Override
+  public Integer docCount() {
+    return null;  //To change body of implemented methods use File | Settings | File Templates.
+  }
+
   private IndexWriter indexWriter;
   private IndexWriter getIndexWriter(boolean create) throws IOException {
     if (indexWriter == null) {

@@ -1,20 +1,10 @@
 package edu.naukma.reshet.core;
 
 import edu.naukma.reshet.shared.Indexer;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.lemmagen.LemmagenFilter;
-import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.store.SimpleFSDirectory;
-import org.apache.lucene.util.Version;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
 
 public class SimpleIndexer implements Indexer {
 
@@ -34,15 +24,21 @@ public class SimpleIndexer implements Indexer {
     return "Indexed 212 documents";
   }
   @Override
-  public String indexDocument(Document doc) {
+  public Integer indexDocument(Document doc) {
     try {
       indexWriter.addDocument(doc);
-      closeIndexWriter();
+      indexWriter.commit();
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return "OK";
+    return indexWriter.maxDoc() - 1;
   }
+
+  @Override
+  public Integer docCount() {
+    return indexWriter.maxDoc();
+  }
+
   public IndexWriter getIndexWriter() {
     return this.indexWriter;
   }

@@ -1,10 +1,8 @@
 package edu.naukma.reshet.core;
 
 import edu.naukma.reshet.shared.Indexer;
-import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.SimpleFSDirectory;
@@ -33,7 +31,7 @@ public class ConcreteIndexer implements Indexer {
   }
 
   @Override
-  public String indexDocument(Document doc) {
+  public Integer indexDocument(Document doc) {
     IndexWriter writer = null;
     try {
       writer = getIndexWriter(false);
@@ -42,8 +40,14 @@ public class ConcreteIndexer implements Indexer {
     } catch (IOException e) {
       e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
     }
-    return "OK";
+    return writer.maxDoc();
   }
+
+  @Override
+  public Integer docCount() {
+    return 0;
+  }
+
   private IndexWriter indexWriter;
   private IndexWriter getIndexWriter(boolean create) throws IOException {
     if (indexWriter == null) {

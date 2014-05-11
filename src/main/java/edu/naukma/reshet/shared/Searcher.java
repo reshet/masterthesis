@@ -14,4 +14,5 @@ public interface Searcher {
    public List<String> search(String query);
    public List<String> getTerms();
    public Map<String, Integer> getFrequencies();
+   public Map<String, Integer> getFrequencies(Integer docId);
 }

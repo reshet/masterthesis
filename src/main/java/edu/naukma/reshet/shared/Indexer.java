@@ -12,5 +12,6 @@ import org.apache.lucene.document.Document;
 public interface Indexer {
   public String  getStepName();
   public String indexDocuments();
-  public String indexDocument(Document doc);
+  public Integer indexDocument(Document doc);
+  public Integer docCount();
 }
