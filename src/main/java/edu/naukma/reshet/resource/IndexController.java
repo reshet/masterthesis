@@ -9,10 +9,12 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 @Controller
 @RequestMapping("/index")
@@ -36,6 +38,41 @@ public class IndexController {
       return new ResponseEntity<IndexDTO>(index, HttpStatus.CREATED);
     }
     return new ResponseEntity<IndexDTO>(index, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  @RequestMapping(value = "/{name}", method = RequestMethod.DELETE)
+  @ResponseBody
+  public HttpEntity<IndexDTO> deleteIndex(@PathVariable String name){
+    IndexDTO index = new IndexDTO(0L, name);
+    index.add(linkTo(methodOn(IndexController.class).getIndexGen()).withSelfRel());
+    if(indexManager.deleteIndex(name)){
+      return new ResponseEntity<IndexDTO>(index, HttpStatus.OK);
+    }
+    return new ResponseEntity<IndexDTO>(index, HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+
+  @RequestMapping(value="/{name}/upload", method=RequestMethod.GET)
+  public @ResponseBody String provideUploadInfo(@PathVariable String name) {
+    return "You can upload a file to index " + name + " by posting to this same URL.";
+  }
+
+  @RequestMapping(value="/{indexname}/upload", method=RequestMethod.POST)
+  public @ResponseBody String handleFileUpload(@PathVariable String indexname, @RequestParam("name") String name,
+                                               @RequestParam("file") MultipartFile file){
+    if (!file.isEmpty()) {
+      try {
+        byte[] bytes = file.getBytes();
+        if(indexManager.addDocument(indexname, name, bytes)){
+          return "You successfully uploaded " + name + " into " + indexname + "!";
+        } else {
+          return "You failed to upload " + name + "";
+        }
+      } catch (Exception e) {
+        return "You failed to upload " + name + "";
+      }
+    } else {
+      return "You failed to upload " + name + " because the file was empty.";
+    }
   }
 
 }

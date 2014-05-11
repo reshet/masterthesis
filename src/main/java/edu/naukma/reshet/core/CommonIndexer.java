@@ -3,7 +3,6 @@ package edu.naukma.reshet.core;
 import edu.naukma.reshet.shared.Indexer;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.lemmagen.LemmagenFilter;
-import org.apache.lucene.analysis.ru.RussianAnalyzer;
 import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexWriter;
@@ -18,14 +17,14 @@ import java.io.IOException;
 import java.io.Reader;
 
 @Component("ukrlemindexer")
-public class UkrLemmatizedIndexer implements Indexer {
+public class CommonIndexer implements Indexer {
 
   @Value("${indexpath}")
-  private String directory;
-  public UkrLemmatizedIndexer(){
+  private String indexPath;
+  public CommonIndexer(){
   }
   public void setDirectory(String directory){
-     this.directory = directory;
+     this.indexPath = directory;
   }
   @Override
   public String  getStepName(){
@@ -54,7 +53,7 @@ public class UkrLemmatizedIndexer implements Indexer {
     if (indexWriter == null) {
       indexWriter = new IndexWriter(
               new SimpleFSDirectory(
-                      new File(directory)),
+                      new File(indexPath)),
                       new IndexWriterConfig(Version.LUCENE_47,
                               getUkrLemAnalyzer())
       );
