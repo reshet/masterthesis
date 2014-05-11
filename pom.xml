@@ -12,21 +12,26 @@
 -->
     <properties>
         <spring.version>4.0.2.RELEASE</spring.version>
-        <!--<jersey.version>2.6</jersey.version>-->
-        <!-- use UTF-8 for everything -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <start-class>edu.naukma.reshet.Application</start-class>
     </properties>
+    <!--<repositories>-->
+        <!--<repository>-->
+            <!--<id>jlemmagen-snapshots</id>-->
+            <!--<name>JLemmaGen snaphsot repository</name>-->
+            <!--<url>https://xmaven.datalan.sk/maven2/libs-snapshots-local/</url>-->
+            <!--<snapshots>-->
+                <!--<enabled>true</enabled>-->
+            <!--</snapshots>-->
+            <!--<layout>default</layout>-->
+        <!--</repository>-->
+    <!--</repositories>-->
+
     <repositories>
         <repository>
-            <id>jlemmagen-snapshots</id>
-            <name>JLemmaGen snaphsot repository</name>
-            <url>https://xmaven.datalan.sk/maven2/libs-snapshots-local/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <layout>default</layout>
+            <id>repo</id>
+            <url>file://${project.basedir}/repo</url>
         </repository>
     </repositories>
     <parent>
@@ -191,23 +196,17 @@
         <dependency>
             <groupId>jlemmagen</groupId>
             <artifactId>jlemmagen-lang</artifactId>
-            <version>0.0.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/java/lib/jlemmagen-lang-1.0-SNAPSHOT.jar</systemPath>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>jlemmagen</groupId>
             <artifactId>jlemmagen</artifactId>
-            <version>0.0.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/java/lib/jlemmagen-1.0-SNAPSHOT.jar</systemPath>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>jlemmagen</groupId>
             <artifactId>jlemmagen-lucene</artifactId>
-            <version>0.0.1</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/src/main/java/lib/jlemmagen-lucene-1.0-SNAPSHOT.jar</systemPath>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>org.languagetool</groupId>
