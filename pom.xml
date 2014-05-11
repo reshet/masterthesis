@@ -193,21 +193,21 @@
             <artifactId>jlemmagen-lang</artifactId>
             <version>0.0.1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/main/lib/jlemmagen-lang-1.0-SNAPSHOT.jar</systemPath>
+            <systemPath>${basedir}/src/main/java/lib/jlemmagen-lang-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>jlemmagen</groupId>
             <artifactId>jlemmagen</artifactId>
             <version>0.0.1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/main/lib/jlemmagen-1.0-SNAPSHOT.jar</systemPath>
+            <systemPath>${basedir}/src/main/java/lib/jlemmagen-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>jlemmagen</groupId>
             <artifactId>jlemmagen-lucene</artifactId>
             <version>0.0.1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/src/main/lib/jlemmagen-lucene-1.0-SNAPSHOT.jar</systemPath>
+            <systemPath>${basedir}/src/main/java/lib/jlemmagen-lucene-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.languagetool</groupId>
