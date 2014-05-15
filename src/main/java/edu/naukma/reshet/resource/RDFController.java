@@ -1,13 +1,20 @@
 package edu.naukma.reshet.resource;
 
+import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
 import com.github.jsonldjava.core.JsonLdError;
 import com.github.jsonldjava.core.JsonLdOptions;
 import com.github.jsonldjava.core.JsonLdProcessor;
 import com.github.jsonldjava.utils.JsonUtils;
+import com.google.common.collect.FluentIterable;
+import edu.naukma.reshet.model.TermInDoc;
+import edu.naukma.reshet.model.TermRelation;
 import edu.naukma.reshet.model.dto.IndexDTO;
 import edu.naukma.reshet.model.dto.RdfGraph;
 import edu.naukma.reshet.orchestration.IndexFacade;
+import edu.naukma.reshet.repositories.TermInDocRepository;
+import edu.naukma.reshet.repositories.TermRelationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
@@ -25,11 +33,23 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 @Controller
 @RequestMapping("/rdf")
 public class RDFController {
+  @Autowired
+  TermInDocRepository repoTerms;
+  @Autowired
+  TermRelationRepository repoRelations;
 
   @RequestMapping(value = "/{name}", method = RequestMethod.GET)
   @ResponseBody
   public HttpEntity<RdfGraph> getRDF(@PathVariable String name){
-    RdfGraph graph = new RdfGraph("content");
+    List<TermInDoc> terms = FluentIterable
+            .from(repoTerms.findAll())
+            //.limit(10)
+            .toList();
+    List<TermRelation> relations = FluentIterable
+            .from(repoRelations.findAll(new PageRequest(1,200)).getContent())
+            //.limit(20)
+            .toList();
+    RdfGraph graph = new RdfGraph(terms,relations);
     //graph.add(linkTo(methodOn(RDFController.class).getRDF(name)).withSelfRel());
     return new ResponseEntity<RdfGraph>(graph, HttpStatus.OK);
   }
@@ -37,7 +57,7 @@ public class RDFController {
   @RequestMapping(value = "/{name}/ld", method = RequestMethod.GET)
   @ResponseBody
   public String getRDFLD(@PathVariable String name) throws IOException, JsonLdError {
-    RdfGraph graph = new RdfGraph("content");
+    RdfGraph graph = new RdfGraph(Lists.newArrayList(),Lists.newArrayList());
     Map context = new HashMap();
 // Customise context...
 // Create an instance of JsonLdOptions with the standard JSON-LD options
@@ -51,12 +71,13 @@ public class RDFController {
     return JsonUtils.toPrettyString(compact);
   }
 
-  @RequestMapping(value = "/{name}/ldmy", method = RequestMethod.GET)
+/*  @RequestMapping(value = "/{name}/ldmy", method = RequestMethod.GET)
   @ResponseBody
   public RdfGraph getRDFLDmy(@PathVariable String name) {
+    List<TermInDoc> terms =
     RdfGraph graph = new RdfGraph(name);
     return graph;
-  }
+  }*/
 
 
 }

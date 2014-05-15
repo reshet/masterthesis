@@ -22,6 +22,10 @@ public class TermInDoc implements Comparable<TermInDoc>{
     this.tfidf = tfidf;
   }
 
+  public String getId(){
+    return id;
+  }
+
   @Override
   public String toString() {
     return String.format(
