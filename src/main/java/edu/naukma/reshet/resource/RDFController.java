@@ -30,7 +30,7 @@ public class RDFController {
   @ResponseBody
   public HttpEntity<RdfGraph> getRDF(@PathVariable String name){
     RdfGraph graph = new RdfGraph("content");
-    graph.add(linkTo(methodOn(RDFController.class).getRDF(name)).withSelfRel());
+    //graph.add(linkTo(methodOn(RDFController.class).getRDF(name)).withSelfRel());
     return new ResponseEntity<RdfGraph>(graph, HttpStatus.OK);
   }
 
@@ -53,8 +53,8 @@ public class RDFController {
 
   @RequestMapping(value = "/{name}/ldmy", method = RequestMethod.GET)
   @ResponseBody
-  public RdfGraph getRDFLDmy(@PathVariable String name) throws IOException, JsonLdError {
-    RdfGraph graph = new RdfGraph("content");
+  public RdfGraph getRDFLDmy(@PathVariable String name) {
+    RdfGraph graph = new RdfGraph(name);
     return graph;
   }
 
