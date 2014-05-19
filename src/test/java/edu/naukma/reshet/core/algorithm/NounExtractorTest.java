@@ -1,6 +1,7 @@
 package edu.naukma.reshet.core.algorithm;
 
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Maps;
+import edu.naukma.reshet.configuration.DefaultConfig;
 import edu.naukma.reshet.core.Algorithm;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.Termin;
@@ -15,6 +16,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationContextLoader;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -32,7 +34,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfig.class)
+@ContextConfiguration(classes = TestConfig.class, loader = SpringApplicationContextLoader.class)
 public class NounExtractorTest {
     @Mock
     DocumentaryFrequencyCrawler crawler;

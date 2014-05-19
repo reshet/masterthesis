@@ -12,16 +12,18 @@ import org.languagetool.AnalyzedTokenReadings;
 import org.languagetool.JLanguageTool;
 import org.languagetool.language.Ukrainian;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Component("noun")
 public class TopTfIdfInitialTerminologyNounExtractor implements InitialTerminologyExtractor {
 
   @Autowired
+  @Qualifier("cached")
   private
   DocumentaryFrequencyCrawler crawler;
 

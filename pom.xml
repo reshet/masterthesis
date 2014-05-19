@@ -194,6 +194,11 @@
             <version>1.4.2.RELEASE</version>
         </dependency>
         <dependency>
+            <groupId>com.lordofthejars</groupId>
+            <artifactId>nosqlunit-mongodb</artifactId>
+            <version>0.7.9</version>
+        </dependency>
+        <dependency>
             <groupId>jlemmagen</groupId>
             <artifactId>jlemmagen-lang</artifactId>
             <version>1.0</version>

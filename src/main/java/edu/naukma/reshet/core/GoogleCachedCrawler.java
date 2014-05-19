@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
-@Component
+@Component("cached")
 public class GoogleCachedCrawler extends GoogleCrawler{
 
   @Inject
