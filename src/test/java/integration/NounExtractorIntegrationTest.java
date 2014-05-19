@@ -41,12 +41,9 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = TestConfig.class)
 public class NounExtractorIntegrationTest {
-//    @Autowired
-//    @Qualifier("cached")
-//    DocumentaryFrequencyCrawler crawler;
-//
-//    @Autowired
-//    TerminRepository terminRepo;
+
+    @Autowired
+    TerminRepository terminRepo;
 
     @Autowired
     @Qualifier("noun")
@@ -63,22 +60,25 @@ public class NounExtractorIntegrationTest {
         termFrequencies.put("яскравий",1);
 
         when(searcher.getFrequencies(anyInt())).thenReturn(termFrequencies);
-        //when(crawler.getDocumentaryFrequency(anyString())).thenReturn(100000L);
-        //when(terminRepo.findByText(refEq("термін"))).thenReturn(new Termin("термін",1L));
-        //when(terminRepo.findByText(refEq("соціологія"))).thenReturn(new Termin("соціологія",1L));
         List<TermInDoc> terms = extractor.extractValuableTerms(searcher, 0);
-        //assertEquals("Should be 2 noun terms in list", terms.size(), 2);
-        //assertEquals("First noun term", terms.get(0).getTermin().getText(), "термін");
-        //assertEquals("Second noun term", terms.get(1).getTermin().getText(), "соціологія");
+        assertEquals("Should be 2 noun terms in list", terms.size(), 2);
+        assertEquals("First noun term", terms.get(0).getTermin().getText(), "термін");
+        assertEquals("Second noun term", terms.get(1).getTermin().getText(), "соціологія");
     }
     @Before
     public void setup(){
         MockitoAnnotations.initMocks(this);
+        initTermsDatabase();
+    }
+
+    private void initTermsDatabase(){
+       terminRepo.save(new Termin("термін",100000L));
+       terminRepo.save(new Termin("соціологія",100000L));
     }
 }
 
 @Configuration
-@PropertySource(value = "classpath:prod.properties")
+@PropertySource(value = "classpath:dev.properties")
 @EnableAutoConfiguration
 @EnableMongoRepositories
 @ComponentScan(basePackages = {"edu.naukma.reshet.core", "edu.naukma.reshet.repositories", "edu.naukma.reshet.configuration"})

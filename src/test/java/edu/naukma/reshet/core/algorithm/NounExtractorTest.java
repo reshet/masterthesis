@@ -1,8 +1,5 @@
 package edu.naukma.reshet.core.algorithm;
 
-import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Maps;
-import edu.naukma.reshet.configuration.DefaultConfig;
-import edu.naukma.reshet.core.Algorithm;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.repositories.TerminRepository;
@@ -14,14 +11,11 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationContextLoader;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
