@@ -46,10 +46,11 @@ public class RDFController {
             //.limit(10)
             .toList();
     List<TermRelation> relations = FluentIterable
-            .from(repoRelations.findAll(new PageRequest(1,200)).getContent())
+            .from(repoRelations.findAll(new PageRequest(0,200)).getContent())
             //.limit(20)
             .toList();
     RdfGraph graph = new RdfGraph(terms,relations);
+
     //graph.add(linkTo(methodOn(RDFController.class).getRDF(name)).withSelfRel());
     return new ResponseEntity<RdfGraph>(graph, HttpStatus.OK);
   }

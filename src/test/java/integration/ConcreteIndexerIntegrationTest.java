@@ -3,6 +3,7 @@ package integration;
 import edu.naukma.reshet.shared.Indexer;
 import edu.naukma.reshet.shared.Searcher;
 import edu.naukma.reshet.shared.TextExtractor;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @ContextConfiguration(classes = IntegrationConfig.class)
+@Ignore
 public class ConcreteIndexerIntegrationTest {
    @Autowired
    Indexer indexer;

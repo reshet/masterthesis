@@ -24,6 +24,7 @@ import eu.hlavki.text.lemmagen.LemmatizerFactory;
 import eu.hlavki.text.lemmagen.api.Lemmatizer;
 import org.apache.lucene.document.Document;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
@@ -40,6 +41,7 @@ public class IndexFacade {
   IndexerFactory indexerFactory;
 
   @Autowired
+  @Qualifier("default")
   InitialTerminologyExtractor
   extractor;
 

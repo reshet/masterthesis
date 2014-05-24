@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class JsonLDThesaurus {
 
-/*  private final String context = new StringBuilder()
-          .append("{concept: http://schema.org#concept}")
-          .toString();*/
   private final Context context = new Context();
   @JsonProperty("@context")
   public Object getContext(){

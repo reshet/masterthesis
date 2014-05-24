@@ -28,7 +28,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfig.class, loader = SpringApplicationContextLoader.class)
+@ContextConfiguration(classes = TestConfig.class)
 public class NounExtractorTest {
     @Mock
     DocumentaryFrequencyCrawler crawler;

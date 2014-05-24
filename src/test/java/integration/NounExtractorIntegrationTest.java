@@ -1,24 +1,22 @@
 package integration;
 
+import edu.naukma.reshet.configuration.BaseTestConfig;
 import edu.naukma.reshet.core.algorithm.TopTfIdfInitialTerminologyNounExtractor;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.repositories.TerminRepository;
-import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
 import edu.naukma.reshet.shared.Searcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.SpringApplicationContextLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
@@ -32,14 +30,14 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.refEq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestConfig.class)
+@Configuration
+@Import(BaseTestConfig.class)
+@ContextConfiguration(classes = NounExtractorIntegrationTest.class)
 public class NounExtractorIntegrationTest {
 
     @Autowired
@@ -77,14 +75,4 @@ public class NounExtractorIntegrationTest {
     }
 }
 
-@Configuration
-@PropertySource(value = "classpath:dev.properties")
-@EnableAutoConfiguration
-@EnableMongoRepositories
-@ComponentScan(basePackages = {"edu.naukma.reshet.core", "edu.naukma.reshet.repositories", "edu.naukma.reshet.configuration"})
-class TestConfig{
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer getConfigurator(){
-        return new PropertySourcesPlaceholderConfigurer();
-    }
-}
+
