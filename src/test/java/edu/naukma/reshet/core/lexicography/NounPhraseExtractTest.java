@@ -85,4 +85,18 @@ public class NounPhraseExtractTest {
             assertEquals(nouns.get(i).getText(), expected.get(i).getText());
         }
     }
+    @Test
+    public void noun_vs_noun_match_test(){
+        String phrase = "Оператор мутації — один з базових операторів генетичних алгоритмів.";
+        MatchRule rule = new MatchRule(1, POSTag.NOUN, POSTag.NOUN);
+        List<NounPhrase> nouns = rule.match(phrase);
+        List<NounPhrase> expected = Lists.newArrayList(
+                new NounPhrase("поведінкова соціологія"),
+                new NounPhrase("кількісне дослідження")
+        );
+        assertEquals("Found all needed phrases",nouns.size(), expected.size());
+        for(int i = 0; i < nouns.size();i++){
+            assertEquals(nouns.get(i).getText(), expected.get(i).getText());
+        }
+    }
 }

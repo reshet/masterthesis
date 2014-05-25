@@ -88,6 +88,7 @@ public class MatchRule {
        }
        return true;
     }
+
     public List<NounPhrase> match(String phrase) {
         List<NounPhrase> matches = Lists.newArrayList();
         try {
@@ -106,6 +107,29 @@ public class MatchRule {
                 }
             }
             } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return matches;
+    }
+    public List<NounPhraseMatch> matchWithPositions(String phrase) {
+        List<NounPhraseMatch> matches = Lists.newArrayList();
+        try {
+            List<AnalyzedSentence> analyzed = janguageTool.analyzeText(phrase);
+            AnalyzedSentence sentence = analyzed.get(0);
+            AnalyzedTokenReadings [] tokens = sentence.getTokensWithoutWhitespace();
+            for(int i = 0; i < tokens.length; i++){
+                if (matchPOSSequence(i, tokens)){
+                    List<String> normalized = Lists.newArrayList();
+                    for(int j = 0; j < tags.length; j++){
+                        String adjusted = adjustNounPhrase(tokens[i + j], tokens[i + baseWord].getAnalyzedToken(0));
+                        normalized.add(adjusted);
+                    }
+                    matches.add(new NounPhraseMatch(new NounPhrase(StringUtils.join(normalized, " ")), i));
+                    i += (tags.length - 1);
+                }
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
