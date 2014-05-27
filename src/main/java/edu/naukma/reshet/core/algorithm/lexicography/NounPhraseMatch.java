@@ -9,4 +9,12 @@ public class NounPhraseMatch{
         this.phrase = phrase;
         this.position = position;
     }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public NounPhrase getPhrase() {
+        return phrase;
+    }
 }

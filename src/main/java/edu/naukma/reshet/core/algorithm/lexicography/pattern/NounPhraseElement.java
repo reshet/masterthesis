@@ -28,4 +28,8 @@ public class NounPhraseElement implements PatternElement{
         }
         return allMatches;
     }
+
+    public boolean isMainPhrase() {
+        return mainPhrase;
+    }
 }
