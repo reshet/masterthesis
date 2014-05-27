@@ -7,6 +7,7 @@ import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.TermRelation;
 import edu.naukma.reshet.model.Termin;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MatchPattern {
@@ -59,6 +60,10 @@ public class MatchPattern {
         List<List<NounPhraseMatch>> allMatches = Lists.newArrayList();
         for(PatternElement element: elemets){
             List<NounPhraseMatch> matches = element.apply(phrase);
+            //Should be at least one match to each match element.
+            if(matches.isEmpty()){
+                return Collections.emptyList();
+            }
             allMatches.add(matches);
         }
         List<NounPhraseMatch>  match = Lists.newArrayList();
@@ -67,6 +72,7 @@ public class MatchPattern {
     public List<NounPhraseMatch> findBestEffortMatch(List<NounPhraseMatch> currentMatch, List<List<NounPhraseMatch>> lastingMatches){
         if(lastingMatches.size() > 0){
             List<NounPhraseMatch> stepMatches = lastingMatches.get(0);
+            //BUG here. need to ensure final match has elements from corresponding posiitions.
             for(NounPhraseMatch stepMatch: stepMatches){
                 if(currentMatch.isEmpty()){
                     //currentMatch = Lists.newArrayList();
