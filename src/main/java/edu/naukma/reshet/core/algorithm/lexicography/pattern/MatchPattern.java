@@ -72,7 +72,7 @@ public class MatchPattern {
     public List<NounPhraseMatch> findBestEffortMatch(List<NounPhraseMatch> currentMatch, List<List<NounPhraseMatch>> lastingMatches){
         if(lastingMatches.size() > 0){
             List<NounPhraseMatch> stepMatches = lastingMatches.get(0);
-            //BUG here. need to ensure final match has elements from corresponding posiitions.
+            //BUG here. need to ensure final match has elements from corresponding positions.
             for(NounPhraseMatch stepMatch: stepMatches){
                 if(currentMatch.isEmpty()){
                     //currentMatch = Lists.newArrayList();
