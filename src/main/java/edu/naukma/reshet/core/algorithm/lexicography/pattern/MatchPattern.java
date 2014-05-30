@@ -1,7 +1,9 @@
 package edu.naukma.reshet.core.algorithm.lexicography.pattern;
 
-import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
+
 import com.google.common.collect.FluentIterable;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import edu.naukma.reshet.core.algorithm.lexicography.NounPhraseMatch;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.TermRelation;
@@ -18,6 +20,7 @@ public class MatchPattern {
     }
     public List<TermRelation> getRelations(List<NounPhraseMatch> match){
         List<TermRelation> relations = Lists.newArrayList();
+        if(match.isEmpty()) return  relations;
         for(int i = 0; i < elemets.length; i++){
             for(int j = i; j < elemets.length; j++){
                if(i != j){
@@ -54,7 +57,7 @@ public class MatchPattern {
             List<NounPhraseMatch> matches = element.apply(phrase);
             allMatches.add(matches);
         }
-        return hasBestEffortMatch(Lists.newArrayList(), allMatches);
+        return hasBestEffortMatch(Lists.<NounPhraseMatch>newArrayList(), allMatches);
     }
     public List<NounPhraseMatch> matchFirst(String phrase){
         List<List<NounPhraseMatch>> allMatches = Lists.newArrayList();
@@ -70,27 +73,28 @@ public class MatchPattern {
         return findBestEffortMatch(match, allMatches);
     }
     public List<NounPhraseMatch> findBestEffortMatch(List<NounPhraseMatch> currentMatch, List<List<NounPhraseMatch>> lastingMatches){
+
         if(lastingMatches.size() > 0){
             List<NounPhraseMatch> stepMatches = lastingMatches.get(0);
-            //BUG here. need to ensure final match has elements from corresponding positions.
             for(NounPhraseMatch stepMatch: stepMatches){
-                if(currentMatch.isEmpty()){
-                    //currentMatch = Lists.newArrayList();
-                    currentMatch.add(stepMatch);
-                    List<NounPhraseMatch> match = findBestEffortMatch(currentMatch, FluentIterable.from(lastingMatches).skip(1).toList());
+                List<NounPhraseMatch> currentStep = Lists.newArrayList(currentMatch);
+                if(currentStep.isEmpty()){
+                    currentStep.add(stepMatch);
+                    System.out.println(currentStep);
+                    List<NounPhraseMatch> match = findBestEffortMatch(currentStep, FluentIterable.from(lastingMatches).skip(1).toList());
                     if(match.size() == elemets.length){
                         return match;
                     }
-                }
-                if (currentMatch.get(currentMatch.size()-1).getPosition() < stepMatch.getPosition()){
-                    currentMatch.add(stepMatch);
-                    List<NounPhraseMatch> match = findBestEffortMatch(currentMatch,FluentIterable.from(lastingMatches).skip(1).toList());
+                } else if (currentStep.get(currentStep.size()-1).getPosition() < stepMatch.getPosition()){
+                    currentStep.add(stepMatch);
+                    System.out.println(currentStep);
+                    List<NounPhraseMatch> match = findBestEffortMatch(currentStep,FluentIterable.from(lastingMatches).skip(1).toList());
                     if(match.size() == elemets.length){
                         return match;
                     }
                 }
             }
-            //return currentMatch;
+            return currentMatch;
         }
         return currentMatch;
     }

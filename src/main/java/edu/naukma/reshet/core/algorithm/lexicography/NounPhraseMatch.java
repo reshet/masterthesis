@@ -10,6 +10,11 @@ public class NounPhraseMatch{
         this.position = position;
     }
 
+    @Override
+    public String toString(){
+        return this.phrase.getText() + ", "+position;
+    }
+
     public int getPosition() {
         return position;
     }
