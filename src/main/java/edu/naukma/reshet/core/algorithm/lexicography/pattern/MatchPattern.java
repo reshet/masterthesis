@@ -60,7 +60,7 @@ public class MatchPattern {
         return hasBestEffortMatch(Lists.<NounPhraseMatch>newArrayList(), allMatches);
     }
     public List<NounPhraseMatch> matchFirst(String phrase){
-        List<List<NounPhraseMatch>> allMatches = Lists.newArrayList();
+        List<List<NounPhraseMatch>> allMatches = Lists.newLinkedList();
         for(PatternElement element: elemets){
             List<NounPhraseMatch> matches = element.apply(phrase);
             //Should be at least one match to each match element.
@@ -70,6 +70,7 @@ public class MatchPattern {
             allMatches.add(matches);
         }
         List<NounPhraseMatch>  match = Lists.newArrayList();
+        System.out.println(allMatches);
         return findBestEffortMatch(match, allMatches);
     }
     public List<NounPhraseMatch> findBestEffortMatch(List<NounPhraseMatch> currentMatch, List<List<NounPhraseMatch>> lastingMatches){
@@ -80,14 +81,12 @@ public class MatchPattern {
                 List<NounPhraseMatch> currentStep = Lists.newArrayList(currentMatch);
                 if(currentStep.isEmpty()){
                     currentStep.add(stepMatch);
-                    System.out.println(currentStep);
                     List<NounPhraseMatch> match = findBestEffortMatch(currentStep, FluentIterable.from(lastingMatches).skip(1).toList());
                     if(match.size() == elemets.length){
                         return match;
                     }
                 } else if (currentStep.get(currentStep.size()-1).getPosition() < stepMatch.getPosition()){
                     currentStep.add(stepMatch);
-                    System.out.println(currentStep);
                     List<NounPhraseMatch> match = findBestEffortMatch(currentStep,FluentIterable.from(lastingMatches).skip(1).toList());
                     if(match.size() == elemets.length){
                         return match;

@@ -1,8 +1,6 @@
 package edu.naukma.reshet.core.algorithm.lexicography;
 
-import com.google.api.client.util.Lists;
-import edu.naukma.reshet.model.TermInDoc;
-import edu.naukma.reshet.model.Termin;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang.StringUtils;
 import org.languagetool.AnalyzedSentence;
 import org.languagetool.AnalyzedToken;
@@ -65,7 +63,7 @@ public class MatchRule {
                     String [] tagsToken = token.getAnalyzedToken(0).getPOSTag().split(":");
                     // Тільки рід. Відмінок називний
                     tagsToken[1] = tagsBase[1];
-                    //tagsToken[2] = tagsBase[2];
+                    tagsToken[2] = "v_naz";
                     String resultTag = StringUtils.join(tagsToken,":");
                     String [] syntArr = synt.synthesize(token.getAnalyzedToken(0), resultTag);
                     return syntArr[0];
@@ -90,7 +88,7 @@ public class MatchRule {
     }
 
     public List<NounPhrase> match(String phrase) {
-        List<NounPhrase> matches = Lists.newArrayList();
+        List<NounPhrase> matches = Lists.newLinkedList();
         try {
             List<AnalyzedSentence> analyzed = janguageTool.analyzeText(phrase);
             AnalyzedSentence sentence = analyzed.get(0);
@@ -113,14 +111,14 @@ public class MatchRule {
         return matches;
     }
     public List<NounPhraseMatch> matchWithPositions(String phrase) {
-        List<NounPhraseMatch> matches = Lists.newArrayList();
+        List<NounPhraseMatch> matches = Lists.newLinkedList();
         try {
             List<AnalyzedSentence> analyzed = janguageTool.analyzeText(phrase);
             AnalyzedSentence sentence = analyzed.get(0);
             AnalyzedTokenReadings [] tokens = sentence.getTokensWithoutWhitespace();
             for(int i = 0; i < tokens.length; i++){
                 if (matchPOSSequence(i, tokens)){
-                    List<String> normalized = Lists.newArrayList();
+                    List<String> normalized = Lists.newLinkedList();
                     for(int j = 0; j < tags.length; j++){
                         String adjusted = adjustNounPhrase(tokens[i + j], tokens[i + baseWord].getAnalyzedToken(0));
                         normalized.add(adjusted);

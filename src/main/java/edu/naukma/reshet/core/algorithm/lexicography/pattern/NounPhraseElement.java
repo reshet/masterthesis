@@ -21,7 +21,7 @@ public class NounPhraseElement implements PatternElement{
     //Як секвентація ДНК: Розбили на всі можливі, потім встановлюємо порядок.
     @Override
     public List<NounPhraseMatch> apply(String subphrase) {
-        List<NounPhraseMatch> allMatches = Lists.newArrayList();
+        List<NounPhraseMatch> allMatches = Lists.newLinkedList();
         for(MatchRule rule: orderedRuleSet){
             List<NounPhraseMatch> phrases = rule.matchWithPositions(subphrase);
             allMatches.addAll(phrases);

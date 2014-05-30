@@ -56,6 +56,7 @@ public class DictionaryRelationPatternTest {
             String sentence = sentences.substring(start,end);
             System.out.println(sentence);
             List<NounPhraseMatch> match = pattern.matchFirst(sentence);
+            System.out.println(match);
             List<TermRelation> relations = pattern.getRelations(match);
             System.out.println(relations);
         }
