@@ -1,22 +1,7 @@
 package edu.naukma.reshet.core;
 
-import com.github.fakemongo.impl.index.IndexFactory;
-import edu.naukma.reshet.shared.TextExtractor;
-import org.apache.log4j.Appender;
-
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.FieldType;
-import org.apache.lucene.index.IndexWriter;
-import org.apache.pdfbox.cos.COSDocument;
-import org.apache.pdfbox.pdfparser.PDFParser;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.util.PDFTextStripper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -24,7 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Date;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
@@ -70,12 +54,10 @@ public class PdfDirectoryIndexer{
               @Override
               public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                   logger.info("Document " + file.getParent()+"/"+file.getFileName() + " start parsing pdf.");
-                  //System.out.println(new Date() + " __ Document " + file.getParent()+file.getFileName() + " start parsing pdf.");
                   Document doc = new PdfTextExtractor(file.toFile()).getDocument();
                   if(doc != null){
                       logger.info("Document " + file.getParent()+"/"+file.getFileName() + " start indexing.");
                       int docId = indexer.indexDocument(doc);
-                      //System.out.println(new Date() + " __ Document " + file.getParent()+file.getFileName() + " indexed as doc " + docId + " in index " + indexName);
                       logger.info("Document " + file.getParent()+"/"+file.getFileName() + " indexed as doc " + docId + " in index " + indexName);
                   }
                   return FileVisitResult.CONTINUE;
@@ -93,6 +75,5 @@ public class PdfDirectoryIndexer{
 
       long endTime = System.currentTimeMillis();
       logger.info("Indexing finished. TIME SPENT: " + (endTime - startTime) / 1000.0 + " seconds");
-      //System.out.println("Indexing finished. TIME SPENT: " + (endTime - startTime) / 1000.0 + " seconds");
     }
 }

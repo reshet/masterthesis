@@ -92,6 +92,18 @@ public class SimpleTextSearcher implements Searcher {
   public Map<String, Integer> getFrequencies() {
     return this.getFrequencies(0);
   }
+  public IndexReader getIndexReader(){
+      File indexDirFile = new File(this.getIndexDir());
+      Directory dir = null;
+      try {
+          dir = FSDirectory.open(indexDirFile);
+          IndexReader indexReader  = DirectoryReader.open(dir);
+          return indexReader;
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+      return null;
+  }
   @Override
   public Map<String, Integer> getFrequencies(Integer docId) {
     Map<String, Integer> frequencies = Maps.newHashMap();
@@ -117,6 +129,75 @@ public class SimpleTextSearcher implements Searcher {
       e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
     }
     return frequencies;
+  }
+
+    public Map<String, Integer> getDocFrequencies(Integer docId) {
+        Map<String, Integer> frequencies = Maps.newHashMap();
+        File indexDirFile = new File(this.getIndexDir());
+        Directory dir = null;
+        try {
+            dir = FSDirectory.open(indexDirFile);
+            IndexReader indexReader  = DirectoryReader.open(dir);
+            Terms terms = indexReader.getTermVector(docId,"content");
+            if(terms==null){
+                return frequencies;
+            }
+            TermsEnum termsEnum = null;
+            termsEnum = terms.iterator(TermsEnum.EMPTY);
+            BytesRef bytesref = null;
+            while ((bytesref = termsEnum.next()) != null) {
+                String term = bytesref.utf8ToString();
+                Term termInstance = new Term("content", bytesref);
+                int termFreq = (int)indexReader.totalTermFreq(termInstance);
+                int docCount = (int)indexReader.docFreq(termInstance);
+                frequencies.put(term, docCount);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return frequencies;
+    }
+
+    public Map<String, Double> getTermsIDFs() {
+        Map<String, Double> frequencies = Maps.newHashMap();
+        File indexDirFile = new File(this.getIndexDir());
+        Directory dir = null;
+        try {
+            dir = FSDirectory.open(indexDirFile);
+            IndexReader indexReader  = DirectoryReader.open(dir);
+
+            int docCount = indexReader.numDocs();
+            for(int i = 0; i < docCount; i++){
+                if(i % 50 == 0){
+                    System.out.println("Document ID : " + i);
+                }
+                Terms terms = indexReader.getTermVector(i, "content");
+                if(terms==null){
+                    continue;
+                }
+                TermsEnum termsEnum = null;
+                termsEnum = terms.iterator(TermsEnum.EMPTY);
+                BytesRef bytesref = null;
+                while ((bytesref = termsEnum.next()) != null) {
+                    String term = bytesref.utf8ToString();
+                    if(!frequencies.containsKey(term)){
+                        Term termInstance = new Term("content", bytesref);
+                        //int termFreq = (int)indexReader.totalTermFreq(termInstance);
+                        int docFreq = (int)indexReader.docFreq(termInstance);
+                        double idf = calcIDF(docFreq, docCount);
+                        frequencies.put(term, idf);
+                    }
+                }
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return frequencies;
+    }
+  private double calcIDF(int docFreq, int docCount){
+      return 1.0 * docFreq/docCount;
   }
 
   public TopDocs performSearch(String queryString){
