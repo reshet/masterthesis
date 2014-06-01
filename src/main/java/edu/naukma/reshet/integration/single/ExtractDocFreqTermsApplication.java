@@ -1,26 +1,27 @@
 package edu.naukma.reshet.integration.single;
 
+
+import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Sets;
 import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Ordering;
 import edu.naukma.reshet.configuration.MongoConfiguration;
-import edu.naukma.reshet.core.IndexerFactory;
-import edu.naukma.reshet.core.PdfDirectoryIndexer;
 import edu.naukma.reshet.core.SimpleTextSearcher;
+import edu.naukma.reshet.core.algorithm.TopTfIdfInitialTerminologyNounExtractor;
+import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.Termin;
+import edu.naukma.reshet.repositories.TermInDocRepository;
 import edu.naukma.reshet.repositories.TerminRepository;
-import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.index.IndexWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.annotation.Nullable;
@@ -30,35 +31,95 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Configuration
 @PropertySource(value = "classpath:init.properties")
 @Import(MongoConfiguration.class)
 @ContextConfiguration(classes = ExtractDocFreqTermsApplication.class)
-@ComponentScan(basePackages = {"edu.naukma.reshet.core.model", "edu.naukma.reshet.repositories"})
+@ComponentScan(basePackages = {
+        "edu.naukma.reshet.core.model",
+        "edu.naukma.reshet.core.algorithm",
+        "edu.naukma.reshet.core.help",
+        "edu.naukma.reshet.repositories"
+})
 @EnableAutoConfiguration
 public class ExtractDocFreqTermsApplication {
     static String path = "/Users/user/naukma/";
+
+
     @Autowired
     TerminRepository repo;
+    @Autowired
+    TermInDocRepository repoTermInDoc;
 
-    @PostConstruct
-    public void application(){
+
+
+    @Autowired
+    TopTfIdfInitialTerminologyNounExtractor extractor;
+
+    private Map<String, Double> getCollectionTerms(String indexPath){
         System.out.println("Reference collection documentary frequency extractor application");
-        SimpleTextSearcher searcher = new SimpleTextSearcher(path + "index/science/lucene/");
+        SimpleTextSearcher searcher = new SimpleTextSearcher(path + indexPath, "science");
         Map<String, Double> map = searcher.getTermsIDFs();
         Map<String, Double> filtered_map = filterTerms(map);
-        System.out.println("Original map size:" +map.size());
+        System.out.println("Original map size:" + map.size());
         System.out.println("Filtered map size:" + filtered_map.size());
-        List<String> list = sortByValue(filtered_map);
+        return filtered_map;
+    }
+    private void saveReferenceTerms(){
+        Map<String, Double> map = getCollectionTerms("index/science/lucene/");
+        List<String> list = sortByValue(map);
         for(String key: list){
-           repo.save(new Termin(key, map.get(key)));
+            repo.save(new Termin(key, map.get(key)));
         }
-//        List<String> top = FluentIterable.from(list).limit(200).toList();
-//        for(String key: top){
-//            System.out.println(filtered_map.get(key)+" : "+key);
-//        }
         System.out.println("IDFs calculated.");
+    }
+
+    private void extractCollectionTerms(String indexPath, String indexName){
+        SimpleTextSearcher searcher = new SimpleTextSearcher(path + indexPath, indexName);
+        int totalDocs = searcher.getIndexReader().numDocs();
+        List<TermInDoc> allTerms = Lists.newLinkedList();
+        for(int i = 0; i < totalDocs; i++){
+           List<TermInDoc> terms =  extractor.extractValuableTerms(searcher, i);
+           System.out.println("Terms count: " + terms.size());
+           allTerms.addAll(terms);
+        }
+        List<TermInDoc> top = Ordering
+                .natural()
+                .reverse()
+                .immutableSortedCopy(allTerms);
+        System.out.println("All Terms count: " + top.size());
+        List<TermInDoc> topSmall = limitList(top, 0.3);
+        System.out.println("Small terms count: " + topSmall.size());
+        repoTermInDoc.save(topSmall);
+//        for(TermInDoc tInDoc: topSmall){
+//            System.out.println(tInDoc.getTermin().getText());
+//        }
+    }
+    private static List<TermInDoc> limitList(List<TermInDoc> list, double factor){
+        final Set<String> uniqueTerms = Sets.newHashSet();
+        List<TermInDoc> uniqueList = FluentIterable.from(list)
+            .filter(new Predicate<TermInDoc>() {
+                @Override
+                public boolean apply(@Nullable TermInDoc termInDoc) {
+                    if (!uniqueTerms.contains(termInDoc.getTermin().getText())) {
+                        uniqueTerms.add(termInDoc.getTermin().getText());
+                        return true;
+                    }
+                    return false;
+                }
+            }).toList();
+        return FluentIterable.from(uniqueList)
+                .limit((int) Math.round(list.size() * factor))
+                .toList();
+
+    }
+    @PostConstruct
+    public void application(){
+       //saveReferenceTerms();
+       extractCollectionTerms("index/computerscience/lucene/","computerscience");
+       extractCollectionTerms("index/philosophy/lucene/","philosophy");
     }
     public static void main(String args[]){
       SpringApplication.run(ExtractDocFreqTermsApplication.class, args);
@@ -74,11 +135,11 @@ public class ExtractDocFreqTermsApplication {
        }));
     }
 
-    public static List sortByValue(final Map m) {
+    public static List<String> sortByValue(final Map m) {
         List<String> keys = new ArrayList<String>();
         keys.addAll(m.keySet());
-        Collections.sort(keys, new Comparator() {
-            public int compare(Object o1, Object o2) {
+        Collections.sort(keys, new Comparator<String>() {
+            public int compare(String o1, String o2) {
                 Object v2 = m.get(o1);
                 Object v1 = m.get(o2);
                 if (v1 == null) {

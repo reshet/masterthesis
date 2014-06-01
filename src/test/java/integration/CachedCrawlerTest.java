@@ -1,6 +1,6 @@
 package integration;
 
-import edu.naukma.reshet.core.GoogleCrawler;
+import edu.naukma.reshet.core.help.GoogleCrawler;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;

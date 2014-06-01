@@ -2,7 +2,6 @@ package edu.naukma.reshet.core.algorithm.lexicography.pattern;
 
 
 import com.google.common.collect.FluentIterable;
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import edu.naukma.reshet.core.algorithm.lexicography.NounPhraseMatch;
 import edu.naukma.reshet.model.TermInDoc;
@@ -27,8 +26,8 @@ public class MatchPattern {
                    PatternElement elem1 = elemets[i];
                    PatternElement elem2 = elemets[j];
                    if(elem1 instanceof NounPhraseElement && elem2 instanceof NounPhraseElement){
-                       TermInDoc term1 =  new TermInDoc(new Termin(match.get(i).getPhrase().getText(),1D),1.0);
-                       TermInDoc term2 =  new TermInDoc(new Termin(match.get(j).getPhrase().getText(),1D),1.0);
+                       TermInDoc term1 =  new TermInDoc(new Termin(match.get(i).getPhrase().getText(),1D),1.0,"science" );
+                       TermInDoc term2 =  new TermInDoc(new Termin(match.get(j).getPhrase().getText(),1D),1.0, "science");
 
                        NounPhraseElement noun1 = (NounPhraseElement)elem1;
                        NounPhraseElement noun2 = (NounPhraseElement)elem2;

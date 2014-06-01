@@ -3,7 +3,6 @@ package edu.naukma.reshet.core.algorithm;
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Ordering;
 import edu.naukma.reshet.model.TermInDoc;
-import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.repositories.TerminRepository;
 import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
 import edu.naukma.reshet.shared.Searcher;
@@ -33,7 +32,7 @@ public class TopTfIdfInitialTerminologyExtractor implements InitialTerminologyEx
       Integer frequency =  map.get(term);
       Double docFreq = crawler.getDocumentaryFrequency(term);
       Double totalFreq = 1.0*frequency/docFreq;
-      terms.add(new TermInDoc(terminRepo.findByText(term),totalFreq));
+      terms.add(new TermInDoc(terminRepo.findByText(term),totalFreq, "science"));
     }
     return Ordering
             .natural()

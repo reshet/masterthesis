@@ -36,7 +36,7 @@ class IntegrationConfig {
   }
   @Bean
   public Searcher configureSearcher(){
-    return new SimpleTextSearcher("/home/reshet/masterthesis/index/");
+    return new SimpleTextSearcher("/home/reshet/masterthesis/index/", "science");
   }
   @Bean
   public MongoCache mongoCacher(){

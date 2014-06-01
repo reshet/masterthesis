@@ -20,6 +20,7 @@ public class SnippetsFinder {
   public List<Snippet> findSnippets(List<TermInDoc> terms){
     List<Snippet> snippets = Lists.newArrayList();
     for(TermInDoc term:terms){
+      System.out.println("Find snippets for term: " + term.getTermin().getText());
       List<DocText> docs = searcher.searchDocs(term);
       List<Snippet> lst = proceessSingleSentenceSnippetBuilder(docs);
       snippets.addAll(lst);
@@ -40,10 +41,9 @@ public class SnippetsFinder {
   }
   private List<Snippet> proceessSingleSentenceSnippetBuilder(List<DocText> docs){
     List<Snippet> processedSnippets = Lists.newArrayList();
-
+    BreakIterator iterator = BreakIterator.getSentenceInstance(new Locale("uk-UA"));
     for(DocText doc: docs){
       StringBuilder allSnipSentences = new StringBuilder();
-      BreakIterator iterator = BreakIterator.getSentenceInstance(new Locale("uk-UA"));
       iterator.setText(doc.getText());
       int start = iterator.first();
       for (int end = iterator.next();

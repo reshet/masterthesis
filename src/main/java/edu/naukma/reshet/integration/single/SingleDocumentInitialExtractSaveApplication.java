@@ -1,7 +1,7 @@
 package edu.naukma.reshet.integration.single;
 
 import edu.naukma.reshet.configuration.MongoConfiguration;
-import edu.naukma.reshet.core.GoogleCachedCrawler;
+import edu.naukma.reshet.core.help.GoogleCachedCrawler;
 import edu.naukma.reshet.core.PdfFileExtractor;
 import edu.naukma.reshet.core.SimpleTextSearcher;
 import edu.naukma.reshet.core.UkrLemmatizedIndexer;
@@ -41,7 +41,7 @@ public class SingleDocumentInitialExtractSaveApplication {
   }
   @Bean
   public Searcher configureSearcher(){
-    return new SimpleTextSearcher("/home/reshet/masterthesis/index2/");
+    return new SimpleTextSearcher("/home/reshet/masterthesis/index2/", "science");
   }
 
   @Bean

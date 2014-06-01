@@ -73,7 +73,7 @@ public class FileIndexManager implements IndexManager{
 
   @Override
   public Searcher getSearcher(String indexName) {
-    return new SimpleTextSearcher(indexPath + indexName + "/lucene/");
+    return new SimpleTextSearcher(indexPath + indexName + "/lucene/", "science");
   }
 
   @Override

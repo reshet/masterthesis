@@ -14,12 +14,14 @@ public class TermInDoc implements Comparable<TermInDoc>{
   private Termin termin;
 
   private Double tfidf;
+  private String index;
 
   public TermInDoc() {}
 
-  public TermInDoc(Termin termin, Double tfidf) {
+  public TermInDoc(Termin termin, Double tfidf, String index) {
     this.termin = termin;
     this.tfidf = tfidf;
+    this.index = index;
   }
 
   public String getId(){
@@ -67,4 +69,8 @@ public class TermInDoc implements Comparable<TermInDoc>{
       return value < 0 ? -1 : 1;
     }
   };
+
+    public String getIndex() {
+        return index;
+    }
 }

@@ -24,9 +24,12 @@ public class SimpleTextSearcher implements Searcher {
   private IndexSearcher searcher = null;
   private IndexReader reader = null;
   private QueryParser parser = null;
-  public SimpleTextSearcher(){}
-  public SimpleTextSearcher(String indexDir){
-    this.setIndexDir(indexDir);
+    private String indexName;
+
+    public SimpleTextSearcher(){}
+  public SimpleTextSearcher(String indexDir, String indexName){
+      this.indexName = indexName;
+      this.setIndexDir(indexDir);
     File indexDirFile = new File(this.getIndexDir());
     Directory dir = null;
     try {
@@ -39,7 +42,13 @@ public class SimpleTextSearcher implements Searcher {
     }
 
   }
-  @Override
+
+    @Override
+    public String getIndexName() {
+        return indexName;
+    }
+
+    @Override
   public List<String> search(String query) {
       TopDocs top = performSearch(query);
       ScoreDoc[] scores = top.scoreDocs;

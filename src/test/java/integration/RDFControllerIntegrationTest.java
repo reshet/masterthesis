@@ -1,25 +1,21 @@
 package integration;
 
 import edu.naukma.reshet.configuration.BaseTestConfig;
-import edu.naukma.reshet.core.algorithm.TopTfIdfInitialTerminologyNounExtractor;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.TermRelation;
 import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.model.dto.RdfGraph;
 import edu.naukma.reshet.model.dto.graph.Concept;
 import edu.naukma.reshet.model.dto.graph.HierarchicalRelationship;
-import edu.naukma.reshet.model.dto.graph.Relation;
 import edu.naukma.reshet.repositories.TermInDocRepository;
 import edu.naukma.reshet.repositories.TermRelationRepository;
 import edu.naukma.reshet.repositories.TerminRepository;
 import edu.naukma.reshet.resource.RDFController;
-import edu.naukma.reshet.shared.Searcher;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -29,14 +25,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -91,8 +83,8 @@ public class RDFControllerIntegrationTest {
     private void fillTerminsDatabase(){
         Termin t1 = terminRepo.findByText("термін");
         Termin t2 = terminRepo.findByText("соціологія");
-        repoTerms.save(new TermInDoc(t1, 0.2));
-        repoTerms.save(new TermInDoc(t2, 0.2));
+        repoTerms.save(new TermInDoc(t1, 0.2, "science"));
+        repoTerms.save(new TermInDoc(t2, 0.2, "science"));
         //TermInDoc term1 = repoTerms.findByTermin(t1);
         //TermInDoc term2 = repoTerms.findByTermin(t2);
         List<TermInDoc> terms = repoTerms.findAll();

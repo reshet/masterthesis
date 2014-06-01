@@ -5,6 +5,8 @@ import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.
 //import edu.naukma.reshet.configuration.IntegrationConfig;
 import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.*;
+import edu.naukma.reshet.core.help.GoogleCachedCrawler;
+import edu.naukma.reshet.core.help.GoogleCrawler;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
@@ -39,7 +41,7 @@ public class MainUkrLemmatizerFreqs {
       Integer frequency =  map.get(term);
       Double docFreq = crawler.getDocumentaryFrequency(term);
       Double totalFreq = 1.0*frequency/docFreq;
-      termins.add(new TermInDoc(new Termin(term, docFreq),totalFreq));
+      termins.add(new TermInDoc(new Termin(term, docFreq),totalFreq,"science" ));
     }
     return Ordering
             .natural()

@@ -1,4 +1,4 @@
-package edu.naukma.reshet.core;
+package edu.naukma.reshet.core.help;
 
 //import com.google.api.client.json.JsonFactory;
 //import com.google.api.client.json.jackson2.JacksonFactory;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 
 @Component("cached")
-public class GoogleCachedCrawler extends GoogleCrawler{
+public class GoogleCachedCrawler extends GoogleCrawler {
 
   @Inject
   TerminRepository cacher;

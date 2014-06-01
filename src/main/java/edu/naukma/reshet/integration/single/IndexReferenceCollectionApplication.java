@@ -1,36 +1,14 @@
 package edu.naukma.reshet.integration.single;
 
-import com.github.fakemongo.impl.index.IndexFactory;
 import edu.naukma.reshet.configuration.MongoConfiguration;
-import edu.naukma.reshet.core.GoogleCachedCrawler;
 import edu.naukma.reshet.core.PdfDirectoryIndexer;
-import edu.naukma.reshet.core.PdfFileExtractor;
-import edu.naukma.reshet.core.SimpleTextSearcher;
-import edu.naukma.reshet.core.UkrLemmatizedIndexer;
-import edu.naukma.reshet.model.TermInDoc;
-import edu.naukma.reshet.repositories.TermInDocRepository;
-import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
-import edu.naukma.reshet.shared.IndexManager;
-import edu.naukma.reshet.shared.Indexer;
-import edu.naukma.reshet.shared.Searcher;
-import edu.naukma.reshet.shared.TextExtractor;
-import edu.naukma.reshet.shared.algorithm.InitialTerminologyExtract;
-import eu.hlavki.text.lemmagen.LemmatizerFactory;
-import eu.hlavki.text.lemmagen.api.Lemmatizer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.test.context.ContextConfiguration;
-
-import java.io.IOException;
-import java.util.List;
 
 @Configuration
 @PropertySource(value = "classpath:init.properties")
@@ -43,15 +21,28 @@ public class IndexReferenceCollectionApplication {
     public static PropertySourcesPlaceholderConfigurer getConfigurator(){
         return new PropertySourcesPlaceholderConfigurer();
     }
-    @Bean
-    public static PdfDirectoryIndexer indexer(){
-        return new PdfDirectoryIndexer(path + "pdfs/", path + "index/", "science");
+    public static PdfDirectoryIndexer indexer(String collectionPath, String name){
+        return new PdfDirectoryIndexer(path + collectionPath, path + "index/", name);
     }
 
     public static void main(String args[]){
-      System.out.println("Reference collection documentary frequency builder application");
-      PdfDirectoryIndexer indexer = indexer();
-      indexer.indexDirectoryWithPdfs();
-
+       //buildReferenceCollection();
+       //buildComputerScienceCollection();
+       buildPhilosophyCollection();
+    }
+    private static void buildReferenceCollection(){
+        System.out.println("Reference collection documentary frequency builder application");
+        PdfDirectoryIndexer indexer = indexer("pdfs/","science");
+        indexer.indexDirectoryWithPdfs();
+    }
+    private static void buildComputerScienceCollection(){
+        System.out.println("CS collection documentary frequency builder application");
+        PdfDirectoryIndexer indexer = indexer("thesauri/computerscience/", "computerscience");
+        indexer.indexDirectoryWithPdfs();
+    }
+    private static void buildPhilosophyCollection(){
+        System.out.println("Philosophy collection documentary frequency builder application");
+        PdfDirectoryIndexer indexer = indexer("thesauri/philosophy/", "philosophy");
+        indexer.indexDirectoryWithPdfs();
     }
 }

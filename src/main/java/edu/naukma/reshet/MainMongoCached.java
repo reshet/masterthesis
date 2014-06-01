@@ -2,8 +2,8 @@ package edu.naukma.reshet;
 
 //import edu.naukma.reshet.configuration.IntegrationConfig;
 import edu.naukma.reshet.configuration.MongoConfiguration;
-import edu.naukma.reshet.core.GoogleCachedCrawler;
-import edu.naukma.reshet.core.GoogleCrawler;
+import edu.naukma.reshet.core.help.GoogleCachedCrawler;
+import edu.naukma.reshet.core.help.GoogleCrawler;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**

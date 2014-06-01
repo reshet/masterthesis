@@ -1,4 +1,4 @@
-package edu.naukma.reshet.core;
+package edu.naukma.reshet.core.help;
 
 //import com.google.api.client.json.JsonFactory;
 //import com.google.api.client.json.jackson2.JacksonFactory;

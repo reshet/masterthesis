@@ -8,8 +8,6 @@ import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
 import edu.naukma.reshet.shared.Searcher;
 import edu.naukma.reshet.shared.algorithm.InitialTerminologyExtract;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
@@ -31,7 +29,7 @@ public class TopTfIdfInitialTerminologyExtract implements InitialTerminologyExtr
       Integer frequency =  map.get(term);
       Double docFreq = crawler.getDocumentaryFrequency(term);
       Double totalFreq = 1.0*frequency/docFreq;
-      terms.add(new TermInDoc(new Termin(term, docFreq),totalFreq));
+      terms.add(new TermInDoc(new Termin(term, docFreq),totalFreq, "science"));
     }
     return Ordering
             .natural()
