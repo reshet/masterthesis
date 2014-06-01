@@ -21,7 +21,7 @@ public class MainMongo {
     ctx.refresh();
 
     MongoCache cache = ctx.getBean(MongoCache.class);
-    cache.saveTerm(new Termin("ababababa",200L));
+    cache.saveTerm(new Termin("ababababa",200D));
     //MyService myService = ctx.getBean(MyService.class);
     //myService.doStuff();
     System.out.println("Master Thesis Ihor Reshetnev work 777");

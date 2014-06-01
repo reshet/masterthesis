@@ -50,9 +50,9 @@ public class NounExtractorTest {
         termFrequencies.put("яскравий",1);
 
         when(searcher.getFrequencies(anyInt())).thenReturn(termFrequencies);
-        when(crawler.getDocumentaryFrequency(anyString())).thenReturn(100000L);
-        when(terminRepo.findByText(refEq("термін"))).thenReturn(new Termin("термін",1L));
-        when(terminRepo.findByText(refEq("соціологія"))).thenReturn(new Termin("соціологія",1L));
+        when(crawler.getDocumentaryFrequency(anyString())).thenReturn(100000D);
+        when(terminRepo.findByText(refEq("термін"))).thenReturn(new Termin("термін",1D));
+        when(terminRepo.findByText(refEq("соціологія"))).thenReturn(new Termin("соціологія",1D));
         List<TermInDoc> terms = extractor.extractValuableTerms(searcher, 0);
         assertEquals("Should be 2 noun terms in list", terms.size(), 2);
         assertEquals("First noun term", terms.get(0).getTermin().getText(), "термін");

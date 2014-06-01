@@ -7,11 +7,11 @@ public class Termin {
   private String id;
 
   private String text;
-  private Long docFrequency;
+  private Double docFrequency;
 
   public Termin() {}
 
-  public Termin(String text, Long docFrequency) {
+  public Termin(String text, Double docFrequency) {
     this.setText(text);
     this.setDocFrequency(docFrequency);
   }
@@ -31,11 +31,11 @@ public class Termin {
     this.text = text;
   }
 
-  public Long getDocFrequency() {
+  public Double getDocFrequency() {
     return docFrequency;
   }
 
-  public void setDocFrequency(Long docFrequency) {
+  public void setDocFrequency(Double docFrequency) {
     this.docFrequency = docFrequency;
   }
 }

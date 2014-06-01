@@ -41,7 +41,7 @@ public class MainGetTextSnippet {
     List<TermInDoc> termins = Lists.newArrayList();
     for(String term: map.keySet()){
       Integer frequency =  map.get(term);
-      Long docFreq = crawler.getDocumentaryFrequency(term);
+      Double docFreq = crawler.getDocumentaryFrequency(term);
       Double totalFreq = 1.0*frequency/docFreq;
       termins.add(new TermInDoc(new Termin(term, docFreq),totalFreq));
     }

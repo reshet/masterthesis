@@ -27,8 +27,8 @@ public class MatchPattern {
                    PatternElement elem1 = elemets[i];
                    PatternElement elem2 = elemets[j];
                    if(elem1 instanceof NounPhraseElement && elem2 instanceof NounPhraseElement){
-                       TermInDoc term1 =  new TermInDoc(new Termin(match.get(i).getPhrase().getText(),1L),1.0);
-                       TermInDoc term2 =  new TermInDoc(new Termin(match.get(j).getPhrase().getText(),1L),1.0);
+                       TermInDoc term1 =  new TermInDoc(new Termin(match.get(i).getPhrase().getText(),1D),1.0);
+                       TermInDoc term2 =  new TermInDoc(new Termin(match.get(j).getPhrase().getText(),1D),1.0);
 
                        NounPhraseElement noun1 = (NounPhraseElement)elem1;
                        NounPhraseElement noun2 = (NounPhraseElement)elem2;

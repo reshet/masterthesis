@@ -31,7 +31,7 @@ public class TopTfIdfInitialTerminologyExtractor implements InitialTerminologyEx
     Map<String, Integer> map = searcher.getFrequencies(docId);
     for(String term: map.keySet()){
       Integer frequency =  map.get(term);
-      Long docFreq = crawler.getDocumentaryFrequency(term);
+      Double docFreq = crawler.getDocumentaryFrequency(term);
       Double totalFreq = 1.0*frequency/docFreq;
       terms.add(new TermInDoc(terminRepo.findByText(term),totalFreq));
     }

@@ -70,8 +70,8 @@ public class NounExtractorIntegrationTest {
     }
 
     private void initTermsDatabase(){
-       terminRepo.save(new Termin("термін",100000L));
-       terminRepo.save(new Termin("соціологія",100000L));
+       terminRepo.save(new Termin("термін",100000D));
+       terminRepo.save(new Termin("соціологія",100000D));
     }
 }
 

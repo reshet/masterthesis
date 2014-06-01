@@ -148,7 +148,7 @@ public class SimpleTextSearcher implements Searcher {
             while ((bytesref = termsEnum.next()) != null) {
                 String term = bytesref.utf8ToString();
                 Term termInstance = new Term("content", bytesref);
-                int termFreq = (int)indexReader.totalTermFreq(termInstance);
+                //int termFreq = (int)indexReader.totalTermFreq(termInstance);
                 int docCount = (int)indexReader.docFreq(termInstance);
                 frequencies.put(term, docCount);
             }

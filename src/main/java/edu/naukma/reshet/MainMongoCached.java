@@ -23,7 +23,7 @@ public class MainMongoCached {
     ctx.refresh();
 
     GoogleCrawler crawler = ctx.getBean(GoogleCachedCrawler.class);
-    Long docFreq = crawler.getDocumentaryFrequency("генеологія");
+    Double docFreq = crawler.getDocumentaryFrequency("генеологія");
     System.out.println(docFreq);
     System.out.println("Master Thesis Ihor Reshetnev work 888");
   }

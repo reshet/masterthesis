@@ -17,7 +17,7 @@ import java.net.URLEncoder;
 
 @Component
 public class GoogleCrawler implements DocumentaryFrequencyCrawler {
-  private Long httpPlainCrawler(String term){
+  private Double httpPlainCrawler(String term){
     try {
       String query = "https://www.googleapis.com/customsearch/v1?q="+
               term+
@@ -46,14 +46,14 @@ public class GoogleCrawler implements DocumentaryFrequencyCrawler {
       JsonNode actualObj = mapper.readTree(jp);
       String str = actualObj.get("searchInformation").get("totalResults").asText();
       System.out.print(str);
-      return Long.parseLong(str);
+      return new Double(Long.parseLong(str));
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return 0L;
+    return 0D;
   }
   @Override
-  public Long getDocumentaryFrequency(String term) {
+  public Double getDocumentaryFrequency(String term) {
     System.out.println("Searching google for doc freq of term " + term + "...");
     return httpPlainCrawler(term);
   }

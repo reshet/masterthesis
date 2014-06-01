@@ -55,7 +55,7 @@ public class TopTfIdfInitialTerminologyNounExtractor implements InitialTerminolo
 
             if (hasNoun) {
                 Integer frequency =  map.get(term);
-                Long docFreq = crawler.getDocumentaryFrequency(term);
+                Double docFreq = crawler.getDocumentaryFrequency(term);
                 Double totalFreq = 1.0*frequency/docFreq;
                 terms.add(new TermInDoc(terminRepo.findByText(term),totalFreq));
             }

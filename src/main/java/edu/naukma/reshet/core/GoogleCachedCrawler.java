@@ -16,11 +16,11 @@ public class GoogleCachedCrawler extends GoogleCrawler{
   TerminRepository cacher;
 
   @Override
-  public Long getDocumentaryFrequency(String term) {
+  public Double getDocumentaryFrequency(String term) {
     Termin termin = cacher.findByText(term);
     System.out.println("Looking for cached docFreq of term: "+term);
     if (termin == null){
-      Long docFreq = super.getDocumentaryFrequency(term);
+      Double docFreq = super.getDocumentaryFrequency(term);
       termin = new Termin(term, docFreq);
       cacher.save(termin);
     }
