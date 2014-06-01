@@ -5,6 +5,7 @@ class NaukmaGrabber {
     static File logfile = new File("/Users/user/naukma/grabbing.log")
     static String basePath = "/Users/user/naukma/pdfs"
     static File baseDir = new File(basePath)
+    static int docCount = 0;
     static def tagsoupParser = new org.ccil.cowan.tagsoup.Parser() as Object
     static def slurper = new XmlSlurper(tagsoupParser)
 
@@ -27,6 +28,7 @@ class NaukmaGrabber {
         long endTime = System.currentTimeMillis()
         logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " + "TIME SPENT: "+ (endTime-startTime)/1000.0 + " seconds"+"\n"}
         logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " +"End grabbing pdfs"+"\n"}
+        logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " +"PDFs collected: " + docCount + "\n"}
 
     }
     public static void processYear(year, link){
@@ -39,7 +41,6 @@ class NaukmaGrabber {
         xml."**".findAll { it.@class.toString().contains("sectiontableentry")}.eachWithIndex {
             elem, index ->
                 String topicText = elem.td.text().replaceAll("\\s+","_");
-                //String topic = new String(topicText.getBytes("windows-1251"),"UTF-8");
                 String linkTo = elem.td.a.@href;
                 processTopic(yearPath, topicText, linkTo)
         }
@@ -49,16 +50,42 @@ class NaukmaGrabber {
         File topicDir = new File(topicPath)
         if(!topicDir.exists()) topicDir.mkdir()
         logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " + "Start topic: "+ topic +"\n"}
-        println topic;
-        println link;
-//        def text = (link).toURL().getText();
-//        def xml = slurper.parseText(text)
-//        xml."**".findAll { it.@class.toString().contains("sectiontableentry")}.eachWithIndex {
-//            elem, index ->
-//                String topic = elem.td.text().replaceAll("\\s+","")
-//                String linkTo = elem.td.a.@href;
-//                processTopic(topic, linkTo)
-//        }
+        def text = (link).toURL().getText("windows-1251");
+        def xml = slurper.parseText(text)
+        xml."**".findAll { it.@target.equals("_blank") && it.text().toString().contains("Повний текст")}.eachWithIndex {
+            elem, index ->
+                String linkTo = elem.@href
+                if(linkTo.endsWith(".pdf")){
+                    String filename = linkTo.substring(linkTo.lastIndexOf("/") + 1)
+                    String filePath = topicPath + "/" + filename
+                    logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " + "Save document: "+ filePath +"\n"}
+                    saveFileFromURL(linkTo, filePath)
+                    docCount++
+                } else {
+                   processDocument(topicPath, linkTo)
+                }
+        }
+    }
+    public static void processDocument(topicPath, link){
+        logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " + "Start document: "+ link +"\n"}
+        def text = (link).toURL().getText();
+        def xml = slurper.parseText(text)
+        xml."**".findAll { it.@target.equals("_blank") && it.@href.toString().endsWith(".pdf") && it.text().toString().endsWith(".pdf")}.eachWithIndex {
+            elem, index ->
+                String linkTo = elem.@href
+                if(linkTo.endsWith(".pdf")){
+                    String filename = linkTo.substring(linkTo.lastIndexOf("/") + 1)
+                    String filePath = topicPath + "/" + filename
+                    logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " + "Save document: "+ filePath +"\n"}
+                    saveFileFromURL("http://www.ekmair.ukma.kiev.ua" + linkTo, filePath)
+                    docCount++
+                }
+        }
+    }
+    public static saveFileFromURL(link, file){
+        def f = new File(file).newOutputStream()
+        f << new URL(link).openStream()
+        f.close()
     }
 }
 
