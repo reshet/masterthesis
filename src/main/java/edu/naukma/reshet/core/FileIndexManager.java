@@ -18,6 +18,7 @@ import java.util.List;
 @Component
 public class FileIndexManager implements IndexManager{
   @Value("${indexpath}")
+  private
   String indexPath;
 
   @Override
@@ -84,4 +85,8 @@ public class FileIndexManager implements IndexManager{
   public List<String> getAllIndexes() {
     return null;  //To change body of implemented methods use File | Settings | File Templates.
   }
+
+    public void setIndexPath(String indexPath) {
+        this.indexPath = indexPath;
+    }
 }

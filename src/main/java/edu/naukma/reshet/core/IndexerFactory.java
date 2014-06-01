@@ -49,4 +49,8 @@ public class IndexerFactory {
       }
     };
   }
+
+    public void setIndexPath(String indexPath) {
+        this.indexPath = indexPath;
+    }
 }
