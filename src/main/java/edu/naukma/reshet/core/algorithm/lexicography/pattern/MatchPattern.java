@@ -74,7 +74,6 @@ public class MatchPattern {
         return findBestEffortMatch(match, allMatches);
     }
     public List<NounPhraseMatch> findBestEffortMatch(List<NounPhraseMatch> currentMatch, List<List<NounPhraseMatch>> lastingMatches){
-
         if(lastingMatches.size() > 0){
             List<NounPhraseMatch> stepMatches = lastingMatches.get(0);
             for(NounPhraseMatch stepMatch: stepMatches){
@@ -96,6 +95,33 @@ public class MatchPattern {
             return currentMatch;
         }
         return currentMatch;
+    }
+    public List<NounPhraseMatch> findAllMatches(List<NounPhraseMatch> currentMatch, List<List<NounPhraseMatch>> lastingMatches){
+        List<NounPhraseMatch> allMatches = Lists.newLinkedList();
+        if(lastingMatches.size() > 0){
+            List<NounPhraseMatch> stepMatches = lastingMatches.get(0);
+            for(NounPhraseMatch stepMatch: stepMatches){
+                List<NounPhraseMatch> currentStep = Lists.newArrayList(currentMatch);
+                if(currentStep.isEmpty()){
+                    currentStep.add(stepMatch);
+                    List<NounPhraseMatch> match = findBestEffortMatch(currentStep, FluentIterable.from(lastingMatches).skip(1).toList());
+                    if(match.size() == elemets.length){
+                        return match;
+                    }
+                } else if (currentStep.get(currentStep.size()-1).getPosition() < stepMatch.getPosition()){
+                    currentStep.add(stepMatch);
+                    List<NounPhraseMatch> match = findBestEffortMatch(currentStep,FluentIterable.from(lastingMatches).skip(1).toList());
+                    if(match.size() == elemets.length){
+                        return match;
+                    }
+                }
+            }
+            return currentMatch;
+        }
+        if(currentMatch.size() == elemets.length){
+            allMatches.addAll(currentMatch);
+        }
+        return allMatches;
     }
     public boolean hasBestEffortMatch(List<NounPhraseMatch> currentMatch, List<List<NounPhraseMatch>> lastingMatches){
         if(lastingMatches.size() > 0){
