@@ -68,24 +68,36 @@ class NaukmaGrabber {
     }
     public static void processDocument(topicPath, link){
         logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " + "Start document: "+ link +"\n"}
-        def text = (link).toURL().getText();
-        def xml = slurper.parseText(text)
-        xml."**".findAll { it.@target.equals("_blank") && it.@href.toString().endsWith(".pdf") && it.text().toString().endsWith(".pdf")}.eachWithIndex {
-            elem, index ->
-                String linkTo = elem.@href
-                if(linkTo.endsWith(".pdf")){
-                    String filename = linkTo.substring(linkTo.lastIndexOf("/") + 1)
-                    String filePath = topicPath + "/" + filename
-                    logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " + "Save document: "+ filePath +"\n"}
-                    saveFileFromURL("http://www.ekmair.ukma.kiev.ua" + linkTo, filePath)
-                    docCount++
-                }
+        try{
+            def text = (link).toURL().getText();
+            def xml = slurper.parseText(text)
+            xml."**".findAll { it.@target.equals("_blank") && it.@href.toString().endsWith(".pdf") && it.text().toString().endsWith(".pdf")}.eachWithIndex {
+                elem, index ->
+                    String linkTo = elem.@href
+                    if(linkTo.endsWith(".pdf")){
+                        String filename = linkTo.substring(linkTo.lastIndexOf("/") + 1)
+                        String filePath = topicPath + "/" + filename
+                        logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " + "Save document: "+ filePath +"\n"}
+                        saveFileFromURL("http://www.ekmair.ukma.kiev.ua" + linkTo, filePath)
+                        docCount++
+                    }
+            }
+        }  catch (exc){
+            logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " + "Error: "+ exc +"\n"}
         }
+
     }
     public static saveFileFromURL(link, file){
-        def f = new File(file).newOutputStream()
-        f << new URL(link).openStream()
-        f.close()
+        if(!new File(file).exists()){
+            try{
+                def f = new File(file).newOutputStream()
+                f << new URL(link).openStream()
+                f.close()
+            } catch (exc){
+                logfile.withWriterAppend {f -> f << new Date().getDateTimeString() +" __ " + "Error: "+ exc +"\n"}
+            }
+        }
+
     }
 }
 
