@@ -1,10 +1,18 @@
 package edu.naukma.reshet.core.algorithm;
 
-import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
-import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Sets;
+
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import edu.naukma.reshet.core.algorithm.lexicography.MatchRule;
+import edu.naukma.reshet.core.algorithm.lexicography.NounPhraseMatch;
+import edu.naukma.reshet.core.algorithm.lexicography.POSTag;
+import edu.naukma.reshet.core.algorithm.lexicography.pattern.ExactWordElement;
+import edu.naukma.reshet.core.algorithm.lexicography.pattern.MatchPattern;
+import edu.naukma.reshet.core.algorithm.lexicography.pattern.NounPhraseElement;
 import edu.naukma.reshet.model.Snippet;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.TermRelation;
@@ -13,15 +21,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nullable;
+import java.text.BreakIterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 @Component
 public class RelationFinder {
    private Lemmatizer lm;
-   public Set<TermRelation> getRelations(List<TermInDoc> terms, List<Snippet> snippets){
+    private BreakIterator iterator = BreakIterator.getSentenceInstance(new Locale("uk-UA"));
+    private final List<MatchPattern> isAPatterns = new ImmutableList.Builder<MatchPattern>()
+            .add(
+                new MatchPattern(
+                        new NounPhraseElement(true, new MatchRule(1, POSTag.ADJ, POSTag.NOUN), new MatchRule(0, POSTag.NOUN)),
+                        new ExactWordElement("—"),
+                        new NounPhraseElement(false, new MatchRule(0,POSTag.NOUN,POSTag.NOUN))
+                )
+            ).build();
+    public Set<TermRelation> getRelations(List<TermInDoc> terms, List<Snippet> snippets){
      Set<TermRelation> termRelations = Sets.newHashSet();
-     this.addAssociations(termRelations, terms, snippets);
+     //this.addAssociations(termRelations, terms, snippets);
      this.addIsA(termRelations, terms, snippets);
      this.addIsPartOf(termRelations, terms, snippets);
      return termRelations;
@@ -38,15 +57,16 @@ public class RelationFinder {
      }
    }
   private void addIsA(Set<TermRelation> relations, List<TermInDoc> terms, List<Snippet> snippets){
-   /* for(Snippet snip:snippets){
-      List<TermInDoc> relatedTerms = getTermsListFromSentence(snip.getText(), terms);
-      *//*for(TermInDoc term:relatedTerms){
-        if(!term.getTermin().getText().equals(snip.getTerm().getTermin().getText())){
-          relations.add(new TermRelation(snip.getTerm(),term,"association"));
-          relations.add(new TermRelation(term,snip.getTerm(),"association"));
+    for(Snippet snip:snippets){
+        iterator.setText(snip.getText());
+        int start = iterator.first();
+        for (int end = iterator.next();
+             end != BreakIterator.DONE;
+             start = end, end = iterator.next()) {
+            String sentence = snip.getText().substring(start, end);
+            relations.addAll(getRelationsFromSentence(sentence, terms));
         }
-      }*//*
-    }*/
+    }
   }
   private void addIsPartOf(Set<TermRelation> relations, List<TermInDoc> terms, List<Snippet> snippets){
    /* for(Snippet snip:snippets){
@@ -59,6 +79,15 @@ public class RelationFinder {
       }*//*
     }*/
   }
+   private List<TermRelation> getRelationsFromSentence(String sentence, List<TermInDoc> terms){
+     List<TermRelation> relations = Lists.newLinkedList();
+     for(MatchPattern pattern: isAPatterns){
+         List<NounPhraseMatch> match = pattern.matchFirst(sentence);
+         List<TermRelation> pRelations = pattern.getRelations(match);
+         relations.addAll(pRelations);
+     }
+     return relations;
+   }
    private List<TermInDoc> getTermsListFromSentence(String sentence, List<TermInDoc> allTerms){
        List<TermInDoc> terms = Lists.newArrayList();
        String [] words = sentence.split("(?=[,.])|\\s+");

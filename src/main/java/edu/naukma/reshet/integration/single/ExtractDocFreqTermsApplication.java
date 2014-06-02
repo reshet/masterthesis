@@ -117,7 +117,7 @@ public class ExtractDocFreqTermsApplication {
     }
     @PostConstruct
     public void application(){
-       //saveReferenceTerms();
+       saveReferenceTerms();
        extractCollectionTerms("index/computerscience/lucene/","computerscience");
        extractCollectionTerms("index/philosophy/lucene/","philosophy");
     }

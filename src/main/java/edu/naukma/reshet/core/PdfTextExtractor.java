@@ -31,6 +31,7 @@ public class PdfTextExtractor implements TextExtractor{
         COSDocument cd = parser.getDocument();
         PDFTextStripper stripper = new PDFTextStripper();
         String text = stripper.getText(new PDDocument(cd));
+        String cleanText = cleanText(text);
         Document doc = new Document();
         FieldType type = new FieldType();
         type.setStored(true);
@@ -39,7 +40,7 @@ public class PdfTextExtractor implements TextExtractor{
         type.setStoreTermVectors(true);
         type.setStoreTermVectorPositions(true);
         type.setStoreTermVectorOffsets(true);
-        doc.add(new Field("content", text, type));
+        doc.add(new Field("content",cleanText, type));
         return doc;
       } catch (IOException e) {
         e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -47,4 +48,9 @@ public class PdfTextExtractor implements TextExtractor{
     }
     return null;
   }
+  private String cleanText(String text){
+      //remove word transitions over 2 lines.
+      return text.replaceAll("-\\n","").replaceAll("\\n"," ");
+  }
+
 }

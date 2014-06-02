@@ -26,7 +26,7 @@ public class IndexReferenceCollectionApplication {
     }
 
     public static void main(String args[]){
-       //buildReferenceCollection();
+       buildReferenceCollection();
        //buildComputerScienceCollection();
        buildPhilosophyCollection();
     }
