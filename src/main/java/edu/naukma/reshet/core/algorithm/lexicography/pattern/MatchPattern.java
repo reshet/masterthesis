@@ -83,7 +83,10 @@ public class MatchPattern {
                     if(match.size() == elemets.length){
                         return match;
                     }
-                } else if (currentStep.get(currentStep.size()-1).getPosition() < stepMatch.getPosition()){
+               //not strict match - this allows * between matches.
+               // } else if (currentStep.get(currentStep.size()-1).getPosition() < stepMatch.getPosition()){
+               //strict match: it should follow immediatly
+                } else if (currentStep.get(currentStep.size()-1).getPosition() + 1 == stepMatch.getPosition()){
                     currentStep.add(stepMatch);
                     List<NounPhraseMatch> match = findBestEffortMatch(currentStep,FluentIterable.from(lastingMatches).skip(1).toList());
                     if(match.size() == elemets.length){

@@ -30,12 +30,22 @@ import java.util.Set;
 public class RelationFinder {
    private Lemmatizer lm;
     private BreakIterator iterator = BreakIterator.getSentenceInstance(new Locale("uk-UA"));
+    private final MatchRule [] nounPhrase = {
+            new MatchRule(1, POSTag.ADJ, POSTag.NOUN, POSTag.NOUN, POSTag.NOUN),
+            new MatchRule(1, POSTag.ADJ, POSTag.NOUN, POSTag.ADJ, POSTag.NOUN),
+            new MatchRule(2, POSTag.ADJ, POSTag.NOUN, POSTag.NOUN),
+            new MatchRule(2, POSTag.ADJ, POSTag.ADJ, POSTag.NOUN),
+            new MatchRule(0, POSTag.NOUN, POSTag.ADJ, POSTag.NOUN),
+            new MatchRule(1, POSTag.ADJ, POSTag.NOUN),
+            new MatchRule(1, POSTag.NOUN, POSTag.NOUN),
+            new MatchRule(0, POSTag.NOUN)
+    };
     private final List<MatchPattern> isAPatterns = new ImmutableList.Builder<MatchPattern>()
             .add(
                 new MatchPattern(
-                        new NounPhraseElement(true, new MatchRule(1, POSTag.ADJ, POSTag.NOUN), new MatchRule(0, POSTag.NOUN)),
-                        new ExactWordElement("—"),
-                        new NounPhraseElement(false, new MatchRule(0,POSTag.NOUN,POSTag.NOUN))
+                        new NounPhraseElement(true, nounPhrase),
+                        new ExactWordElement("—","це","є","вважається","слід розуміти","являється"),
+                        new NounPhraseElement(false, nounPhrase)
                 )
             ).build();
     public Set<TermRelation> getRelations(List<TermInDoc> terms, List<Snippet> snippets){
@@ -57,6 +67,8 @@ public class RelationFinder {
      }
    }
   private void addIsA(Set<TermRelation> relations, List<TermInDoc> terms, List<Snippet> snippets){
+    System.out.println("Snippets to process: " + snippets.size());
+    int snipCounter = 0;
     for(Snippet snip:snippets){
         iterator.setText(snip.getText());
         int start = iterator.first();
@@ -65,6 +77,10 @@ public class RelationFinder {
              start = end, end = iterator.next()) {
             String sentence = snip.getText().substring(start, end);
             relations.addAll(getRelationsFromSentence(sentence, terms));
+        }
+        snipCounter++;
+        if(snipCounter % 50 == 0){
+            System.out.println("Snippets processed: " + snipCounter + "/" + snippets.size());
         }
     }
   }

@@ -17,17 +17,21 @@ import static edu.naukma.reshet.core.algorithm.lexicography.POSTag.*;
 public class MatchRule {
 
     private final POSTag [] tags;
-    private JLanguageTool janguageTool;
+    private static JLanguageTool janguageTool;
+    private static UkrainianSynthesizer synt = new UkrainianSynthesizer();
+    static{
+        try {
+            janguageTool = new JLanguageTool(new Ukrainian());
+            janguageTool.activateDefaultPatternRules();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private int baseWord = 0;
     public MatchRule(int baseWord, POSTag ... tag) {
         tags = tag;
         this.baseWord = baseWord;
-        try {
-           this.janguageTool = new JLanguageTool(new Ukrainian());
-           this.janguageTool.activateDefaultPatternRules();
-        } catch (IOException e) {
-           e.printStackTrace();
-        }
+
     }
 
     private boolean matchPOS(POSTag tag, AnalyzedTokenReadings token){
@@ -50,7 +54,6 @@ public class MatchRule {
     }
 
     private String adjustNounPhrase(AnalyzedTokenReadings token, AnalyzedToken baseToken){
-        UkrainianSynthesizer synt = new UkrainianSynthesizer();
         if (token.getAnalyzedToken(0).equals(baseToken)) {
             return baseToken.getLemma();
         }
@@ -62,11 +65,16 @@ public class MatchRule {
                     String [] tagsBase = baseToken.getPOSTag().split(":");
                     String [] tagsToken = token.getAnalyzedToken(0).getPOSTag().split(":");
                     // Тільки рід. Відмінок називний
-                    tagsToken[1] = tagsBase[1];
-                    tagsToken[2] = "v_naz";
-                    String resultTag = StringUtils.join(tagsToken,":");
-                    String [] syntArr = synt.synthesize(token.getAnalyzedToken(0), resultTag);
-                    return syntArr[0];
+                    if(tagsToken.length > 2 && tagsBase.length > 1){
+                        tagsToken[1] = tagsBase[1];
+                        tagsToken[2] = "v_naz";
+                        String resultTag = StringUtils.join(tagsToken,":");
+                        String [] syntArr = synt.synthesize(token.getAnalyzedToken(0), resultTag);
+                        if(syntArr.length > 0){
+                            return syntArr[0];
+                        }
+                    }
+                    return token.getAnalyzedToken(0).getToken();
                 default: return token.getAnalyzedToken(0).getToken();
             }
 

@@ -78,11 +78,43 @@ public class FindRelationsInCollectionApplication {
         List<TermInDoc> termsAll = repoTermInDoc.findByIndex(indexName);
         List<Snippet> snippets = snipFinder.findSnippets(termsAll);
         Set<TermRelation> relations = relFinder.getRelations(termsAll, snippets);
-        repoRelation.save(relations);
+        Set<TermRelation> validRelations = prepareRelations(relations);
+        repoRelation.save(validRelations);
         long endTime = System.currentTimeMillis();
-        System.out.println("Time spent: " + (endTime-startTime)/1000 + " sec.");
+        System.out.println("Time spent: " + (endTime - startTime) / 1000 + " sec.");
     }
-
+    private Set<TermRelation> prepareRelations(Set<TermRelation> relations){
+        final Set<String> uniqueRelationsPool = Sets.newHashSet();
+        final Set<TermRelation> validRelations = Sets.newHashSet();
+        for(TermRelation relation: relations){
+            String hash = relation.getRelationType() + "|" +
+                    relation.getTerm1().getTermin().getText() + "|" +
+                    relation.getTerm2().getTermin().getText();
+            if (!uniqueRelationsPool.contains(hash)) {
+                uniqueRelationsPool.add(hash);
+                String termin1 = relation.getTerm1().getTermin().getText();
+                String termin2 = relation.getTerm2().getTermin().getText();
+                if (repo.findByText(termin1) == null) {
+                    repo.save(relation.getTerm1().getTermin());
+                }
+                if (repo.findByText(termin2) == null) {
+                    repo.save(relation.getTerm2().getTermin());
+                }
+                Termin term1 = repo.findByText(termin1);
+                Termin term2 = repo.findByText(termin2);
+                relation.getTerm1().setTermin(term1);
+                relation.getTerm2().setTermin(term2);
+                repoTermInDoc.save(relation.getTerm1());
+                repoTermInDoc.save(relation.getTerm2());
+                TermRelation validRelation = new TermRelation(
+                        repoTermInDoc.findByTermin(term1),
+                        repoTermInDoc.findByTermin(term2),
+                        relation.getRelationType());
+                validRelations.add(validRelation);
+            }
+        }
+       return validRelations;
+    }
     @PostConstruct
     public void application(){
         try {
