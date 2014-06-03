@@ -1,6 +1,7 @@
 package edu.naukma.reshet.core.algorithm.lexicography.pattern;
 
-import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
+
+import com.google.common.collect.Lists;
 import edu.naukma.reshet.core.algorithm.lexicography.MatchRule;
 import edu.naukma.reshet.core.algorithm.lexicography.NounPhraseMatch;
 
@@ -27,7 +28,7 @@ public class IterationElement implements PatternElement{
                 mult++;
             }
         }
-        return mergeToLongestMatches(allMatches);
+        return mergeToLongestMatches(Lists.reverse(allMatches));
     }
 
     private PatternElement [] expandIteration(int mult, PatternElement [] elems){
@@ -41,6 +42,10 @@ public class IterationElement implements PatternElement{
         return iteration;
     }
     private List<NounPhraseMatch> mergeToLongestMatches(List<List<NounPhraseMatch>> allMatches){
+        List<NounPhraseMatch> mergedMatches = Lists.newLinkedList();
+        for(List<NounPhraseMatch> matches: allMatches){
 
+        }
+        return mergedMatches;
     }
 }

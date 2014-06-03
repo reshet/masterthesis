@@ -1,12 +1,16 @@
 package edu.naukma.reshet.core.lexicography;
 
+import com.google.common.collect.Lists;
 import edu.naukma.reshet.core.algorithm.lexicography.MatchRule;
+import edu.naukma.reshet.core.algorithm.lexicography.NounPhrase;
 import edu.naukma.reshet.core.algorithm.lexicography.NounPhraseMatch;
 import edu.naukma.reshet.core.algorithm.lexicography.POSTag;
 import edu.naukma.reshet.core.algorithm.lexicography.pattern.ExactWordElement;
+import edu.naukma.reshet.core.algorithm.lexicography.pattern.IterationElement;
 import edu.naukma.reshet.core.algorithm.lexicography.pattern.MatchPattern;
 import edu.naukma.reshet.core.algorithm.lexicography.pattern.NounPhraseElement;
 import edu.naukma.reshet.model.TermRelation;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Configuration;
@@ -73,5 +77,18 @@ public class RelationPatternTest {
         System.out.println(relations);
         //assertEquals(match.get(0).getPhrase().getText(), "соціологічне дослідження");
         //assertEquals(match.get(2).getPhrase().getText(), "різновид дослідження");
+    }
+
+    @Test
+    public void iteration_rule_match_test(){
+        String sentence = "Види комах, такі як бджоли, мухи, комарі й інші комахи.";
+        MatchPattern pattern = new MatchPattern(
+                new NounPhraseElement(true, new MatchRule(1, POSTag.ADJ, POSTag.NOUN), new MatchRule(0, POSTag.NOUN)),
+                new ExactWordElement(","),new ExactWordElement("такий"),new ExactWordElement("як"),
+                new IterationElement(new NounPhraseElement(false, new MatchRule(0,POSTag.NOUN)), new ExactWordElement(","))
+        );
+        List<NounPhraseMatch> match = pattern.matchFirst(sentence);
+        List<TermRelation> relations = pattern.getRelations(match);
+
     }
 }
