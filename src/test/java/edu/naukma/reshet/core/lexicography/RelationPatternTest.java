@@ -96,3 +96,5 @@ public class RelationPatternTest {
         System.out.println(allRelations);
     }
 }
+
+
