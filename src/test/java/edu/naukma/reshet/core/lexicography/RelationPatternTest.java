@@ -87,8 +87,12 @@ public class RelationPatternTest {
                 new ExactWordElement(","),new ExactWordElement("такий"),new ExactWordElement("як"),
                 new IterationElement(new NounPhraseElement(false, new MatchRule(0,POSTag.NOUN)), new ExactWordElement(","))
         );
-        List<NounPhraseMatch> match = pattern.matchFirst(sentence);
-        List<TermRelation> relations = pattern.getRelations(match);
-
+        List<List<NounPhraseMatch>> matches = pattern.matchAll(sentence);
+        System.out.println(matches);
+        List<TermRelation> allRelations = Lists.newLinkedList();
+        for(List<NounPhraseMatch> match: matches){
+            allRelations.addAll(pattern.getRelations(match));
+        }
+        System.out.println(allRelations);
     }
 }

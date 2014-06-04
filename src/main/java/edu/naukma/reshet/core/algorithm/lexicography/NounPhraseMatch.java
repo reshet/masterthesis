@@ -2,8 +2,8 @@ package edu.naukma.reshet.core.algorithm.lexicography;
 
 
 public class NounPhraseMatch{
-    final private NounPhrase phrase;
-    private final int position;
+    final protected  NounPhrase phrase;
+    final protected int position;
 
     public NounPhraseMatch(NounPhrase phrase, int position) {
         this.phrase = phrase;
