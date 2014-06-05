@@ -176,6 +176,55 @@ public class RelationFinder {
             new ExactWordElement("і","або","й","та"),
             new NounPhraseElement(false, MATCH_RULES_1_9)
     );
+    public  final static MatchPattern P1_1 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("а"),new ExactWordElement("саме"), new ExactWordElement(":","—"),
+            new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+
+    );
+    public  final static MatchPattern P1_1a = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("а"),new ExactWordElement("саме"), new ExactWordElement(":","—"),
+            new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+
+    );
+    public  final static MatchPattern P1_2 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("а"),new ExactWordElement("саме"), new ExactWordElement(":","—"),
+            new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+
+    );
+    public  final static MatchPattern P1_3 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("а"),new ExactWordElement("саме"), new ExactWordElement(":","—"),
+            new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_9),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+            );
+    public  final static MatchPattern S0 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("наприклад","як-от"),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+    );
+    public  final static MatchPattern S1 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("наприклад","як-от"),
+            new IterationElement(new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(",")),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+    );
+
+    public  final static MatchPattern S2 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("наприклад","як-от"),
+            new IterationElement(new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(",")),
+            new NounPhraseElement(false, MATCH_RULES_1_9),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+    );
 //    private final static MatchPattern LP6 = new MatchPattern(
 //            new NounPhraseElement(true, MATCH_RULES_1_9),
 //            new ExactWordElement(","),new ExactWordElement("включаючи","зокрема","особливо"),
@@ -184,10 +233,13 @@ public class RelationFinder {
 //            new NounPhraseElement(false, MATCH_RULES_1_9)
 //    );
     private final List<MatchPattern> isAPatterns = new ImmutableList.Builder<MatchPattern>()
-            .add(LP1)
-            .add(LP2_4,LP2_3,LP2_2,LP2_1)
-            .add(LP3_4,LP3_3,LP3_2,LP3_1)
-            .add(LP4_4,LP4_3,LP4_2,LP4_1)
+            ///////hren .add(P1_1,P1_1a,P1_2,P1_3)
+        //Якщо при узагальнювальному слові є слова а саме, як-от, наприклад,
+            //.add(LP1)
+            //.add(LP2_4,LP2_3,LP2_2,LP2_1)
+            //.add(LP3_4,LP3_3,LP3_2,LP3_1)
+            //.add(LP4_4,LP4_3,LP4_2,LP4_1)
+        .add(S0,S1,S2)
         .build();
     public Set<TermRelation> getRelations(List<TermInDoc> terms, List<Snippet> snippets){
      Set<TermRelation> termRelations = Sets.newHashSet();
