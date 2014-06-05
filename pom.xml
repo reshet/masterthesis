@@ -15,6 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <start-class>edu.naukma.reshet.Application</start-class>
+        <!--<start-class>edu.naukma.runnable.single.FullProcessCollectionApplication</start-class>-->
     </properties>
     <!--<repositories>-->
         <!--<repository>-->

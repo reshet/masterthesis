@@ -121,8 +121,10 @@ public class FindRelationsInCollectionApplication {
         } catch (IOException e) {
             e.printStackTrace();
         }
-       extractCollectionRelations("index/computerscience/lucene/", "computerscience");
+       //extractCollectionRelations("index/computerscience/lucene/", "computerscience");
        //extractCollectionRelations("index/philosophy/lucene/", "philosophy");
+       //extractCollectionRelations("index/biotech/lucene/", "biotech");
+        extractCollectionRelations("index/sociology/lucene/", "sociology");
     }
     public static void main(String args[]){
       SpringApplication.run(FindRelationsInCollectionApplication.class, args);

@@ -233,12 +233,12 @@ public class RelationFinder {
 //            new NounPhraseElement(false, MATCH_RULES_1_9)
 //    );
     private final List<MatchPattern> isAPatterns = new ImmutableList.Builder<MatchPattern>()
-            ///////hren .add(P1_1,P1_1a,P1_2,P1_3)
+            .add(P1_1,P1_1a,P1_2,P1_3)
         //Якщо при узагальнювальному слові є слова а саме, як-от, наприклад,
-            //.add(LP1)
-            //.add(LP2_4,LP2_3,LP2_2,LP2_1)
-            //.add(LP3_4,LP3_3,LP3_2,LP3_1)
-            //.add(LP4_4,LP4_3,LP4_2,LP4_1)
+            .add(LP1)
+            .add(LP2_4,LP2_3,LP2_2,LP2_1)
+            .add(LP3_4,LP3_3,LP3_2,LP3_1)
+            .add(LP4_4,LP4_3,LP4_2,LP4_1)
         .add(S0,S1,S2)
         .build();
     public Set<TermRelation> getRelations(List<TermInDoc> terms, List<Snippet> snippets){

@@ -26,9 +26,11 @@ public class IndexReferenceCollectionApplication {
     }
 
     public static void main(String args[]){
-       buildReferenceCollection();
+       //buildReferenceCollection();
        //buildComputerScienceCollection();
-       buildPhilosophyCollection();
+       //buildPhilosophyCollection();
+        //buildBioTechCollection();
+       buildSociologyCollection();
     }
     private static void buildReferenceCollection(){
         System.out.println("Reference collection documentary frequency builder application");
@@ -43,6 +45,16 @@ public class IndexReferenceCollectionApplication {
     private static void buildPhilosophyCollection(){
         System.out.println("Philosophy collection documentary frequency builder application");
         PdfDirectoryIndexer indexer = indexer("thesauri/philosophy/", "philosophy");
+        indexer.indexDirectoryWithPdfs();
+    }
+    private static void buildBioTechCollection(){
+        System.out.println("Philosophy collection documentary frequency builder application");
+        PdfDirectoryIndexer indexer = indexer("thesauri/biotech/", "biotech");
+        indexer.indexDirectoryWithPdfs();
+    }
+    private static void buildSociologyCollection(){
+        System.out.println("Philosophy collection documentary frequency builder application");
+        PdfDirectoryIndexer indexer = indexer("thesauri/sociology/", "sociology");
         indexer.indexDirectoryWithPdfs();
     }
 }

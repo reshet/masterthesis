@@ -55,6 +55,7 @@ public class ExtractDocFreqTermsApplication {
 
 
 
+
     @Autowired
     TopTfIdfInitialTerminologyNounExtractor extractor;
 
@@ -103,6 +104,7 @@ public class ExtractDocFreqTermsApplication {
             .filter(new Predicate<TermInDoc>() {
                 @Override
                 public boolean apply(@Nullable TermInDoc termInDoc) {
+                    if(termInDoc == null) return false;
                     if (!uniqueTerms.contains(termInDoc.getTermin().getText())) {
                         uniqueTerms.add(termInDoc.getTermin().getText());
                         return true;
@@ -117,9 +119,11 @@ public class ExtractDocFreqTermsApplication {
     }
     @PostConstruct
     public void application(){
-       saveReferenceTerms();
-       extractCollectionTerms("index/computerscience/lucene/","computerscience");
-       extractCollectionTerms("index/philosophy/lucene/","philosophy");
+       //saveReferenceTerms();
+       //extractCollectionTerms("index/computerscience/lucene/","computerscience");
+       //extractCollectionTerms("index/philosophy/lucene/","philosophy");
+       //extractCollectionTerms("index/biotech/lucene/","biotech");
+        extractCollectionTerms("index/sociology/lucene/","sociology");
     }
     public static void main(String args[]){
       SpringApplication.run(ExtractDocFreqTermsApplication.class, args);

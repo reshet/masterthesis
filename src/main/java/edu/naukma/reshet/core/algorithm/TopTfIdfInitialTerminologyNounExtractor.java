@@ -7,6 +7,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Ordering;
 import edu.naukma.reshet.model.TermInDoc;
+import edu.naukma.reshet.model.Termin;
 import edu.naukma.reshet.repositories.TerminRepository;
 import edu.naukma.reshet.shared.DocumentaryFrequencyCrawler;
 import edu.naukma.reshet.shared.Searcher;
@@ -30,6 +31,7 @@ public class TopTfIdfInitialTerminologyNounExtractor implements InitialTerminolo
   @Qualifier("local")
   private
   DocumentaryFrequencyCrawler crawler;
+
 
   @Autowired
   private
@@ -59,7 +61,12 @@ public class TopTfIdfInitialTerminologyNounExtractor implements InitialTerminolo
                 Integer frequency =  map.get(term);
                 Double docFreq = crawler.getDocumentaryFrequency(term);
                 Double totalFreq = 1.0*frequency*Math.log(1.0/docFreq);
-                terms.add(new TermInDoc(terminRepo.findByText(term),totalFreq, searcher.getIndexName()));
+                Termin termin = terminRepo.findByText(term);
+                if(termin == null){
+                    terminRepo.save(new Termin(term, 1D));
+                    termin = terminRepo.findByText(term);
+                }
+                terms.add(new TermInDoc(termin,totalFreq, searcher.getIndexName()));
             }
         } catch (IOException e) {
             e.printStackTrace();
