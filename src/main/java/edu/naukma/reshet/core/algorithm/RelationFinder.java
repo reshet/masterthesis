@@ -1,6 +1,8 @@
 package edu.naukma.reshet.core.algorithm;
 
 
+import com.google.common.base.Function;
+import com.google.common.base.Joiner;
 import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableList;
@@ -11,13 +13,13 @@ import edu.naukma.reshet.core.algorithm.lexicography.MatchRule;
 import edu.naukma.reshet.core.algorithm.lexicography.NounPhraseMatch;
 import edu.naukma.reshet.core.algorithm.lexicography.POSTag;
 import edu.naukma.reshet.core.algorithm.lexicography.pattern.ExactWordElement;
+import edu.naukma.reshet.core.algorithm.lexicography.pattern.IterationElement;
 import edu.naukma.reshet.core.algorithm.lexicography.pattern.MatchPattern;
 import edu.naukma.reshet.core.algorithm.lexicography.pattern.NounPhraseElement;
 import edu.naukma.reshet.model.Snippet;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.TermRelation;
 import eu.hlavki.text.lemmagen.api.Lemmatizer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nullable;
@@ -30,7 +32,7 @@ import java.util.Set;
 public class RelationFinder {
    private Lemmatizer lm;
     private BreakIterator iterator = BreakIterator.getSentenceInstance(new Locale("uk-UA"));
-    private final MatchRule [] nounPhrase = {
+    public final static MatchRule [] MATCH_RULES_1_9 = {
             new MatchRule(1, POSTag.ADJ, POSTag.NOUN, POSTag.NOUN, POSTag.NOUN),
             new MatchRule(1, POSTag.ADJ, POSTag.NOUN, POSTag.ADJ, POSTag.NOUN),
             new MatchRule(2, POSTag.ADJ, POSTag.NOUN, POSTag.NOUN),
@@ -40,35 +42,185 @@ public class RelationFinder {
             new MatchRule(1, POSTag.NOUN, POSTag.NOUN),
             new MatchRule(0, POSTag.NOUN)
     };
+    public final static MatchRule [] MATCH_RULES_1_4 = {
+            new MatchRule(0, POSTag.NOUN, POSTag.ADJ, POSTag.NOUN),
+            new MatchRule(1, POSTag.ADJ, POSTag.NOUN),
+            new MatchRule(1, POSTag.NOUN, POSTag.NOUN),
+            new MatchRule(0, POSTag.NOUN)
+    };
+    public final static MatchPattern LP1 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement("—","це","є","вважається","слід розуміти","являється"),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+    );
+//    public final static MatchPattern LP2 = new MatchPattern(
+//            new ExactWordElement("такий"),
+//            new NounPhraseElement(true, MATCH_RULES_1_9),
+//            new ExactWordElement(","),new ExactWordElement("як"),
+//            new IterationElement(new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(",")),
+//            new ExactWordElement("і","або","й","та"),
+//            new NounPhraseElement(false, MATCH_RULES_1_9)
+//    );
+    public final static MatchPattern LP2_1 = new MatchPattern(
+            new ExactWordElement("такий"),
+            new NounPhraseElement(true, MATCH_RULES_1_4),
+            new ExactWordElement(","),new ExactWordElement("як"),
+            new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_4)
+    );
+    public final static MatchPattern LP2_2 = new MatchPattern(
+            new ExactWordElement("такий"),
+            new NounPhraseElement(true, MATCH_RULES_1_4),
+            new ExactWordElement(","),new ExactWordElement("як"),
+            new NounPhraseElement(false, MATCH_RULES_1_4), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_4)
+    );
+    public final static MatchPattern LP2_3 = new MatchPattern(
+            new ExactWordElement("такий"),
+            new NounPhraseElement(true, MATCH_RULES_1_4),
+            new ExactWordElement(","),new ExactWordElement("як"),
+            new NounPhraseElement(false, MATCH_RULES_1_4), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_4), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_4)
+    );
+    public final static MatchPattern LP2_4 = new MatchPattern(
+            new ExactWordElement("такий"),
+            new NounPhraseElement(true, MATCH_RULES_1_4),
+            new ExactWordElement(","),new ExactWordElement("як"),
+            new NounPhraseElement(false, MATCH_RULES_1_4), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_4), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_4), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_4)
+    );
+//    public final static MatchPattern LP3 = new MatchPattern(
+//            new NounPhraseElement(false, MATCH_RULES_1_9),
+//            new IterationElement(new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_9)),
+//            new ExactWordElement("і","або","й","та"),new ExactWordElement("інший"),
+//            new NounPhraseElement(true, MATCH_RULES_1_9)
+//    );
+    public final static MatchPattern LP3_1 = new MatchPattern(
+            new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement("і","або","й","та"),new ExactWordElement("інший"),
+            new NounPhraseElement(true, MATCH_RULES_1_4)
+    );
+    public final static MatchPattern LP3_2 = new MatchPattern(
+            new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement("і","або","й","та"),new ExactWordElement("інший"),
+            new NounPhraseElement(true, MATCH_RULES_1_4)
+    );
+    public final static MatchPattern LP3_3 = new MatchPattern(
+            new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement("і","або","й","та"),new ExactWordElement("інший"),
+            new NounPhraseElement(true, MATCH_RULES_1_4)
+    );
+    public final static MatchPattern LP3_4 = new MatchPattern(
+            new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement(","), new NounPhraseElement(false, MATCH_RULES_1_4),
+            new ExactWordElement("і","або","й","та"),new ExactWordElement("інший"),
+            new NounPhraseElement(true, MATCH_RULES_1_4)
+    );
+    public  final static MatchPattern LP4 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("включаючи","зокрема","особливо"),
+            new IterationElement(new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(",")),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+    );
+    public  final static MatchPattern LP4_1 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("включаючи","зокрема","особливо"),
+            new NounPhraseElement(false, MATCH_RULES_1_9),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+    );
+    public  final static MatchPattern LP4_2 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("включаючи","зокрема","особливо"),
+            new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_9),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+    );
+    public  final static MatchPattern LP4_3 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("включаючи","зокрема","особливо"),
+            new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_9),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+    );
+    public  final static MatchPattern LP4_4 = new MatchPattern(
+            new NounPhraseElement(true, MATCH_RULES_1_9),
+            new ExactWordElement(","),new ExactWordElement("включаючи","зокрема","особливо"),
+            new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(","),
+            new NounPhraseElement(false, MATCH_RULES_1_9),
+            new ExactWordElement("і","або","й","та"),
+            new NounPhraseElement(false, MATCH_RULES_1_9)
+    );
+//    private final static MatchPattern LP6 = new MatchPattern(
+//            new NounPhraseElement(true, MATCH_RULES_1_9),
+//            new ExactWordElement(","),new ExactWordElement("включаючи","зокрема","особливо"),
+//            new IterationElement(new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(",")),
+//            new ExactWordElement("і","або","й","та"),
+//            new NounPhraseElement(false, MATCH_RULES_1_9)
+//    );
     private final List<MatchPattern> isAPatterns = new ImmutableList.Builder<MatchPattern>()
-            .add(
-                new MatchPattern(
-                        new NounPhraseElement(true, nounPhrase),
-                        new ExactWordElement("—","це","є","вважається","слід розуміти","являється"),
-                        new NounPhraseElement(false, nounPhrase)
-                )
-            ).build();
+            .add(LP1)
+            .add(LP2_4,LP2_3,LP2_2,LP2_1)
+            .add(LP3_4,LP3_3,LP3_2,LP3_1)
+            .add(LP4_4,LP4_3,LP4_2,LP4_1)
+        .build();
     public Set<TermRelation> getRelations(List<TermInDoc> terms, List<Snippet> snippets){
      Set<TermRelation> termRelations = Sets.newHashSet();
      //this.addAssociations(termRelations, terms, snippets);
      this.addIsA(termRelations, terms, snippets);
-     this.addIsPartOf(termRelations, terms, snippets);
+     //this.addIsPartOf(termRelations, terms, snippets);
      return termRelations;
    }
    private void addAssociations(Set<TermRelation> relations, List<TermInDoc> terms, List<Snippet> snippets){
-     for(Snippet snip:snippets){
+       Function<TermInDoc,String> termToString = new Function<TermInDoc, String>() {
+           @Nullable
+           @Override
+           public String apply(@Nullable TermInDoc input) {
+               return input.getTermin().getText();
+           }
+       };
+       for(Snippet snip:snippets){
        List<TermInDoc> relatedTerms = getTermsListFromSentence(snip.getText(), terms);
+       String str = Joiner.on(",").join(Lists.transform(relatedTerms,termToString));
+       System.out.println(str);
        for(TermInDoc term:relatedTerms){
          if(!term.getTermin().getText().equals(snip.getTerm().getTermin().getText())){
-           relations.add(new TermRelation(snip.getTerm(),term,"association"));
-           relations.add(new TermRelation(term,snip.getTerm(),"association"));
+           relations.add(new TermRelation(snip.getTerm(),term,"association", "science"));
+           relations.add(new TermRelation(term,snip.getTerm(),"association", "science"));
          }
        }
      }
+
    }
   private void addIsA(Set<TermRelation> relations, List<TermInDoc> terms, List<Snippet> snippets){
     System.out.println("Snippets to process: " + snippets.size());
     int snipCounter = 0;
+    Set<Integer> processedSentences = Sets.newHashSet();
     for(Snippet snip:snippets){
         iterator.setText(snip.getText());
         int start = iterator.first();
@@ -76,7 +228,11 @@ public class RelationFinder {
              end != BreakIterator.DONE;
              start = end, end = iterator.next()) {
             String sentence = snip.getText().substring(start, end);
-            relations.addAll(getRelationsFromSentence(sentence, terms));
+            if(!processedSentences.contains(sentence.hashCode())){
+                relations.addAll(getRelationsFromSentence(sentence, terms));
+                processedSentences.add(sentence.hashCode());
+            }
+
         }
         snipCounter++;
         if(snipCounter % 50 == 0){
@@ -98,9 +254,13 @@ public class RelationFinder {
    private List<TermRelation> getRelationsFromSentence(String sentence, List<TermInDoc> terms){
      List<TermRelation> relations = Lists.newLinkedList();
      for(MatchPattern pattern: isAPatterns){
-         List<NounPhraseMatch> match = pattern.matchFirst(sentence);
-         List<TermRelation> pRelations = pattern.getRelations(match);
-         relations.addAll(pRelations);
+         List<List<NounPhraseMatch>> matches = pattern.matchAll(sentence);
+         for(List<NounPhraseMatch> match: matches){
+             relations.addAll(pattern.getRelations(match));
+         }
+     }
+     if(!relations.isEmpty()){
+         System.out.println(relations);
      }
      return relations;
    }

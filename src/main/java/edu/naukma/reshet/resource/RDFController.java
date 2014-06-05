@@ -10,6 +10,7 @@ import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.TermRelation;
 import edu.naukma.reshet.model.dto.IndexDTO;
 import edu.naukma.reshet.model.dto.RdfGraph;
+import edu.naukma.reshet.model.dto.graph.Thesaurus;
 import edu.naukma.reshet.orchestration.IndexFacade;
 import edu.naukma.reshet.repositories.TermInDocRepository;
 import edu.naukma.reshet.repositories.TermRelationRepository;
@@ -42,43 +43,75 @@ public class RDFController {
   @ResponseBody
   public HttpEntity<RdfGraph> getRDF(@PathVariable String name){
     List<TermInDoc> terms = FluentIterable
-            .from(repoTerms.findAll())
+            .from(repoTerms.findByIndex(name))
             //.limit(10)
             .toList();
     List<TermRelation> relations = FluentIterable
             .from(repoRelations.findAll(new PageRequest(0,200)).getContent())
             //.limit(20)
             .toList();
-    RdfGraph graph = new RdfGraph(terms,relations);
+    RdfGraph graph = new RdfGraph(terms,relations, Thesaurus.Type.BASIC);
 
     //graph.add(linkTo(methodOn(RDFController.class).getRDF(name)).withSelfRel());
     return new ResponseEntity<RdfGraph>(graph, HttpStatus.OK);
   }
+    @RequestMapping(value = "/{name}/compact", method = RequestMethod.GET)
+    @ResponseBody
+    public HttpEntity<RdfGraph> getRDFcompact(@PathVariable String name){
+        List<TermInDoc> terms = FluentIterable
+                .from(repoTerms.findByIndex(name))
+                        //.limit(10)
+                .toList();
+        List<TermRelation> relations = FluentIterable
+                .from(repoRelations.findByIndex(name))
+                        //.limit(20)
+                .toList();
+        RdfGraph graph = new RdfGraph(terms,relations, Thesaurus.Type.COMPACT);
 
-  @RequestMapping(value = "/{name}/ld", method = RequestMethod.GET)
-  @ResponseBody
-  public String getRDFLD(@PathVariable String name) throws IOException, JsonLdError {
-    RdfGraph graph = new RdfGraph(Lists.newArrayList(),Lists.newArrayList());
-    Map context = new HashMap();
-// Customise context...
-// Create an instance of JsonLdOptions with the standard JSON-LD options
-    JsonLdOptions options = new JsonLdOptions();
-    options.setProduceGeneralizedRdf(true);
-// Customise options...
-// Call whichever JSONLD function you want! (e.g. compact)
-    Object compact = JsonLdProcessor.compact(graph, context, options);
-// Print out the result (or don't, it's your call!)
-//    System.out.println(JsonUtils.toPrettyString(compact));
-    return JsonUtils.toPrettyString(compact);
-  }
+        //graph.add(linkTo(methodOn(RDFController.class).getRDF(name)).withSelfRel());
+        return new ResponseEntity<RdfGraph>(graph, HttpStatus.OK);
+    }
+    @RequestMapping(value = "/{name}/human", method = RequestMethod.GET)
+    @ResponseBody
+    public HttpEntity<RdfGraph> getRDFhuman(@PathVariable String name){
+        List<TermInDoc> terms = FluentIterable
+                .from(repoTerms.findByIndex(name))
+                        //.limit(10)
+                .toList();
+        List<TermRelation> relations = FluentIterable
+                .from(repoRelations.findByIndex(name))
+                        //.limit(20)
+                .toList();
+        RdfGraph graph = new RdfGraph(terms,relations, Thesaurus.Type.HUMAN);
 
-/*  @RequestMapping(value = "/{name}/ldmy", method = RequestMethod.GET)
-  @ResponseBody
-  public RdfGraph getRDFLDmy(@PathVariable String name) {
-    List<TermInDoc> terms =
-    RdfGraph graph = new RdfGraph(name);
-    return graph;
-  }*/
+        //graph.add(linkTo(methodOn(RDFController.class).getRDF(name)).withSelfRel());
+        return new ResponseEntity<RdfGraph>(graph, HttpStatus.OK);
+    }
+//
+//  @RequestMapping(value = "/{name}/ld", method = RequestMethod.GET)
+//  @ResponseBody
+//  public String getRDFLD(@PathVariable String name) throws IOException, JsonLdError {
+//    RdfGraph graph = new RdfGraph(Lists.newArrayList(),Lists.newArrayList());
+//    Map context = new HashMap();
+//// Customise context...
+//// Create an instance of JsonLdOptions with the standard JSON-LD options
+//    JsonLdOptions options = new JsonLdOptions();
+//    options.setProduceGeneralizedRdf(true);
+//// Customise options...
+//// Call whichever JSONLD function you want! (e.g. compact)
+//    Object compact = JsonLdProcessor.compact(graph, context, options);
+//// Print out the result (or don't, it's your call!)
+////    System.out.println(JsonUtils.toPrettyString(compact));
+//    return JsonUtils.toPrettyString(compact);
+//  }
+//
+///*  @RequestMapping(value = "/{name}/ldmy", method = RequestMethod.GET)
+//  @ResponseBody
+//  public RdfGraph getRDFLDmy(@PathVariable String name) {
+//    List<TermInDoc> terms =
+//    RdfGraph graph = new RdfGraph(name);
+//    return graph;
+//  }*/
 
 
 }

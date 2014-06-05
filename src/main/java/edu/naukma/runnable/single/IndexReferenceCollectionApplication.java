@@ -1,4 +1,4 @@
-package edu.naukma.reshet.integration.single;
+package edu.naukma.runnable.single;
 
 import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.PdfDirectoryIndexer;

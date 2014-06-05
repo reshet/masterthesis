@@ -41,16 +41,13 @@ public class IterationElement implements PatternElement{
         }
         return iteration;
     }
+
     private List<NounPhraseMatch> mergeToLongestMatches(List<List<List<NounPhraseMatch>>> allMatches){
-        System.out.println(allMatches);
-        //List<NounPhraseMatch> mergedMatches = Lists.newLinkedList();
         if(allMatches.isEmpty()) return Lists.newArrayList();
         if(allMatches.size() < 2) return selectLongest(allMatches.get(0));
-
         for(int i = 1; i < allMatches.size();i++){
            mergeLevel(allMatches.get(i-1), allMatches.get(i));
         }
-        System.out.println(allMatches);
         return concatenate(allMatches.get(allMatches.size() - 1));
     }
     private List<NounPhraseMatch> concatenate(List<List<NounPhraseMatch>> matches){
@@ -82,7 +79,7 @@ public class IterationElement implements PatternElement{
            for(List<NounPhraseMatch> tElem: to){
                int totalUsed = 0;
                for(NounPhraseMatch tMatch: tElem){
-                  if(fElem.size() > pointer && tMatch.getPosition() == fElem.get(pointer).getPosition()){
+                  if(fElem.size() > pointer && tMatch.getStartPosition() == fElem.get(pointer).getStartPosition()){
                       currentCover.add(tMatch);
                       pointer++;
                       totalUsed++;

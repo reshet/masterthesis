@@ -15,7 +15,10 @@ public class NounPhraseMatch{
         return this.phrase.getText() + ", "+position;
     }
 
-    public int getPosition() {
+    public int getStartPosition() {
+        return position;
+    }
+    public int getEndPosition() {
         return position;
     }
 

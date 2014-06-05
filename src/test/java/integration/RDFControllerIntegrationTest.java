@@ -94,8 +94,8 @@ public class RDFControllerIntegrationTest {
         repoRelations.save(new TermRelation(
                 term1,
                 term2,
-                "association"
-            )
+                "association",
+                "science")
         );
         System.out.println(repoRelations.findAll());
     }

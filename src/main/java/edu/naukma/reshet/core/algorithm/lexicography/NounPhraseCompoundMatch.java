@@ -7,7 +7,7 @@ public class NounPhraseCompoundMatch extends NounPhraseMatch{
 
     final private List<NounPhraseMatch> children;
     public NounPhraseCompoundMatch(List<NounPhraseMatch> children) {
-        super(new NounPhrase(buildPhrase(children)), children.get(0).getPosition());
+        super(new NounPhrase(buildPhrase(children)), children.get(0).getStartPosition());
         this.children = children;
     }
     private static String buildPhrase(List<NounPhraseMatch> children){
@@ -23,14 +23,10 @@ public class NounPhraseCompoundMatch extends NounPhraseMatch{
         return this.phrase.getText() + ", "+position;
     }
 
-    public int getPosition() {
-        return position;
+    @Override
+    public int getEndPosition(){
+       return children.get(children.size()-1).getEndPosition();
     }
-
-    public NounPhrase getPhrase() {
-        return phrase;
-    }
-
     public List<NounPhraseMatch> getChildren() {
         return children;
     }

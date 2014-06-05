@@ -1,19 +1,11 @@
-package edu.naukma.reshet.integration.single;
+package edu.naukma.runnable.single;
 
 
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Sets;
-import com.google.common.base.Predicate;
-import com.google.common.collect.FluentIterable;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Ordering;
 import edu.naukma.reshet.configuration.MongoConfiguration;
 import edu.naukma.reshet.core.AdvancedTextSearcher;
-import edu.naukma.reshet.core.SimpleTextSearcher;
 import edu.naukma.reshet.core.algorithm.RelationFinder;
 import edu.naukma.reshet.core.algorithm.SnippetsFinder;
-import edu.naukma.reshet.core.algorithm.TopTfIdfInitialTerminologyNounExtractor;
 import edu.naukma.reshet.model.Snippet;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.TermRelation;
@@ -33,14 +25,9 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 
-import javax.annotation.Nullable;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 @Configuration
@@ -78,12 +65,12 @@ public class FindRelationsInCollectionApplication {
         List<TermInDoc> termsAll = repoTermInDoc.findByIndex(indexName);
         List<Snippet> snippets = snipFinder.findSnippets(termsAll);
         Set<TermRelation> relations = relFinder.getRelations(termsAll, snippets);
-        Set<TermRelation> validRelations = prepareRelations(relations);
+        Set<TermRelation> validRelations = prepareRelations(relations, indexName);
         repoRelation.save(validRelations);
         long endTime = System.currentTimeMillis();
         System.out.println("Time spent: " + (endTime - startTime) / 1000 + " sec.");
     }
-    private Set<TermRelation> prepareRelations(Set<TermRelation> relations){
+    private Set<TermRelation> prepareRelations(Set<TermRelation> relations, String index){
         final Set<String> uniqueRelationsPool = Sets.newHashSet();
         final Set<TermRelation> validRelations = Sets.newHashSet();
         for(TermRelation relation: relations){
@@ -94,22 +81,34 @@ public class FindRelationsInCollectionApplication {
                 uniqueRelationsPool.add(hash);
                 String termin1 = relation.getTerm1().getTermin().getText();
                 String termin2 = relation.getTerm2().getTermin().getText();
-                if (repo.findByText(termin1) == null) {
-                    repo.save(relation.getTerm1().getTermin());
-                }
-                if (repo.findByText(termin2) == null) {
-                    repo.save(relation.getTerm2().getTermin());
-                }
                 Termin term1 = repo.findByText(termin1);
                 Termin term2 = repo.findByText(termin2);
+                if (term1 == null) {
+                    repo.save(relation.getTerm1().getTermin());
+                    term1 = repo.findByText(termin1);
+                }
+                if (term2 == null) {
+                    repo.save(relation.getTerm2().getTermin());
+                    term2 = repo.findByText(termin2);
+                }
                 relation.getTerm1().setTermin(term1);
                 relation.getTerm2().setTermin(term2);
-                repoTermInDoc.save(relation.getTerm1());
-                repoTermInDoc.save(relation.getTerm2());
+                TermInDoc t1 = repoTermInDoc.findByTermin(term1);
+                TermInDoc t2 = repoTermInDoc.findByTermin(term2);
+                if(t1 == null){
+                    repoTermInDoc.save(relation.getTerm1());
+                    t1 = repoTermInDoc.findByTermin(term1);
+                }
+                if(t2 == null){
+                    repoTermInDoc.save(relation.getTerm2());
+                    t2 = repoTermInDoc.findByTermin(term2);
+                }
+
+
                 TermRelation validRelation = new TermRelation(
-                        repoTermInDoc.findByTermin(term1),
-                        repoTermInDoc.findByTermin(term2),
-                        relation.getRelationType());
+                        t1,
+                        t2,
+                        relation.getRelationType(), index);
                 validRelations.add(validRelation);
             }
         }

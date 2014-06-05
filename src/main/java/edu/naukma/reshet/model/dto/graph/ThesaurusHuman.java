@@ -9,23 +9,21 @@ import edu.naukma.reshet.model.TermRelation;
 import java.util.List;
 import java.util.Map;
 
-public class Thesaurus{
-    public static enum Type {BASIC,COMPACT,HUMAN};
+public class ThesaurusHuman extends Thesaurus {
     @JsonProperty("concept")
     public List<Concept> concepts = Lists.newArrayList();
     @JsonProperty("relation")
     public List<HierarchicalRelationship> relations = Lists.newArrayList();
-    public Thesaurus(){
-    }
-    public Thesaurus(List<TermInDoc> terms, List<TermRelation> termRelations){
+
+    public ThesaurusHuman(List<TermInDoc> terms, List<TermRelation> termRelations){
         Map<String, String> termsMap = Maps.newHashMap();
         Long tCount = 1L;
-        for(TermInDoc term: terms){
-            Concept c = new Concept("C"+tCount, term.getTermin().getText());
-            termsMap.put(term.getId(), "C"+tCount);
-            concepts.add(c);
-            tCount++;
-        }
+//        for(TermInDoc term: terms){
+//            Concept c = new Concept("C"+tCount, term.getTermin().getText());
+//            termsMap.put(term.getId(), "C"+tCount);
+//            concepts.add(c);
+//            tCount++;
+//        }
         for (TermRelation rel: termRelations){
             String term1id = rel.getTerm1().getId();
             String term2id = rel.getTerm2().getId();
@@ -36,6 +34,14 @@ public class Thesaurus{
             if(rel.getRelationType().equals("NT")){
                 rela = Relation.NT;
             }
+            Concept c = new Concept(rel.getTerm1().getTermin().getText(), rel.getTerm1().getTermin().getText());
+            termsMap.put(term1id, rel.getTerm1().getTermin().getText());
+            concepts.add(c);
+            tCount++;
+            Concept c2 = new Concept(rel.getTerm2().getTermin().getText(), rel.getTerm2().getTermin().getText());
+            termsMap.put(term2id, rel.getTerm2().getTermin().getText());
+            concepts.add(c2);
+            tCount++;
             relations.add(
                     new HierarchicalRelationship(termsMap.get(term1id),termsMap.get(term2id),rela)
             );

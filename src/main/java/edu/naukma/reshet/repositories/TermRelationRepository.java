@@ -6,8 +6,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface TermRelationRepository extends MongoRepository<TermRelation, String> {
   public TermRelation findByTerm1AndTerm2AndRelationType(@Param(value = "term1") TermInDoc term1,@Param(value = "term2") TermInDoc term2, @Param(value = "relType") String relationType);
+  public List<TermRelation> findByIndex(@Param(value = "index") String index);
 }
 

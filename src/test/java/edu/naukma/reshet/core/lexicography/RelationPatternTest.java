@@ -1,6 +1,7 @@
 package edu.naukma.reshet.core.lexicography;
 
 import com.google.common.collect.Lists;
+import edu.naukma.reshet.core.algorithm.RelationFinder;
 import edu.naukma.reshet.core.algorithm.lexicography.MatchRule;
 import edu.naukma.reshet.core.algorithm.lexicography.NounPhrase;
 import edu.naukma.reshet.core.algorithm.lexicography.NounPhraseMatch;
@@ -92,6 +93,45 @@ public class RelationPatternTest {
         List<TermRelation> allRelations = Lists.newLinkedList();
         for(List<NounPhraseMatch> match: matches){
             allRelations.addAll(pattern.getRelations(match));
+        }
+        System.out.println(allRelations);
+    }
+    @Test
+    public void iteration_rule_match_test2(){
+        String sentence = "Зуби, кістки, руки, кігті й інші тверді тіла.";
+        MatchPattern pattern = new MatchPattern(
+                new NounPhraseElement(false, new MatchRule(0, POSTag.NOUN)),
+                new IterationElement(new ExactWordElement(","), new NounPhraseElement(false, new MatchRule(0, POSTag.NOUN))),
+                new ExactWordElement("і","або","й","та"),new ExactWordElement("інший"),
+                new NounPhraseElement(true,new MatchRule(0, POSTag.ADJ,POSTag.NOUN), new MatchRule(0, POSTag.NOUN))
+        );
+        List<List<NounPhraseMatch>> matches = pattern.matchAll(sentence);
+        System.out.println(matches);
+        List<TermRelation> allRelations = Lists.newLinkedList();
+        for(List<NounPhraseMatch> match: matches){
+            allRelations.addAll(pattern.getRelations(match));
+        }
+        System.out.println(allRelations);
+    }
+//    @Test
+//    public void LP3_test(){
+//        String sentence = "Зуби, кістки, руки, кігті й інші комахи.";
+//        List<List<NounPhraseMatch>> matches = RelationFinder.LP3.matchAll(sentence);
+//        System.out.println(matches);
+//        List<TermRelation> allRelations = Lists.newLinkedList();
+//        for(List<NounPhraseMatch> match: matches){
+//            allRelations.addAll(RelationFinder.LP3.getRelations(match));
+//        }
+//        System.out.println(allRelations);
+//    }
+    @Test
+    public void LP3_3test(){
+        String sentence = "Зуби, кістки, руки, кігті й інші комахи.";
+        List<List<NounPhraseMatch>> matches = RelationFinder.LP3_3.matchAll(sentence);
+        System.out.println(matches);
+        List<TermRelation> allRelations = Lists.newLinkedList();
+        for(List<NounPhraseMatch> match: matches){
+            allRelations.addAll(RelationFinder.LP3_3.getRelations(match));
         }
         System.out.println(allRelations);
     }

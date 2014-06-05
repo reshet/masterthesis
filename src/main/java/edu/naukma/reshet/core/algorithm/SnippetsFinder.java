@@ -1,6 +1,8 @@
 package edu.naukma.reshet.core.algorithm;
 
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Lists;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Maps;
 import edu.naukma.reshet.model.DocText;
 import edu.naukma.reshet.model.Snippet;
 import edu.naukma.reshet.model.TermInDoc;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.text.BreakIterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 @Component
 public class SnippetsFinder {
@@ -19,14 +22,15 @@ public class SnippetsFinder {
   private Searcher2 searcher;
   private BreakIterator iterator = BreakIterator.getSentenceInstance(new Locale("uk-UA"));
   public List<Snippet> findSnippets(List<TermInDoc> terms){
-    List<Snippet> snippets = Lists.newArrayList();
+    //List<Snippet> snippets = Lists.newArrayList();
+    Map<Integer,Snippet> uniqueSnipets = Maps.newHashMap();
     for(TermInDoc term:terms){
       System.out.println("Find snippets for term: " + term.getTermin().getText());
       List<DocText> docs = searcher.searchDocs(term);
-      List<Snippet> lst = proceessSingleSentenceSnippetBuilder(docs);
-      snippets.addAll(lst);
+      proceessSingleSentenceSnippetBuilder(uniqueSnipets, docs);
+      //snippets.addAll(lst);
     }
-    return snippets;
+    return ImmutableList.copyOf(uniqueSnipets.values());
   }
   private boolean isSentenceContainTerm(String sentence, String term){
     String [] words = sentence.split("(?=[,.])|\\s+");
@@ -40,7 +44,7 @@ public class SnippetsFinder {
     }
     return false;
   }
-  private List<Snippet> proceessSingleSentenceSnippetBuilder(List<DocText> docs){
+  private void proceessSingleSentenceSnippetBuilder(Map<Integer,Snippet> unSnippets,List<DocText> docs){
     List<Snippet> processedSnippets = Lists.newArrayList();
     for(DocText doc: docs){
       StringBuilder allSnipSentences = new StringBuilder();
@@ -54,9 +58,14 @@ public class SnippetsFinder {
           allSnipSentences.append(sentence);
         }
       }
-      processedSnippets.add(new Snippet(allSnipSentences.toString(),doc.getContainsTerm(),doc.getDocID()));
+               String snipText = allSnipSentences.toString();
+      int code = snipText.hashCode();
+      if(!unSnippets.containsKey(snipText.hashCode())){
+         unSnippets.put(code, new Snippet(allSnipSentences.toString(),doc.getContainsTerm(),doc.getDocID()));
+      }
+      //processedSnippets.add();
     }
-    return processedSnippets;
+    //return processedSnippets;
   }
 
   public void setLm(Lemmatizer lm) {

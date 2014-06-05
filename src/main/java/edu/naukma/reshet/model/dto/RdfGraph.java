@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import edu.naukma.reshet.model.TermInDoc;
 import edu.naukma.reshet.model.TermRelation;
 import edu.naukma.reshet.model.dto.graph.Graph;
+import edu.naukma.reshet.model.dto.graph.Thesaurus;
 
 import java.util.List;
 import java.util.Map;
@@ -15,8 +16,8 @@ import java.util.Map;
 public class RdfGraph extends JsonLDThesaurus{
   private String content;
 
-  public RdfGraph(List<TermInDoc> terms, List<TermRelation> relations) {
-    this.graph = new Graph(terms, relations);
+  public RdfGraph(List<TermInDoc> terms, List<TermRelation> relations, Thesaurus.Type type) {
+    this.graph = new Graph(terms, relations, type);
   }
   private final Graph graph ;
   @JsonProperty(value = "@graph")

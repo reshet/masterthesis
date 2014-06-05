@@ -4,7 +4,6 @@ package edu.naukma.reshet.core.algorithm.lexicography.pattern;
 import com.google.common.base.Function;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import edu.naukma.reshet.core.algorithm.lexicography.NounPhraseCompoundMatch;
 import edu.naukma.reshet.core.algorithm.lexicography.NounPhraseMatch;
 import edu.naukma.reshet.model.TermInDoc;
@@ -14,7 +13,6 @@ import edu.naukma.reshet.model.Termin;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class MatchPattern {
     private final PatternElement [] elemets;
@@ -28,16 +26,16 @@ public class MatchPattern {
         TermInDoc term2 =  new TermInDoc(new Termin(text2,1D),1.0,"science");
 
         if(noun1.isMainPhrase() && !noun2.isMainPhrase()){
-            relations.add(new TermRelation(term1, term2, "NT"));
-            relations.add(new TermRelation(term2, term1, "BT"));
+            relations.add(new TermRelation(term1, term2, "NT", "science"));
+            relations.add(new TermRelation(term2, term1, "BT", "science"));
         } else
         if(! noun1.isMainPhrase() && noun2.isMainPhrase()){
-            relations.add(new TermRelation(term1, term2, "BT"));
-            relations.add(new TermRelation(term2, term1, "NT"));
+            relations.add(new TermRelation(term1, term2, "BT", "science"));
+            relations.add(new TermRelation(term2, term1, "NT", "science"));
         } else
         {
-            relations.add(new TermRelation(term1, term2, "RT"));
-            relations.add(new TermRelation(term2, term1, "RT"));
+            relations.add(new TermRelation(term1, term2, "RT", "science"));
+            relations.add(new TermRelation(term2, term1, "RT", "science"));
         }
         return relations;
     }
@@ -189,7 +187,7 @@ public class MatchPattern {
                //not strict match - this allows * between matches.
                // } else if (currentStep.get(currentStep.size()-1).getPosition() < stepMatch.getPosition()){
                //strict match: it should follow immediatly
-                } else if (currentStep.get(currentStep.size()-1).getPosition() + 1 == stepMatch.getPosition()){
+                } else if (currentStep.get(currentStep.size()-1).getEndPosition() + 1 == stepMatch.getStartPosition()){
                     currentStep.add(stepMatch);
                     List<NounPhraseMatch> match = findBestEffortMatch(currentStep,FluentIterable.from(lastingMatches).skip(1).toList());
                     if(match.size() == elemets.length){
@@ -218,7 +216,7 @@ public class MatchPattern {
                 if(currentStep.isEmpty()){
                     addMatch(currentStep,stepMatch);
                     findAllMatches(currentStep, FluentIterable.from(lastingMatches).skip(1).toList(), completeMatches);
-                } else if (currentStep.get(currentStep.size()-1).getPosition() + 1 == stepMatch.getPosition()){
+                } else if (currentStep.get(currentStep.size()-1).getEndPosition() + 1 == stepMatch.getStartPosition()){
                     addMatch(currentStep,stepMatch);
                     findAllMatches(currentStep, FluentIterable.from(lastingMatches).skip(1).toList(), completeMatches);
                 }
@@ -254,7 +252,7 @@ public class MatchPattern {
                       return true;
                   }
                 }
-                if (currentMatch.get(currentMatch.size()-1).getPosition() < stepMatch.getPosition()){
+                if (currentMatch.get(currentMatch.size()-1).getEndPosition() < stepMatch.getStartPosition()){
                     boolean found = hasBestEffortMatch(currentMatch, FluentIterable.from(lastingMatches).skip(1).toList());
                     if (found){
                         return true;

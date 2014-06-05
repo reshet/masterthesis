@@ -1,0 +1,2018 @@
+{
+  "@context" : {
+    "iso25964" : "http://www.niso.org/schemas/iso25964/iso25964-1_v1.4.xsd#",
+    "thesaurus" : "iso25964:Thesaurus",
+    "concept" : "iso25964:ThesaurusConcept",
+    "relation" : "iso25964:HierarchicalRelationship",
+    "role" : "iso25964:role",
+    "baseConcept" : "iso25964:isHierRelConcept",
+    "depConcept" : "iso25964:hasHierRelConcept",
+    "lexicalValue" : "iso25964:lexicalValue"
+  },
+  "@graph" : {
+    "thesaurus" : {
+      "concept" : [ {
+        "@id" : "відкриття",
+        "lexicalValue" : "відкриття"
+      }, {
+        "@id" : "експансія",
+        "lexicalValue" : "експансія"
+      }, {
+        "@id" : "ризик",
+        "lexicalValue" : "ризик"
+      }, {
+        "@id" : "свобода",
+        "lexicalValue" : "свобода"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "професор київський",
+        "lexicalValue" : "професор київський"
+      }, {
+        "@id" : "Новицький",
+        "lexicalValue" : "Новицький"
+      }, {
+        "@id" : "прозорливець",
+        "lexicalValue" : "прозорливець"
+      }, {
+        "@id" : "філософ",
+        "lexicalValue" : "філософ"
+      }, {
+        "@id" : "Синайський",
+        "lexicalValue" : "Синайський"
+      }, {
+        "@id" : "манускрипт",
+        "lexicalValue" : "манускрипт"
+      }, {
+        "@id" : "земля",
+        "lexicalValue" : "земля"
+      }, {
+        "@id" : "тулуб",
+        "lexicalValue" : "тулуб"
+      }, {
+        "@id" : "концепція",
+        "lexicalValue" : "концепція"
+      }, {
+        "@id" : "категорія",
+        "lexicalValue" : "категорія"
+      }, {
+        "@id" : "пристрасть",
+        "lexicalValue" : "пристрасть"
+      }, {
+        "@id" : "істинний поступ",
+        "lexicalValue" : "істинний поступ"
+      }, {
+        "@id" : "професор",
+        "lexicalValue" : "професор"
+      }, {
+        "@id" : "Новицький",
+        "lexicalValue" : "Новицький"
+      }, {
+        "@id" : "бажання",
+        "lexicalValue" : "бажання"
+      }, {
+        "@id" : "душа",
+        "lexicalValue" : "душа"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "свічка",
+        "lexicalValue" : "свічка"
+      }, {
+        "@id" : "товар",
+        "lexicalValue" : "товар"
+      }, {
+        "@id" : "гроші",
+        "lexicalValue" : "гроші"
+      }, {
+        "@id" : "скандальна невідповідність людина",
+        "lexicalValue" : "скандальна невідповідність людина"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "символічний синтез",
+        "lexicalValue" : "символічний синтез"
+      }, {
+        "@id" : "універсум",
+        "lexicalValue" : "універсум"
+      }, {
+        "@id" : "моральний закон",
+        "lexicalValue" : "моральний закон"
+      }, {
+        "@id" : "межа",
+        "lexicalValue" : "межа"
+      }, {
+        "@id" : "наука",
+        "lexicalValue" : "наука"
+      }, {
+        "@id" : "арифметика",
+        "lexicalValue" : "арифметика"
+      }, {
+        "@id" : "схід",
+        "lexicalValue" : "схід"
+      }, {
+        "@id" : "Палестина",
+        "lexicalValue" : "Палестина"
+      }, {
+        "@id" : "повне зупинення процесу розгортання",
+        "lexicalValue" : "повне зупинення процесу розгортання"
+      }, {
+        "@id" : "нірвана",
+        "lexicalValue" : "нірвана"
+      }, {
+        "@id" : "просторий",
+        "lexicalValue" : "просторий"
+      }, {
+        "@id" : "ідеал",
+        "lexicalValue" : "ідеал"
+      }, {
+        "@id" : "машина",
+        "lexicalValue" : "машина"
+      }, {
+        "@id" : "товар",
+        "lexicalValue" : "товар"
+      }, {
+        "@id" : "символ",
+        "lexicalValue" : "символ"
+      }, {
+        "@id" : "єдність",
+        "lexicalValue" : "єдність"
+      }, {
+        "@id" : "скандальна невідповідність",
+        "lexicalValue" : "скандальна невідповідність"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "зв'язка",
+        "lexicalValue" : "зв'язка"
+      }, {
+        "@id" : "закон",
+        "lexicalValue" : "закон"
+      }, {
+        "@id" : "уявлення",
+        "lexicalValue" : "уявлення"
+      }, {
+        "@id" : "побудова теоретична картини",
+        "lexicalValue" : "побудова теоретична картини"
+      }, {
+        "@id" : "філософ",
+        "lexicalValue" : "філософ"
+      }, {
+        "@id" : "прозорливець",
+        "lexicalValue" : "прозорливець"
+      }, {
+        "@id" : "бенкет",
+        "lexicalValue" : "бенкет"
+      }, {
+        "@id" : "Ісаак",
+        "lexicalValue" : "Ісаак"
+      }, {
+        "@id" : "ченець",
+        "lexicalValue" : "ченець"
+      }, {
+        "@id" : "мешканець",
+        "lexicalValue" : "мешканець"
+      }, {
+        "@id" : "експансія",
+        "lexicalValue" : "експансія"
+      }, {
+        "@id" : "відкриття",
+        "lexicalValue" : "відкриття"
+      }, {
+        "@id" : "пута",
+        "lexicalValue" : "пута"
+      }, {
+        "@id" : "закон",
+        "lexicalValue" : "закон"
+      }, {
+        "@id" : "коментатор",
+        "lexicalValue" : "коментатор"
+      }, {
+        "@id" : "грузин",
+        "lexicalValue" : "грузин"
+      }, {
+        "@id" : "філософія",
+        "lexicalValue" : "філософія"
+      }, {
+        "@id" : "витвір",
+        "lexicalValue" : "витвір"
+      }, {
+        "@id" : "митець",
+        "lexicalValue" : "митець"
+      }, {
+        "@id" : "Хорхе",
+        "lexicalValue" : "Хорхе"
+      }, {
+        "@id" : "своєрідний простір",
+        "lexicalValue" : "своєрідний простір"
+      }, {
+        "@id" : "дхарма",
+        "lexicalValue" : "дхарма"
+      }, {
+        "@id" : "символ",
+        "lexicalValue" : "символ"
+      }, {
+        "@id" : "діяльність",
+        "lexicalValue" : "діяльність"
+      }, {
+        "@id" : "нові християнин",
+        "lexicalValue" : "нові християнин"
+      }, {
+        "@id" : "земля",
+        "lexicalValue" : "земля"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "символ",
+        "lexicalValue" : "символ"
+      }, {
+        "@id" : "любов",
+        "lexicalValue" : "любов"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "Адам",
+        "lexicalValue" : "Адам"
+      }, {
+        "@id" : "бог",
+        "lexicalValue" : "бог"
+      }, {
+        "@id" : "поняття",
+        "lexicalValue" : "поняття"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "слово",
+        "lexicalValue" : "слово"
+      }, {
+        "@id" : "вчення",
+        "lexicalValue" : "вчення"
+      }, {
+        "@id" : "схід",
+        "lexicalValue" : "схід"
+      }, {
+        "@id" : "Єрусалим",
+        "lexicalValue" : "Єрусалим"
+      }, {
+        "@id" : "дхарма",
+        "lexicalValue" : "дхарма"
+      }, {
+        "@id" : "своєрідний простір",
+        "lexicalValue" : "своєрідний простір"
+      }, {
+        "@id" : "доба",
+        "lexicalValue" : "доба"
+      }, {
+        "@id" : "Платон",
+        "lexicalValue" : "Платон"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "християнин",
+        "lexicalValue" : "християнин"
+      }, {
+        "@id" : "Русь",
+        "lexicalValue" : "Русь"
+      }, {
+        "@id" : "слов'янин",
+        "lexicalValue" : "слов'янин"
+      }, {
+        "@id" : "тема",
+        "lexicalValue" : "тема"
+      }, {
+        "@id" : "Палестина",
+        "lexicalValue" : "Палестина"
+      }, {
+        "@id" : "схід",
+        "lexicalValue" : "схід"
+      }, {
+        "@id" : "фрагмент",
+        "lexicalValue" : "фрагмент"
+      }, {
+        "@id" : "розрізнення",
+        "lexicalValue" : "розрізнення"
+      }, {
+        "@id" : "технічна спеціалізація",
+        "lexicalValue" : "технічна спеціалізація"
+      }, {
+        "@id" : "проблема",
+        "lexicalValue" : "проблема"
+      }, {
+        "@id" : "застосування",
+        "lexicalValue" : "застосування"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "міфу стародавній",
+        "lexicalValue" : "міфу стародавній"
+      }, {
+        "@id" : "міф",
+        "lexicalValue" : "міф"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "фрагмент",
+        "lexicalValue" : "фрагмент"
+      }, {
+        "@id" : "виклад",
+        "lexicalValue" : "виклад"
+      }, {
+        "@id" : "уявлення",
+        "lexicalValue" : "уявлення"
+      }, {
+        "@id" : "побудова",
+        "lexicalValue" : "побудова"
+      }, {
+        "@id" : "єдність",
+        "lexicalValue" : "єдність"
+      }, {
+        "@id" : "символ",
+        "lexicalValue" : "символ"
+      }, {
+        "@id" : "відчай",
+        "lexicalValue" : "відчай"
+      }, {
+        "@id" : "почуття",
+        "lexicalValue" : "почуття"
+      }, {
+        "@id" : "проблема",
+        "lexicalValue" : "проблема"
+      }, {
+        "@id" : "технічна спеціалізація",
+        "lexicalValue" : "технічна спеціалізація"
+      }, {
+        "@id" : "існування",
+        "lexicalValue" : "існування"
+      }, {
+        "@id" : "раз",
+        "lexicalValue" : "раз"
+      }, {
+        "@id" : "свободи воло",
+        "lexicalValue" : "свободи воло"
+      }, {
+        "@id" : "якість",
+        "lexicalValue" : "якість"
+      }, {
+        "@id" : "як обмеження",
+        "lexicalValue" : "як обмеження"
+      }, {
+        "@id" : "завіт",
+        "lexicalValue" : "завіт"
+      }, {
+        "@id" : "почуття",
+        "lexicalValue" : "почуття"
+      }, {
+        "@id" : "страх",
+        "lexicalValue" : "страх"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "завіт",
+        "lexicalValue" : "завіт"
+      }, {
+        "@id" : "як обмеження",
+        "lexicalValue" : "як обмеження"
+      }, {
+        "@id" : "любов бог",
+        "lexicalValue" : "любов бог"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "завіт",
+        "lexicalValue" : "завіт"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "дійсність",
+        "lexicalValue" : "дійсність"
+      }, {
+        "@id" : "символ",
+        "lexicalValue" : "символ"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "завіт",
+        "lexicalValue" : "завіт"
+      }, {
+        "@id" : "арифметика",
+        "lexicalValue" : "арифметика"
+      }, {
+        "@id" : "наука",
+        "lexicalValue" : "наука"
+      }, {
+        "@id" : "істинний поступ",
+        "lexicalValue" : "істинний поступ"
+      }, {
+        "@id" : "пристрасть",
+        "lexicalValue" : "пристрасть"
+      }, {
+        "@id" : "поняття",
+        "lexicalValue" : "поняття"
+      }, {
+        "@id" : "поняття",
+        "lexicalValue" : "поняття"
+      }, {
+        "@id" : "територія",
+        "lexicalValue" : "територія"
+      }, {
+        "@id" : "благодать",
+        "lexicalValue" : "благодать"
+      }, {
+        "@id" : "благодать",
+        "lexicalValue" : "благодать"
+      }, {
+        "@id" : "територія",
+        "lexicalValue" : "територія"
+      }, {
+        "@id" : "природа",
+        "lexicalValue" : "природа"
+      }, {
+        "@id" : "бог",
+        "lexicalValue" : "бог"
+      }, {
+        "@id" : "свобода",
+        "lexicalValue" : "свобода"
+      }, {
+        "@id" : "ризик відчуження",
+        "lexicalValue" : "ризик відчуження"
+      }, {
+        "@id" : "нірвана",
+        "lexicalValue" : "нірвана"
+      }, {
+        "@id" : "повний зупинення процес",
+        "lexicalValue" : "повний зупинення процес"
+      }, {
+        "@id" : "повний зупинення процес",
+        "lexicalValue" : "повний зупинення процес"
+      }, {
+        "@id" : "нірвана",
+        "lexicalValue" : "нірвана"
+      }, {
+        "@id" : "сила",
+        "lexicalValue" : "сила"
+      }, {
+        "@id" : "утвердження",
+        "lexicalValue" : "утвердження"
+      }, {
+        "@id" : "гроші",
+        "lexicalValue" : "гроші"
+      }, {
+        "@id" : "щастя",
+        "lexicalValue" : "щастя"
+      }, {
+        "@id" : "нірвана",
+        "lexicalValue" : "нірвана"
+      }, {
+        "@id" : "повне зупинення",
+        "lexicalValue" : "повне зупинення"
+      }, {
+        "@id" : "протеже",
+        "lexicalValue" : "протеже"
+      }, {
+        "@id" : "Росія",
+        "lexicalValue" : "Росія"
+      }, {
+        "@id" : "відкриття церковне місій",
+        "lexicalValue" : "відкриття церковне місій"
+      }, {
+        "@id" : "експансія",
+        "lexicalValue" : "експансія"
+      }, {
+        "@id" : "Гегель",
+        "lexicalValue" : "Гегель"
+      }, {
+        "@id" : "дійсність",
+        "lexicalValue" : "дійсність"
+      }, {
+        "@id" : "носій",
+        "lexicalValue" : "носій"
+      }, {
+        "@id" : "мудрець",
+        "lexicalValue" : "мудрець"
+      }, {
+        "@id" : "значення",
+        "lexicalValue" : "значення"
+      }, {
+        "@id" : "життєва сила",
+        "lexicalValue" : "життєва сила"
+      }, {
+        "@id" : "космос",
+        "lexicalValue" : "космос"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "співвідношення",
+        "lexicalValue" : "співвідношення"
+      }, {
+        "@id" : "філософування",
+        "lexicalValue" : "філософування"
+      }, {
+        "@id" : "міф",
+        "lexicalValue" : "міф"
+      }, {
+        "@id" : "міф",
+        "lexicalValue" : "міф"
+      }, {
+        "@id" : "поняття",
+        "lexicalValue" : "поняття"
+      }, {
+        "@id" : "поняття",
+        "lexicalValue" : "поняття"
+      }, {
+        "@id" : "вивчення",
+        "lexicalValue" : "вивчення"
+      }, {
+        "@id" : "збудження",
+        "lexicalValue" : "збудження"
+      }, {
+        "@id" : "відмінність",
+        "lexicalValue" : "відмінність"
+      }, {
+        "@id" : "єдність",
+        "lexicalValue" : "єдність"
+      }, {
+        "@id" : "символ",
+        "lexicalValue" : "символ"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "поняття",
+        "lexicalValue" : "поняття"
+      }, {
+        "@id" : "суспільство",
+        "lexicalValue" : "суспільство"
+      }, {
+        "@id" : "експансія",
+        "lexicalValue" : "експансія"
+      }, {
+        "@id" : "відкриття церковне місій",
+        "lexicalValue" : "відкриття церковне місій"
+      }, {
+        "@id" : "народження",
+        "lexicalValue" : "народження"
+      }, {
+        "@id" : "нові страждання",
+        "lexicalValue" : "нові страждання"
+      }, {
+        "@id" : "істота",
+        "lexicalValue" : "істота"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "принцип",
+        "lexicalValue" : "принцип"
+      }, {
+        "@id" : "раціоналізм",
+        "lexicalValue" : "раціоналізм"
+      }, {
+        "@id" : "брама",
+        "lexicalValue" : "брама"
+      }, {
+        "@id" : "Вішну",
+        "lexicalValue" : "Вішну"
+      }, {
+        "@id" : "гроші",
+        "lexicalValue" : "гроші"
+      }, {
+        "@id" : "товар",
+        "lexicalValue" : "товар"
+      }, {
+        "@id" : "застосування",
+        "lexicalValue" : "застосування"
+      }, {
+        "@id" : "як посібник",
+        "lexicalValue" : "як посібник"
+      }, {
+        "@id" : "раціоналізм",
+        "lexicalValue" : "раціоналізм"
+      }, {
+        "@id" : "принцип",
+        "lexicalValue" : "принцип"
+      }, {
+        "@id" : "істота",
+        "lexicalValue" : "істота"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "віра",
+        "lexicalValue" : "віра"
+      }, {
+        "@id" : "істина",
+        "lexicalValue" : "істина"
+      }, {
+        "@id" : "сила",
+        "lexicalValue" : "сила"
+      }, {
+        "@id" : "утвердження нове моделей",
+        "lexicalValue" : "утвердження нове моделей"
+      }, {
+        "@id" : "переклад",
+        "lexicalValue" : "переклад"
+      }, {
+        "@id" : "виняток",
+        "lexicalValue" : "виняток"
+      }, {
+        "@id" : "вплив",
+        "lexicalValue" : "вплив"
+      }, {
+        "@id" : "необхідна запорука",
+        "lexicalValue" : "необхідна запорука"
+      }, {
+        "@id" : "Палестина",
+        "lexicalValue" : "Палестина"
+      }, {
+        "@id" : "Єрусалим",
+        "lexicalValue" : "Єрусалим"
+      }, {
+        "@id" : "постать",
+        "lexicalValue" : "постать"
+      }, {
+        "@id" : "виходець",
+        "lexicalValue" : "виходець"
+      }, {
+        "@id" : "філософія",
+        "lexicalValue" : "філософія"
+      }, {
+        "@id" : "використання",
+        "lexicalValue" : "використання"
+      }, {
+        "@id" : "місія",
+        "lexicalValue" : "місія"
+      }, {
+        "@id" : "з'єднання",
+        "lexicalValue" : "з'єднання"
+      }, {
+        "@id" : "блаженство",
+        "lexicalValue" : "блаженство"
+      }, {
+        "@id" : "свідомість",
+        "lexicalValue" : "свідомість"
+      }, {
+        "@id" : "ризик відчуження",
+        "lexicalValue" : "ризик відчуження"
+      }, {
+        "@id" : "свобода",
+        "lexicalValue" : "свобода"
+      }, {
+        "@id" : "категорія",
+        "lexicalValue" : "категорія"
+      }, {
+        "@id" : "поняття",
+        "lexicalValue" : "поняття"
+      }, {
+        "@id" : "простір",
+        "lexicalValue" : "простір"
+      }, {
+        "@id" : "чуттєвість",
+        "lexicalValue" : "чуттєвість"
+      }, {
+        "@id" : "універсум",
+        "lexicalValue" : "універсум"
+      }, {
+        "@id" : "символічний синтез",
+        "lexicalValue" : "символічний синтез"
+      }, {
+        "@id" : "псалтир",
+        "lexicalValue" : "псалтир"
+      }, {
+        "@id" : "білінгва",
+        "lexicalValue" : "білінгва"
+      }, {
+        "@id" : "якість",
+        "lexicalValue" : "якість"
+      }, {
+        "@id" : "свобода",
+        "lexicalValue" : "свобода"
+      }, {
+        "@id" : "Хорхе Луїс",
+        "lexicalValue" : "Хорхе Луїс"
+      }, {
+        "@id" : "митець",
+        "lexicalValue" : "митець"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "поняття",
+        "lexicalValue" : "поняття"
+      }, {
+        "@id" : "єдність",
+        "lexicalValue" : "єдність"
+      }, {
+        "@id" : "відмінність",
+        "lexicalValue" : "відмінність"
+      }, {
+        "@id" : "тема",
+        "lexicalValue" : "тема"
+      }, {
+        "@id" : "слов'янин",
+        "lexicalValue" : "слов'янин"
+      }, {
+        "@id" : "утвердження",
+        "lexicalValue" : "утвердження"
+      }, {
+        "@id" : "сила",
+        "lexicalValue" : "сила"
+      }, {
+        "@id" : "зупинка",
+        "lexicalValue" : "зупинка"
+      }, {
+        "@id" : "вивчення",
+        "lexicalValue" : "вивчення"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "істота",
+        "lexicalValue" : "істота"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "свічка бог",
+        "lexicalValue" : "свічка бог"
+      }, {
+        "@id" : "свічка бог",
+        "lexicalValue" : "свічка бог"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "міф",
+        "lexicalValue" : "міф"
+      }, {
+        "@id" : "міфу стародавній",
+        "lexicalValue" : "міфу стародавній"
+      }, {
+        "@id" : "сатир",
+        "lexicalValue" : "сатир"
+      }, {
+        "@id" : "комедія",
+        "lexicalValue" : "комедія"
+      }, {
+        "@id" : "розрізнення",
+        "lexicalValue" : "розрізнення"
+      }, {
+        "@id" : "фрагмент",
+        "lexicalValue" : "фрагмент"
+      }, {
+        "@id" : "закону карма",
+        "lexicalValue" : "закону карма"
+      }, {
+        "@id" : "зв'язка",
+        "lexicalValue" : "зв'язка"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "скандальна невідповідність",
+        "lexicalValue" : "скандальна невідповідність"
+      }, {
+        "@id" : "Єрусалим",
+        "lexicalValue" : "Єрусалим"
+      }, {
+        "@id" : "Палестина",
+        "lexicalValue" : "Палестина"
+      }, {
+        "@id" : "поділ",
+        "lexicalValue" : "поділ"
+      }, {
+        "@id" : "філософія",
+        "lexicalValue" : "філософія"
+      }, {
+        "@id" : "бог",
+        "lexicalValue" : "бог"
+      }, {
+        "@id" : "природа",
+        "lexicalValue" : "природа"
+      }, {
+        "@id" : "символ",
+        "lexicalValue" : "символ"
+      }, {
+        "@id" : "дійсність",
+        "lexicalValue" : "дійсність"
+      }, {
+        "@id" : "фрагмент інтерпретація",
+        "lexicalValue" : "фрагмент інтерпретація"
+      }, {
+        "@id" : "виклад",
+        "lexicalValue" : "виклад"
+      }, {
+        "@id" : "світло",
+        "lexicalValue" : "світло"
+      }, {
+        "@id" : "друг",
+        "lexicalValue" : "друг"
+      }, {
+        "@id" : "співвідношення віра",
+        "lexicalValue" : "співвідношення віра"
+      }, {
+        "@id" : "філософування",
+        "lexicalValue" : "філософування"
+      }, {
+        "@id" : "відображення",
+        "lexicalValue" : "відображення"
+      }, {
+        "@id" : "оповідання",
+        "lexicalValue" : "оповідання"
+      }, {
+        "@id" : "межа",
+        "lexicalValue" : "межа"
+      }, {
+        "@id" : "моральний закон",
+        "lexicalValue" : "моральний закон"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "любов бог",
+        "lexicalValue" : "любов бог"
+      }, {
+        "@id" : "виклад",
+        "lexicalValue" : "виклад"
+      }, {
+        "@id" : "фрагмент",
+        "lexicalValue" : "фрагмент"
+      }, {
+        "@id" : "друг",
+        "lexicalValue" : "друг"
+      }, {
+        "@id" : "світло одкровення",
+        "lexicalValue" : "світло одкровення"
+      }, {
+        "@id" : "до",
+        "lexicalValue" : "до"
+      }, {
+        "@id" : "Константинополь",
+        "lexicalValue" : "Константинополь"
+      }, {
+        "@id" : "царство",
+        "lexicalValue" : "царство"
+      }, {
+        "@id" : "культура",
+        "lexicalValue" : "культура"
+      }, {
+        "@id" : "іудей",
+        "lexicalValue" : "іудей"
+      }, {
+        "@id" : "Авраам",
+        "lexicalValue" : "Авраам"
+      }, {
+        "@id" : "істина",
+        "lexicalValue" : "істина"
+      }, {
+        "@id" : "віра",
+        "lexicalValue" : "віра"
+      }, {
+        "@id" : "виклад",
+        "lexicalValue" : "виклад"
+      }, {
+        "@id" : "фрагмент інтерпретація",
+        "lexicalValue" : "фрагмент інтерпретація"
+      }, {
+        "@id" : "манускрипт",
+        "lexicalValue" : "манускрипт"
+      }, {
+        "@id" : "Синайський кодекс",
+        "lexicalValue" : "Синайський кодекс"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "найскладніший об'єкт",
+        "lexicalValue" : "найскладніший об'єкт"
+      }, {
+        "@id" : "витвір",
+        "lexicalValue" : "витвір"
+      }, {
+        "@id" : "філософія",
+        "lexicalValue" : "філософія"
+      }, {
+        "@id" : "земля",
+        "lexicalValue" : "земля"
+      }, {
+        "@id" : "нові християнин",
+        "lexicalValue" : "нові християнин"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "бока",
+        "lexicalValue" : "бока"
+      }, {
+        "@id" : "прима",
+        "lexicalValue" : "прима"
+      }, {
+        "@id" : "природа",
+        "lexicalValue" : "природа"
+      }, {
+        "@id" : "захід",
+        "lexicalValue" : "захід"
+      }, {
+        "@id" : "латина",
+        "lexicalValue" : "латина"
+      }, {
+        "@id" : "свобода",
+        "lexicalValue" : "свобода"
+      }, {
+        "@id" : "якість",
+        "lexicalValue" : "якість"
+      }, {
+        "@id" : "Єрусалим",
+        "lexicalValue" : "Єрусалим"
+      }, {
+        "@id" : "схід",
+        "lexicalValue" : "схід"
+      }, {
+        "@id" : "річ",
+        "lexicalValue" : "річ"
+      }, {
+        "@id" : "річ",
+        "lexicalValue" : "річ"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "соліпсизм",
+        "lexicalValue" : "соліпсизм"
+      }, {
+        "@id" : "світ",
+        "lexicalValue" : "світ"
+      }, {
+        "@id" : "бог",
+        "lexicalValue" : "бог"
+      }, {
+        "@id" : "Адам",
+        "lexicalValue" : "Адам"
+      }, {
+        "@id" : "виняток",
+        "lexicalValue" : "виняток"
+      }, {
+        "@id" : "переклад",
+        "lexicalValue" : "переклад"
+      }, {
+        "@id" : "свобода",
+        "lexicalValue" : "свобода"
+      }, {
+        "@id" : "ризик",
+        "lexicalValue" : "ризик"
+      }, {
+        "@id" : "страх",
+        "lexicalValue" : "страх"
+      }, {
+        "@id" : "почуття",
+        "lexicalValue" : "почуття"
+      }, {
+        "@id" : "нові страждання",
+        "lexicalValue" : "нові страждання"
+      }, {
+        "@id" : "народження",
+        "lexicalValue" : "народження"
+      }, {
+        "@id" : "якість",
+        "lexicalValue" : "якість"
+      }, {
+        "@id" : "свободи воло",
+        "lexicalValue" : "свободи воло"
+      }, {
+        "@id" : "Авраам",
+        "lexicalValue" : "Авраам"
+      }, {
+        "@id" : "іудей",
+        "lexicalValue" : "іудей"
+      }, {
+        "@id" : "церква",
+        "lexicalValue" : "церква"
+      }, {
+        "@id" : "Христовий",
+        "lexicalValue" : "Христовий"
+      }, {
+        "@id" : "найскладніший об'єкт",
+        "lexicalValue" : "найскладніший об'єкт"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "суспільство",
+        "lexicalValue" : "суспільство"
+      }, {
+        "@id" : "поняття",
+        "lexicalValue" : "поняття"
+      }, {
+        "@id" : "Константинополь",
+        "lexicalValue" : "Константинополь"
+      }, {
+        "@id" : "до Москва",
+        "lexicalValue" : "до Москва"
+      }, {
+        "@id" : "тіло людина",
+        "lexicalValue" : "тіло людина"
+      }, {
+        "@id" : "бока",
+        "lexicalValue" : "бока"
+      }, {
+        "@id" : "міф",
+        "lexicalValue" : "міф"
+      }, {
+        "@id" : "міф",
+        "lexicalValue" : "міф"
+      }, {
+        "@id" : "необхідна запорука",
+        "lexicalValue" : "необхідна запорука"
+      }, {
+        "@id" : "вплив",
+        "lexicalValue" : "вплив"
+      }, {
+        "@id" : "манускрипт",
+        "lexicalValue" : "манускрипт"
+      }, {
+        "@id" : "Синайський",
+        "lexicalValue" : "Синайський"
+      }, {
+        "@id" : "явище",
+        "lexicalValue" : "явище"
+      }, {
+        "@id" : "явище",
+        "lexicalValue" : "явище"
+      }, {
+        "@id" : "лют",
+        "lexicalValue" : "лют"
+      }, {
+        "@id" : "прима",
+        "lexicalValue" : "прима"
+      }, {
+        "@id" : "голова",
+        "lexicalValue" : "голова"
+      }, {
+        "@id" : "князь",
+        "lexicalValue" : "князь"
+      }, {
+        "@id" : "трійця",
+        "lexicalValue" : "трійця"
+      }, {
+        "@id" : "Христос",
+        "lexicalValue" : "Христос"
+      }, {
+        "@id" : "ідеал",
+        "lexicalValue" : "ідеал"
+      }, {
+        "@id" : "просторий",
+        "lexicalValue" : "просторий"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "істота",
+        "lexicalValue" : "істота"
+      }, {
+        "@id" : "вивчення",
+        "lexicalValue" : "вивчення"
+      }, {
+        "@id" : "тема",
+        "lexicalValue" : "тема"
+      }, {
+        "@id" : "Платон",
+        "lexicalValue" : "Платон"
+      }, {
+        "@id" : "доба",
+        "lexicalValue" : "доба"
+      }, {
+        "@id" : "Синайський кодекс",
+        "lexicalValue" : "Синайський кодекс"
+      }, {
+        "@id" : "манускрипт",
+        "lexicalValue" : "манускрипт"
+      }, {
+        "@id" : "явище",
+        "lexicalValue" : "явище"
+      }, {
+        "@id" : "явище",
+        "lexicalValue" : "явище"
+      }, {
+        "@id" : "як",
+        "lexicalValue" : "як"
+      }, {
+        "@id" : "застосування",
+        "lexicalValue" : "застосування"
+      }, {
+        "@id" : "збудження",
+        "lexicalValue" : "збудження"
+      }, {
+        "@id" : "вивчення",
+        "lexicalValue" : "вивчення"
+      }, {
+        "@id" : "використання",
+        "lexicalValue" : "використання"
+      }, {
+        "@id" : "філософія",
+        "lexicalValue" : "філософія"
+      }, {
+        "@id" : "закон",
+        "lexicalValue" : "закон"
+      }, {
+        "@id" : "зв'язка",
+        "lexicalValue" : "зв'язка"
+      }, {
+        "@id" : "зовнішній предмет",
+        "lexicalValue" : "зовнішній предмет"
+      }, {
+        "@id" : "бока",
+        "lexicalValue" : "бока"
+      }, {
+        "@id" : "вивчення",
+        "lexicalValue" : "вивчення"
+      }, {
+        "@id" : "зупинка",
+        "lexicalValue" : "зупинка"
+      }, {
+        "@id" : "білінгва",
+        "lexicalValue" : "білінгва"
+      }, {
+        "@id" : "псалтир",
+        "lexicalValue" : "псалтир"
+      }, {
+        "@id" : "почуття",
+        "lexicalValue" : "почуття"
+      }, {
+        "@id" : "відчай",
+        "lexicalValue" : "відчай"
+      }, {
+        "@id" : "людина",
+        "lexicalValue" : "людина"
+      }, {
+        "@id" : "особистість",
+        "lexicalValue" : "особистість"
+      }, {
+        "@id" : "природа",
+        "lexicalValue" : "природа"
+      }, {
+        "@id" : "прима",
+        "lexicalValue" : "прима"
+      }, {
+        "@id" : "страх",
+        "lexicalValue" : "страх"
+      }, {
+        "@id" : "відчай",
+        "lexicalValue" : "відчай"
+      }, {
+        "@id" : "Ісаак",
+        "lexicalValue" : "Ісаак"
+      }, {
+        "@id" : "бенкет",
+        "lexicalValue" : "бенкет"
+      }, {
+        "@id" : "діяльність",
+        "lexicalValue" : "діяльність"
+      }, {
+        "@id" : "символ",
+        "lexicalValue" : "символ"
+      }, {
+        "@id" : "князь",
+        "lexicalValue" : "князь"
+      }, {
+        "@id" : "голова",
+        "lexicalValue" : "голова"
+      } ],
+      "relation" : [ {
+        "baseConcept" : "відкриття",
+        "depConcept" : "експансія",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "ризик",
+        "depConcept" : "свобода",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "людина",
+        "depConcept" : "як",
+        "role" : "RT"
+      }, {
+        "baseConcept" : "професор київський",
+        "depConcept" : "Новицький",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "прозорливець",
+        "depConcept" : "філософ",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "Синайський",
+        "depConcept" : "манускрипт",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "земля",
+        "depConcept" : "тулуб",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "концепція",
+        "depConcept" : "категорія",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "пристрасть",
+        "depConcept" : "істинний поступ",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "професор",
+        "depConcept" : "Новицький",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "бажання",
+        "depConcept" : "душа",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "людина",
+        "depConcept" : "свічка",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "товар",
+        "depConcept" : "гроші",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "скандальна невідповідність людина",
+        "depConcept" : "світ",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "символічний синтез",
+        "depConcept" : "універсум",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "моральний закон",
+        "depConcept" : "межа",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "наука",
+        "depConcept" : "арифметика",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "схід",
+        "depConcept" : "Палестина",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "повне зупинення процесу розгортання",
+        "depConcept" : "нірвана",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "просторий",
+        "depConcept" : "ідеал",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "машина",
+        "depConcept" : "товар",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "символ",
+        "depConcept" : "єдність",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "скандальна невідповідність",
+        "depConcept" : "світ",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "зв'язка",
+        "depConcept" : "закон",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "уявлення",
+        "depConcept" : "побудова теоретична картини",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "філософ",
+        "depConcept" : "прозорливець",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "бенкет",
+        "depConcept" : "Ісаак",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "ченець",
+        "depConcept" : "мешканець",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "експансія",
+        "depConcept" : "відкриття",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "пута",
+        "depConcept" : "закон",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "коментатор",
+        "depConcept" : "грузин",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "філософія",
+        "depConcept" : "витвір",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "митець",
+        "depConcept" : "Хорхе",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "своєрідний простір",
+        "depConcept" : "дхарма",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "символ",
+        "depConcept" : "діяльність",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "нові християнин",
+        "depConcept" : "земля",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "людина",
+        "depConcept" : "символ",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "любов",
+        "depConcept" : "людина",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "Адам",
+        "depConcept" : "бог",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "поняття",
+        "depConcept" : "як",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "слово",
+        "depConcept" : "вчення",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "схід",
+        "depConcept" : "Єрусалим",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "дхарма",
+        "depConcept" : "своєрідний простір",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "доба",
+        "depConcept" : "Платон",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "світ",
+        "depConcept" : "людина",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "християнин",
+        "depConcept" : "Русь",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "слов'янин",
+        "depConcept" : "тема",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "Палестина",
+        "depConcept" : "схід",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "фрагмент",
+        "depConcept" : "розрізнення",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "технічна спеціалізація",
+        "depConcept" : "проблема",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "застосування",
+        "depConcept" : "як",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "міфу стародавній",
+        "depConcept" : "міф",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "як",
+        "depConcept" : "людина",
+        "role" : "RT"
+      }, {
+        "baseConcept" : "фрагмент",
+        "depConcept" : "виклад",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "уявлення",
+        "depConcept" : "побудова",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "єдність",
+        "depConcept" : "символ",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "відчай",
+        "depConcept" : "почуття",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "проблема",
+        "depConcept" : "технічна спеціалізація",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "існування",
+        "depConcept" : "раз",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "свободи воло",
+        "depConcept" : "якість",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "як обмеження",
+        "depConcept" : "завіт",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "почуття",
+        "depConcept" : "страх",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "людина",
+        "depConcept" : "світ",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "завіт",
+        "depConcept" : "як обмеження",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "любов бог",
+        "depConcept" : "людина",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "завіт",
+        "depConcept" : "як",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "дійсність",
+        "depConcept" : "символ",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "як",
+        "depConcept" : "завіт",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "арифметика",
+        "depConcept" : "наука",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "істинний поступ",
+        "depConcept" : "пристрасть",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "поняття",
+        "depConcept" : "поняття",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "територія",
+        "depConcept" : "благодать",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "благодать",
+        "depConcept" : "територія",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "природа",
+        "depConcept" : "бог",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "свобода",
+        "depConcept" : "ризик відчуження",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "нірвана",
+        "depConcept" : "повний зупинення процес",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "повний зупинення процес",
+        "depConcept" : "нірвана",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "сила",
+        "depConcept" : "утвердження",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "гроші",
+        "depConcept" : "щастя",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "нірвана",
+        "depConcept" : "повне зупинення",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "протеже",
+        "depConcept" : "Росія",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "відкриття церковне місій",
+        "depConcept" : "експансія",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "Гегель",
+        "depConcept" : "дійсність",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "носій",
+        "depConcept" : "мудрець",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "значення",
+        "depConcept" : "життєва сила",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "космос",
+        "depConcept" : "світ",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "співвідношення",
+        "depConcept" : "філософування",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "міф",
+        "depConcept" : "міф",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "поняття",
+        "depConcept" : "поняття",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "вивчення",
+        "depConcept" : "збудження",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "відмінність",
+        "depConcept" : "єдність",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "символ",
+        "depConcept" : "людина",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "поняття",
+        "depConcept" : "суспільство",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "експансія",
+        "depConcept" : "відкриття церковне місій",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "народження",
+        "depConcept" : "нові страждання",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "істота",
+        "depConcept" : "як",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "принцип",
+        "depConcept" : "раціоналізм",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "брама",
+        "depConcept" : "Вішну",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "гроші",
+        "depConcept" : "товар",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "застосування",
+        "depConcept" : "як посібник",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "раціоналізм",
+        "depConcept" : "принцип",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "істота",
+        "depConcept" : "людина",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "віра",
+        "depConcept" : "істина",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "сила",
+        "depConcept" : "утвердження нове моделей",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "переклад",
+        "depConcept" : "виняток",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "вплив",
+        "depConcept" : "необхідна запорука",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "Палестина",
+        "depConcept" : "Єрусалим",
+        "role" : "RT"
+      }, {
+        "baseConcept" : "постать",
+        "depConcept" : "виходець",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "філософія",
+        "depConcept" : "використання",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "місія",
+        "depConcept" : "з'єднання",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "блаженство",
+        "depConcept" : "свідомість",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "ризик відчуження",
+        "depConcept" : "свобода",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "категорія",
+        "depConcept" : "поняття",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "простір",
+        "depConcept" : "чуттєвість",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "універсум",
+        "depConcept" : "символічний синтез",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "псалтир",
+        "depConcept" : "білінгва",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "якість",
+        "depConcept" : "свобода",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "Хорхе Луїс",
+        "depConcept" : "митець",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "як",
+        "depConcept" : "поняття",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "єдність",
+        "depConcept" : "відмінність",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "тема",
+        "depConcept" : "слов'янин",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "утвердження",
+        "depConcept" : "сила",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "зупинка",
+        "depConcept" : "вивчення",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "людина",
+        "depConcept" : "істота",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "людина",
+        "depConcept" : "свічка бог",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "свічка бог",
+        "depConcept" : "людина",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "міф",
+        "depConcept" : "міфу стародавній",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "сатир",
+        "depConcept" : "комедія",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "розрізнення",
+        "depConcept" : "фрагмент",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "закону карма",
+        "depConcept" : "зв'язка",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "світ",
+        "depConcept" : "скандальна невідповідність",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "Єрусалим",
+        "depConcept" : "Палестина",
+        "role" : "RT"
+      }, {
+        "baseConcept" : "поділ",
+        "depConcept" : "філософія",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "бог",
+        "depConcept" : "природа",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "символ",
+        "depConcept" : "дійсність",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "фрагмент інтерпретація",
+        "depConcept" : "виклад",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "світло",
+        "depConcept" : "друг",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "співвідношення віра",
+        "depConcept" : "філософування",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "відображення",
+        "depConcept" : "оповідання",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "межа",
+        "depConcept" : "моральний закон",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "людина",
+        "depConcept" : "любов бог",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "виклад",
+        "depConcept" : "фрагмент",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "друг",
+        "depConcept" : "світло одкровення",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "до",
+        "depConcept" : "Константинополь",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "царство",
+        "depConcept" : "культура",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "іудей",
+        "depConcept" : "Авраам",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "істина",
+        "depConcept" : "віра",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "виклад",
+        "depConcept" : "фрагмент інтерпретація",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "манускрипт",
+        "depConcept" : "Синайський кодекс",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "світ",
+        "depConcept" : "світ",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "людина",
+        "depConcept" : "найскладніший об'єкт",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "витвір",
+        "depConcept" : "філософія",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "земля",
+        "depConcept" : "нові християнин",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "як",
+        "depConcept" : "бока",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "прима",
+        "depConcept" : "природа",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "захід",
+        "depConcept" : "латина",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "свобода",
+        "depConcept" : "якість",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "Єрусалим",
+        "depConcept" : "схід",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "річ",
+        "depConcept" : "річ",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "світ",
+        "depConcept" : "світ",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "соліпсизм",
+        "depConcept" : "світ",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "бог",
+        "depConcept" : "Адам",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "виняток",
+        "depConcept" : "переклад",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "свобода",
+        "depConcept" : "ризик",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "страх",
+        "depConcept" : "почуття",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "нові страждання",
+        "depConcept" : "народження",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "якість",
+        "depConcept" : "свободи воло",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "Авраам",
+        "depConcept" : "іудей",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "церква",
+        "depConcept" : "Христовий",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "найскладніший об'єкт",
+        "depConcept" : "людина",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "суспільство",
+        "depConcept" : "поняття",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "Константинополь",
+        "depConcept" : "до Москва",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "тіло людина",
+        "depConcept" : "бока",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "міф",
+        "depConcept" : "міф",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "необхідна запорука",
+        "depConcept" : "вплив",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "манускрипт",
+        "depConcept" : "Синайський",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "явище",
+        "depConcept" : "явище",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "лют",
+        "depConcept" : "прима",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "голова",
+        "depConcept" : "князь",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "трійця",
+        "depConcept" : "Христос",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "ідеал",
+        "depConcept" : "просторий",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "як",
+        "depConcept" : "істота",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "вивчення",
+        "depConcept" : "тема",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "Платон",
+        "depConcept" : "доба",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "Синайський кодекс",
+        "depConcept" : "манускрипт",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "явище",
+        "depConcept" : "явище",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "як",
+        "depConcept" : "застосування",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "збудження",
+        "depConcept" : "вивчення",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "використання",
+        "depConcept" : "філософія",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "закон",
+        "depConcept" : "зв'язка",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "зовнішній предмет",
+        "depConcept" : "бока",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "вивчення",
+        "depConcept" : "зупинка",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "білінгва",
+        "depConcept" : "псалтир",
+        "role" : "BT"
+      }, {
+        "baseConcept" : "почуття",
+        "depConcept" : "відчай",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "людина",
+        "depConcept" : "особистість",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "природа",
+        "depConcept" : "прима",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "страх",
+        "depConcept" : "відчай",
+        "role" : "RT"
+      }, {
+        "baseConcept" : "Ісаак",
+        "depConcept" : "бенкет",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "діяльність",
+        "depConcept" : "символ",
+        "role" : "NT"
+      }, {
+        "baseConcept" : "князь",
+        "depConcept" : "голова",
+        "role" : "BT"
+      } ]
+    }
+  }
+}

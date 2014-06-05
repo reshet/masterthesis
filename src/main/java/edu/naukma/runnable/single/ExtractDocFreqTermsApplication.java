@@ -1,4 +1,4 @@
-package edu.naukma.reshet.integration.single;
+package edu.naukma.runnable.single;
 
 
 import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.common.collect.Sets;

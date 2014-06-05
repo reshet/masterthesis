@@ -16,7 +16,7 @@ import java.io.IOException;
 @Configuration
 @PropertySource(value = "classpath:prod.properties")
 @Import({MongoConfiguration.class,RepositoryRestMvcConfiguration.class})
-@ComponentScan
+@ComponentScan(basePackages = {""})
 @EnableAutoConfiguration
 public class Application {
   @Bean
