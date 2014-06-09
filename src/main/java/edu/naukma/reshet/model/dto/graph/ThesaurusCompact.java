@@ -34,14 +34,18 @@ public class ThesaurusCompact extends Thesaurus {
             if(rel.getRelationType().equals("NT")){
                 rela = Relation.NT;
             }
-            Concept c = new Concept("C"+tCount, rel.getTerm1().getTermin().getText());
-            termsMap.put(term1id, "C"+tCount);
-            concepts.add(c);
-            tCount++;
-            Concept c2 = new Concept("C"+tCount, rel.getTerm2().getTermin().getText());
-            termsMap.put(term2id, "C"+tCount);
-            concepts.add(c2);
-            tCount++;
+            if(!termsMap.containsKey(term1id)){
+                Concept c = new Concept("C"+tCount, rel.getTerm1().getTermin().getText());
+                termsMap.put(term1id, "C"+tCount);
+                concepts.add(c);
+                tCount++;
+            }
+            if(!termsMap.containsKey(term2id)){
+                Concept c2 = new Concept("C"+tCount, rel.getTerm2().getTermin().getText());
+                termsMap.put(term2id, "C"+tCount);
+                concepts.add(c2);
+                tCount++;
+            }
             relations.add(
                     new HierarchicalRelationship(termsMap.get(term1id),termsMap.get(term2id),rela)
             );

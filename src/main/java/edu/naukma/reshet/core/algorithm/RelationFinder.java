@@ -225,13 +225,7 @@ public class RelationFinder {
             new ExactWordElement("і","або","й","та"),
             new NounPhraseElement(false, MATCH_RULES_1_9)
     );
-//    private final static MatchPattern LP6 = new MatchPattern(
-//            new NounPhraseElement(true, MATCH_RULES_1_9),
-//            new ExactWordElement(","),new ExactWordElement("включаючи","зокрема","особливо"),
-//            new IterationElement(new NounPhraseElement(false, MATCH_RULES_1_9), new ExactWordElement(",")),
-//            new ExactWordElement("і","або","й","та"),
-//            new NounPhraseElement(false, MATCH_RULES_1_9)
-//    );
+
     private final List<MatchPattern> isAPatterns = new ImmutableList.Builder<MatchPattern>()
             .add(P1_1,P1_1a,P1_2,P1_3)
         //Якщо при узагальнювальному слові є слова а саме, як-от, наприклад,
@@ -292,17 +286,7 @@ public class RelationFinder {
         }
     }
   }
-  private void addIsPartOf(Set<TermRelation> relations, List<TermInDoc> terms, List<Snippet> snippets){
-   /* for(Snippet snip:snippets){
-      List<TermInDoc> relatedTerms = getTermsListFromSentence(snip.getText(), terms);
-      *//*for(TermInDoc term:relatedTerms){
-        if(!term.getTermin().getText().equals(snip.getTerm().getTermin().getText())){
-          relations.add(new TermRelation(snip.getTerm(),term,"association"));
-          relations.add(new TermRelation(term,snip.getTerm(),"association"));
-        }
-      }*//*
-    }*/
-  }
+
    private List<TermRelation> getRelationsFromSentence(String sentence, List<TermInDoc> terms){
      List<TermRelation> relations = Lists.newLinkedList();
      for(MatchPattern pattern: isAPatterns){

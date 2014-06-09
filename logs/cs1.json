@@ -1,798 +1,1034 @@
 {
-  "@context" : {
-    "iso25964" : "http://www.niso.org/schemas/iso25964/iso25964-1_v1.4.xsd#",
-    "thesaurus" : "iso25964:Thesaurus",
-    "concept" : "iso25964:ThesaurusConcept",
-    "relation" : "iso25964:HierarchicalRelationship",
-    "role" : "iso25964:role",
-    "baseConcept" : "iso25964:isHierRelConcept",
-    "depConcept" : "iso25964:hasHierRelConcept",
-    "lexicalValue" : "iso25964:lexicalValue"
+  "@context": {
+    "iso25964": "http://www.niso.org/schemas/iso25964/iso25964-1_v1.4.xsd#",
+    "thesaurus": "iso25964:Thesaurus",
+    "concept": "iso25964:ThesaurusConcept",
+    "relation": "iso25964:HierarchicalRelationship",
+    "role": "iso25964:role",
+    "baseConcept": "iso25964:isHierRelConcept",
+    "depConcept": "iso25964:hasHierRelConcept",
+    "lexicalValue": "iso25964:lexicalValue"
   },
-  "@graph" : {
-    "thesaurus" : {
-      "concept" : [ {
-        "@id" : "технологія",
-        "lexicalValue" : "технологія"
-      }, {
-        "@id" : "квантові обчислення",
-        "lexicalValue" : "квантові обчислення"
-      }, {
-        "@id" : "бізнес",
-        "lexicalValue" : "бізнес"
-      }, {
-        "@id" : "царина",
-        "lexicalValue" : "царина"
-      }, {
-        "@id" : "суспільство",
-        "lexicalValue" : "суспільство"
-      }, {
-        "@id" : "цифрова нерівність",
-        "lexicalValue" : "цифрова нерівність"
-      }, {
-        "@id" : "критерій",
-        "lexicalValue" : "критерій"
-      }, {
-        "@id" : "інформативність",
-        "lexicalValue" : "інформативність"
-      }, {
-        "@id" : "частинка",
-        "lexicalValue" : "частинка"
-      }, {
-        "@id" : "молекула",
-        "lexicalValue" : "молекула"
-      }, {
-        "@id" : "царина",
-        "lexicalValue" : "царина"
-      }, {
-        "@id" : "освіта",
-        "lexicalValue" : "освіта"
-      }, {
-        "@id" : "царина",
-        "lexicalValue" : "царина"
-      }, {
-        "@id" : "бізнес",
-        "lexicalValue" : "бізнес"
-      }, {
-        "@id" : "відео",
-        "lexicalValue" : "відео"
-      }, {
-        "@id" : "графік",
-        "lexicalValue" : "графік"
-      }, {
-        "@id" : "атом",
-        "lexicalValue" : "атом"
-      }, {
-        "@id" : "молекула",
-        "lexicalValue" : "молекула"
-      }, {
-        "@id" : "середовище",
-        "lexicalValue" : "середовище"
-      }, {
-        "@id" : "нахабна поведінка",
-        "lexicalValue" : "нахабна поведінка"
-      }, {
-        "@id" : "освіта",
-        "lexicalValue" : "освіта"
-      }, {
-        "@id" : "царина",
-        "lexicalValue" : "царина"
-      }, {
-        "@id" : "електронна бібліотека",
-        "lexicalValue" : "електронна бібліотека"
-      }, {
-        "@id" : "пошук",
-        "lexicalValue" : "пошук"
-      }, {
-        "@id" : "здоров'я",
-        "lexicalValue" : "здоров'я"
-      }, {
-        "@id" : "освіта",
-        "lexicalValue" : "освіта"
-      }, {
-        "@id" : "інтернет",
-        "lexicalValue" : "інтернет"
-      }, {
-        "@id" : "як конвергенція",
-        "lexicalValue" : "як конвергенція"
-      }, {
-        "@id" : "здоров'я",
-        "lexicalValue" : "здоров'я"
-      }, {
-        "@id" : "організаційні потреба",
-        "lexicalValue" : "організаційні потреба"
-      }, {
-        "@id" : "організаційні потреба",
-        "lexicalValue" : "організаційні потреба"
-      }, {
-        "@id" : "здоров'я",
-        "lexicalValue" : "здоров'я"
-      }, {
-        "@id" : "бізнес",
-        "lexicalValue" : "бізнес"
-      }, {
-        "@id" : "освіта",
-        "lexicalValue" : "освіта"
-      }, {
-        "@id" : "критерій",
-        "lexicalValue" : "критерій"
-      }, {
-        "@id" : "стислість",
-        "lexicalValue" : "стислість"
-      }, {
-        "@id" : "інтернет",
-        "lexicalValue" : "інтернет"
-      }, {
-        "@id" : "канал",
-        "lexicalValue" : "канал"
-      }, {
-        "@id" : "квантова фізика",
-        "lexicalValue" : "квантова фізика"
-      }, {
-        "@id" : "світ",
-        "lexicalValue" : "світ"
-      }, {
-        "@id" : "світ",
-        "lexicalValue" : "світ"
-      }, {
-        "@id" : "квантова фізика",
-        "lexicalValue" : "квантова фізика"
-      }, {
-        "@id" : "відео",
-        "lexicalValue" : "відео"
-      }, {
-        "@id" : "звук",
-        "lexicalValue" : "звук"
-      }, {
-        "@id" : "достовірність",
-        "lexicalValue" : "достовірність"
-      }, {
-        "@id" : "критерій",
-        "lexicalValue" : "критерій"
-      }, {
-        "@id" : "операція",
-        "lexicalValue" : "операція"
-      }, {
-        "@id" : "додавання",
-        "lexicalValue" : "додавання"
-      }, {
-        "@id" : "компанія",
-        "lexicalValue" : "компанія"
-      }, {
-        "@id" : "чистий зв'язок",
-        "lexicalValue" : "чистий зв'язок"
-      }, {
-        "@id" : "розпад родити",
-        "lexicalValue" : "розпад родити"
-      }, {
-        "@id" : "поведінка",
-        "lexicalValue" : "поведінка"
-      }, {
-        "@id" : "чистий зміст",
-        "lexicalValue" : "чистий зміст"
-      }, {
-        "@id" : "кінокомпанія",
-        "lexicalValue" : "кінокомпанія"
-      }, {
-        "@id" : "банда",
-        "lexicalValue" : "банда"
-      }, {
-        "@id" : "контроль",
-        "lexicalValue" : "контроль"
-      }, {
-        "@id" : "дані",
-        "lexicalValue" : "дані"
-      }, {
-        "@id" : "звук",
-        "lexicalValue" : "звук"
-      }, {
-        "@id" : "комп'ютер",
-        "lexicalValue" : "комп'ютер"
-      }, {
-        "@id" : "технологія",
-        "lexicalValue" : "технологія"
-      }, {
-        "@id" : "кінокомпанія",
-        "lexicalValue" : "кінокомпанія"
-      }, {
-        "@id" : "чистий зміст",
-        "lexicalValue" : "чистий зміст"
-      }, {
-        "@id" : "поведінка",
-        "lexicalValue" : "поведінка"
-      }, {
-        "@id" : "розпад",
-        "lexicalValue" : "розпад"
-      }, {
-        "@id" : "інтернет",
-        "lexicalValue" : "інтернет"
-      }, {
-        "@id" : "як",
-        "lexicalValue" : "як"
-      }, {
-        "@id" : "квантові обчислення",
-        "lexicalValue" : "квантові обчислення"
-      }, {
-        "@id" : "технологія",
-        "lexicalValue" : "технологія"
-      }, {
-        "@id" : "як",
-        "lexicalValue" : "як"
-      }, {
-        "@id" : "інтернет",
-        "lexicalValue" : "інтернет"
-      }, {
-        "@id" : "графік",
-        "lexicalValue" : "графік"
-      }, {
-        "@id" : "дані",
-        "lexicalValue" : "дані"
-      }, {
-        "@id" : "звук",
-        "lexicalValue" : "звук"
-      }, {
-        "@id" : "відео",
-        "lexicalValue" : "відео"
-      }, {
-        "@id" : "стислість",
-        "lexicalValue" : "стислість"
-      }, {
-        "@id" : "критерій",
-        "lexicalValue" : "критерій"
-      }, {
-        "@id" : "атом",
-        "lexicalValue" : "атом"
-      }, {
-        "@id" : "частинка",
-        "lexicalValue" : "частинка"
-      }, {
-        "@id" : "пошук",
-        "lexicalValue" : "пошук"
-      }, {
-        "@id" : "електронна бібліотека",
-        "lexicalValue" : "електронна бібліотека"
-      }, {
-        "@id" : "поведінка",
-        "lexicalValue" : "поведінка"
-      }, {
-        "@id" : "розпад родити",
-        "lexicalValue" : "розпад родити"
-      }, {
-        "@id" : "додавання",
-        "lexicalValue" : "додавання"
-      }, {
-        "@id" : "операція",
-        "lexicalValue" : "операція"
-      }, {
-        "@id" : "контроль",
-        "lexicalValue" : "контроль"
-      }, {
-        "@id" : "банда",
-        "lexicalValue" : "банда"
-      }, {
-        "@id" : "освіта",
-        "lexicalValue" : "освіта"
-      }, {
-        "@id" : "здоров'я",
-        "lexicalValue" : "здоров'я"
-      }, {
-        "@id" : "організаційні потреба",
-        "lexicalValue" : "організаційні потреба"
-      }, {
-        "@id" : "освіта",
-        "lexicalValue" : "освіта"
-      }, {
-        "@id" : "вираз",
-        "lexicalValue" : "вираз"
-      }, {
-        "@id" : "конструкція",
-        "lexicalValue" : "конструкція"
-      }, {
-        "@id" : "освіта",
-        "lexicalValue" : "освіта"
-      }, {
-        "@id" : "бізнес",
-        "lexicalValue" : "бізнес"
-      }, {
-        "@id" : "чистий зв'язок",
-        "lexicalValue" : "чистий зв'язок"
-      }, {
-        "@id" : "компанія",
-        "lexicalValue" : "компанія"
-      }, {
-        "@id" : "критерій",
-        "lexicalValue" : "критерій"
-      }, {
-        "@id" : "достовірність",
-        "lexicalValue" : "достовірність"
-      }, {
-        "@id" : "достовірність",
-        "lexicalValue" : "достовірність"
-      }, {
-        "@id" : "стислість",
-        "lexicalValue" : "стислість"
-      }, {
-        "@id" : "інтернет",
-        "lexicalValue" : "інтернет"
-      }, {
-        "@id" : "суспільство",
-        "lexicalValue" : "суспільство"
-      }, {
-        "@id" : "звук",
-        "lexicalValue" : "звук"
-      }, {
-        "@id" : "дані",
-        "lexicalValue" : "дані"
-      }, {
-        "@id" : "дані",
-        "lexicalValue" : "дані"
-      }, {
-        "@id" : "графік",
-        "lexicalValue" : "графік"
-      }, {
-        "@id" : "технологія",
-        "lexicalValue" : "технологія"
-      }, {
-        "@id" : "квантовий",
-        "lexicalValue" : "квантовий"
-      }, {
-        "@id" : "як конвергенція",
-        "lexicalValue" : "як конвергенція"
-      }, {
-        "@id" : "інтернет",
-        "lexicalValue" : "інтернет"
-      }, {
-        "@id" : "звук",
-        "lexicalValue" : "звук"
-      }, {
-        "@id" : "графік",
-        "lexicalValue" : "графік"
-      }, {
-        "@id" : "дані",
-        "lexicalValue" : "дані"
-      }, {
-        "@id" : "відео",
-        "lexicalValue" : "відео"
-      }, {
-        "@id" : "інформативність",
-        "lexicalValue" : "інформативність"
-      }, {
-        "@id" : "критерій",
-        "lexicalValue" : "критерій"
-      }, {
-        "@id" : "канал",
-        "lexicalValue" : "канал"
-      }, {
-        "@id" : "інтернет",
-        "lexicalValue" : "інтернет"
-      }, {
-        "@id" : "інформативність",
-        "lexicalValue" : "інформативність"
-      }, {
-        "@id" : "стислість",
-        "lexicalValue" : "стислість"
-      }, {
-        "@id" : "стислість",
-        "lexicalValue" : "стислість"
-      }, {
-        "@id" : "достовірність",
-        "lexicalValue" : "достовірність"
-      }, {
-        "@id" : "квантовий",
-        "lexicalValue" : "квантовий"
-      }, {
-        "@id" : "технологія",
-        "lexicalValue" : "технологія"
-      }, {
-        "@id" : "відео",
-        "lexicalValue" : "відео"
-      }, {
-        "@id" : "дані",
-        "lexicalValue" : "дані"
-      }, {
-        "@id" : "стислість",
-        "lexicalValue" : "стислість"
-      }, {
-        "@id" : "інформативність",
-        "lexicalValue" : "інформативність"
-      }, {
-        "@id" : "технологія",
-        "lexicalValue" : "технологія"
-      }, {
-        "@id" : "комп'ютер",
-        "lexicalValue" : "комп'ютер"
-      }, {
-        "@id" : "інформативність",
-        "lexicalValue" : "інформативність"
-      }, {
-        "@id" : "достовірність",
-        "lexicalValue" : "достовірність"
-      }, {
-        "@id" : "графік",
-        "lexicalValue" : "графік"
-      }, {
-        "@id" : "звук",
-        "lexicalValue" : "звук"
-      }, {
-        "@id" : "молекула",
-        "lexicalValue" : "молекула"
-      }, {
-        "@id" : "атом",
-        "lexicalValue" : "атом"
-      }, {
-        "@id" : "нахабна поведінка",
-        "lexicalValue" : "нахабна поведінка"
-      }, {
-        "@id" : "середовище",
-        "lexicalValue" : "середовище"
-      }, {
-        "@id" : "суспільство",
-        "lexicalValue" : "суспільство"
-      }, {
-        "@id" : "інтернет",
-        "lexicalValue" : "інтернет"
-      }, {
-        "@id" : "достовірність",
-        "lexicalValue" : "достовірність"
-      }, {
-        "@id" : "інформативність",
-        "lexicalValue" : "інформативність"
-      }, {
-        "@id" : "цифрова нерівність",
-        "lexicalValue" : "цифрова нерівність"
-      }, {
-        "@id" : "суспільство",
-        "lexicalValue" : "суспільство"
-      }, {
-        "@id" : "розпад",
-        "lexicalValue" : "розпад"
-      }, {
-        "@id" : "поведінка",
-        "lexicalValue" : "поведінка"
-      }, {
-        "@id" : "конструкція",
-        "lexicalValue" : "конструкція"
-      }, {
-        "@id" : "вираз",
-        "lexicalValue" : "вираз"
-      }, {
-        "@id" : "освіта",
-        "lexicalValue" : "освіта"
-      }, {
-        "@id" : "організаційні потреба",
-        "lexicalValue" : "організаційні потреба"
-      }, {
-        "@id" : "графік",
-        "lexicalValue" : "графік"
-      }, {
-        "@id" : "відео",
-        "lexicalValue" : "відео"
-      }, {
-        "@id" : "молекула",
-        "lexicalValue" : "молекула"
-      }, {
-        "@id" : "частинка",
-        "lexicalValue" : "частинка"
-      }, {
-        "@id" : "частинка",
-        "lexicalValue" : "частинка"
-      }, {
-        "@id" : "атом",
-        "lexicalValue" : "атом"
-      } ],
-      "relation" : [ {
-        "baseConcept" : "технологія",
-        "depConcept" : "квантові обчислення",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "бізнес",
-        "depConcept" : "царина",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "суспільство",
-        "depConcept" : "цифрова нерівність",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "критерій",
-        "depConcept" : "інформативність",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "частинка",
-        "depConcept" : "молекула",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "царина",
-        "depConcept" : "освіта",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "царина",
-        "depConcept" : "бізнес",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "відео",
-        "depConcept" : "графік",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "атом",
-        "depConcept" : "молекула",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "середовище",
-        "depConcept" : "нахабна поведінка",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "освіта",
-        "depConcept" : "царина",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "електронна бібліотека",
-        "depConcept" : "пошук",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "здоров'я",
-        "depConcept" : "освіта",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "інтернет",
-        "depConcept" : "як конвергенція",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "здоров'я",
-        "depConcept" : "організаційні потреба",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "організаційні потреба",
-        "depConcept" : "здоров'я",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "бізнес",
-        "depConcept" : "освіта",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "критерій",
-        "depConcept" : "стислість",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "інтернет",
-        "depConcept" : "канал",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "квантова фізика",
-        "depConcept" : "світ",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "світ",
-        "depConcept" : "квантова фізика",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "відео",
-        "depConcept" : "звук",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "достовірність",
-        "depConcept" : "критерій",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "операція",
-        "depConcept" : "додавання",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "компанія",
-        "depConcept" : "чистий зв'язок",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "розпад родити",
-        "depConcept" : "поведінка",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "чистий зміст",
-        "depConcept" : "кінокомпанія",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "банда",
-        "depConcept" : "контроль",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "дані",
-        "depConcept" : "звук",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "комп'ютер",
-        "depConcept" : "технологія",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "кінокомпанія",
-        "depConcept" : "чистий зміст",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "поведінка",
-        "depConcept" : "розпад",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "інтернет",
-        "depConcept" : "як",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "квантові обчислення",
-        "depConcept" : "технологія",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "як",
-        "depConcept" : "інтернет",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "графік",
-        "depConcept" : "дані",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "звук",
-        "depConcept" : "відео",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "стислість",
-        "depConcept" : "критерій",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "атом",
-        "depConcept" : "частинка",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "пошук",
-        "depConcept" : "електронна бібліотека",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "поведінка",
-        "depConcept" : "розпад родити",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "додавання",
-        "depConcept" : "операція",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "контроль",
-        "depConcept" : "банда",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "освіта",
-        "depConcept" : "здоров'я",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "організаційні потреба",
-        "depConcept" : "освіта",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "вираз",
-        "depConcept" : "конструкція",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "освіта",
-        "depConcept" : "бізнес",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "чистий зв'язок",
-        "depConcept" : "компанія",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "критерій",
-        "depConcept" : "достовірність",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "достовірність",
-        "depConcept" : "стислість",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "інтернет",
-        "depConcept" : "суспільство",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "звук",
-        "depConcept" : "дані",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "дані",
-        "depConcept" : "графік",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "технологія",
-        "depConcept" : "квантовий",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "як конвергенція",
-        "depConcept" : "інтернет",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "звук",
-        "depConcept" : "графік",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "дані",
-        "depConcept" : "відео",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "інформативність",
-        "depConcept" : "критерій",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "канал",
-        "depConcept" : "інтернет",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "інформативність",
-        "depConcept" : "стислість",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "стислість",
-        "depConcept" : "достовірність",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "квантовий",
-        "depConcept" : "технологія",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "відео",
-        "depConcept" : "дані",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "стислість",
-        "depConcept" : "інформативність",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "технологія",
-        "depConcept" : "комп'ютер",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "інформативність",
-        "depConcept" : "достовірність",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "графік",
-        "depConcept" : "звук",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "молекула",
-        "depConcept" : "атом",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "нахабна поведінка",
-        "depConcept" : "середовище",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "суспільство",
-        "depConcept" : "інтернет",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "достовірність",
-        "depConcept" : "інформативність",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "цифрова нерівність",
-        "depConcept" : "суспільство",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "розпад",
-        "depConcept" : "поведінка",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "конструкція",
-        "depConcept" : "вираз",
-        "role" : "NT"
-      }, {
-        "baseConcept" : "освіта",
-        "depConcept" : "організаційні потреба",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "графік",
-        "depConcept" : "відео",
-        "role" : "RT"
-      }, {
-        "baseConcept" : "молекула",
-        "depConcept" : "частинка",
-        "role" : "BT"
-      }, {
-        "baseConcept" : "частинка",
-        "depConcept" : "атом",
-        "role" : "NT"
-      } ]
+  "@graph": {
+    "thesaurus": {
+      "concept": [
+        {
+          "@id": "технологія",
+          "lexicalValue": "технологія"
+        },
+        {
+          "@id": "квантові обчислення",
+          "lexicalValue": "квантові обчислення"
+        },
+        {
+          "@id": "бізнес",
+          "lexicalValue": "бізнес"
+        },
+        {
+          "@id": "царина",
+          "lexicalValue": "царина"
+        },
+        {
+          "@id": "суспільство",
+          "lexicalValue": "суспільство"
+        },
+        {
+          "@id": "цифрова нерівність",
+          "lexicalValue": "цифрова нерівність"
+        },
+        {
+          "@id": "критерій",
+          "lexicalValue": "критерій"
+        },
+        {
+          "@id": "інформативність",
+          "lexicalValue": "інформативність"
+        },
+        {
+          "@id": "частинка",
+          "lexicalValue": "частинка"
+        },
+        {
+          "@id": "молекула",
+          "lexicalValue": "молекула"
+        },
+        {
+          "@id": "царина",
+          "lexicalValue": "царина"
+        },
+        {
+          "@id": "освіта",
+          "lexicalValue": "освіта"
+        },
+        {
+          "@id": "царина",
+          "lexicalValue": "царина"
+        },
+        {
+          "@id": "бізнес",
+          "lexicalValue": "бізнес"
+        },
+        {
+          "@id": "відео",
+          "lexicalValue": "відео"
+        },
+        {
+          "@id": "графік",
+          "lexicalValue": "графік"
+        },
+        {
+          "@id": "атом",
+          "lexicalValue": "атом"
+        },
+        {
+          "@id": "молекула",
+          "lexicalValue": "молекула"
+        },
+        {
+          "@id": "середовище",
+          "lexicalValue": "середовище"
+        },
+        {
+          "@id": "нахабна поведінка",
+          "lexicalValue": "нахабна поведінка"
+        },
+        {
+          "@id": "освіта",
+          "lexicalValue": "освіта"
+        },
+        {
+          "@id": "царина",
+          "lexicalValue": "царина"
+        },
+        {
+          "@id": "електронна бібліотека",
+          "lexicalValue": "електронна бібліотека"
+        },
+        {
+          "@id": "пошук",
+          "lexicalValue": "пошук"
+        },
+        {
+          "@id": "здоров'я",
+          "lexicalValue": "здоров'я"
+        },
+        {
+          "@id": "освіта",
+          "lexicalValue": "освіта"
+        },
+        {
+          "@id": "інтернет",
+          "lexicalValue": "інтернет"
+        },
+        {
+          "@id": "як конвергенція",
+          "lexicalValue": "як конвергенція"
+        },
+        {
+          "@id": "здоров'я",
+          "lexicalValue": "здоров'я"
+        },
+        {
+          "@id": "організаційні потреба",
+          "lexicalValue": "організаційні потреба"
+        },
+        {
+          "@id": "організаційні потреба",
+          "lexicalValue": "організаційні потреба"
+        },
+        {
+          "@id": "здоров'я",
+          "lexicalValue": "здоров'я"
+        },
+        {
+          "@id": "бізнес",
+          "lexicalValue": "бізнес"
+        },
+        {
+          "@id": "освіта",
+          "lexicalValue": "освіта"
+        },
+        {
+          "@id": "критерій",
+          "lexicalValue": "критерій"
+        },
+        {
+          "@id": "стислість",
+          "lexicalValue": "стислість"
+        },
+        {
+          "@id": "інтернет",
+          "lexicalValue": "інтернет"
+        },
+        {
+          "@id": "канал",
+          "lexicalValue": "канал"
+        },
+        {
+          "@id": "квантова фізика",
+          "lexicalValue": "квантова фізика"
+        },
+        {
+          "@id": "світ",
+          "lexicalValue": "світ"
+        },
+        {
+          "@id": "світ",
+          "lexicalValue": "світ"
+        },
+        {
+          "@id": "квантова фізика",
+          "lexicalValue": "квантова фізика"
+        },
+        {
+          "@id": "відео",
+          "lexicalValue": "відео"
+        },
+        {
+          "@id": "звук",
+          "lexicalValue": "звук"
+        },
+        {
+          "@id": "достовірність",
+          "lexicalValue": "достовірність"
+        },
+        {
+          "@id": "критерій",
+          "lexicalValue": "критерій"
+        },
+        {
+          "@id": "операція",
+          "lexicalValue": "операція"
+        },
+        {
+          "@id": "додавання",
+          "lexicalValue": "додавання"
+        },
+        {
+          "@id": "компанія",
+          "lexicalValue": "компанія"
+        },
+        {
+          "@id": "чистий зв'язок",
+          "lexicalValue": "чистий зв'язок"
+        },
+        {
+          "@id": "розпад родити",
+          "lexicalValue": "розпад родити"
+        },
+        {
+          "@id": "поведінка",
+          "lexicalValue": "поведінка"
+        },
+        {
+          "@id": "чистий зміст",
+          "lexicalValue": "чистий зміст"
+        },
+        {
+          "@id": "кінокомпанія",
+          "lexicalValue": "кінокомпанія"
+        },
+        {
+          "@id": "банда",
+          "lexicalValue": "банда"
+        },
+        {
+          "@id": "контроль",
+          "lexicalValue": "контроль"
+        },
+        {
+          "@id": "дані",
+          "lexicalValue": "дані"
+        },
+        {
+          "@id": "звук",
+          "lexicalValue": "звук"
+        },
+        {
+          "@id": "комп'ютер",
+          "lexicalValue": "комп'ютер"
+        },
+        {
+          "@id": "технологія",
+          "lexicalValue": "технологія"
+        },
+        {
+          "@id": "кінокомпанія",
+          "lexicalValue": "кінокомпанія"
+        },
+        {
+          "@id": "чистий зміст",
+          "lexicalValue": "чистий зміст"
+        },
+        {
+          "@id": "поведінка",
+          "lexicalValue": "поведінка"
+        },
+        {
+          "@id": "розпад",
+          "lexicalValue": "розпад"
+        },
+        {
+          "@id": "інтернет",
+          "lexicalValue": "інтернет"
+        },
+        {
+          "@id": "як",
+          "lexicalValue": "як"
+        },
+        {
+          "@id": "квантові обчислення",
+          "lexicalValue": "квантові обчислення"
+        },
+        {
+          "@id": "технологія",
+          "lexicalValue": "технологія"
+        },
+        {
+          "@id": "як",
+          "lexicalValue": "як"
+        },
+        {
+          "@id": "інтернет",
+          "lexicalValue": "інтернет"
+        },
+        {
+          "@id": "графік",
+          "lexicalValue": "графік"
+        },
+        {
+          "@id": "дані",
+          "lexicalValue": "дані"
+        },
+        {
+          "@id": "звук",
+          "lexicalValue": "звук"
+        },
+        {
+          "@id": "відео",
+          "lexicalValue": "відео"
+        },
+        {
+          "@id": "стислість",
+          "lexicalValue": "стислість"
+        },
+        {
+          "@id": "критерій",
+          "lexicalValue": "критерій"
+        },
+        {
+          "@id": "атом",
+          "lexicalValue": "атом"
+        },
+        {
+          "@id": "частинка",
+          "lexicalValue": "частинка"
+        },
+        {
+          "@id": "пошук",
+          "lexicalValue": "пошук"
+        },
+        {
+          "@id": "електронна бібліотека",
+          "lexicalValue": "електронна бібліотека"
+        },
+        {
+          "@id": "поведінка",
+          "lexicalValue": "поведінка"
+        },
+        {
+          "@id": "розпад родити",
+          "lexicalValue": "розпад родити"
+        },
+        {
+          "@id": "додавання",
+          "lexicalValue": "додавання"
+        },
+        {
+          "@id": "операція",
+          "lexicalValue": "операція"
+        },
+        {
+          "@id": "контроль",
+          "lexicalValue": "контроль"
+        },
+        {
+          "@id": "банда",
+          "lexicalValue": "банда"
+        },
+        {
+          "@id": "освіта",
+          "lexicalValue": "освіта"
+        },
+        {
+          "@id": "здоров'я",
+          "lexicalValue": "здоров'я"
+        },
+        {
+          "@id": "організаційні потреба",
+          "lexicalValue": "організаційні потреба"
+        },
+        {
+          "@id": "освіта",
+          "lexicalValue": "освіта"
+        },
+        {
+          "@id": "вираз",
+          "lexicalValue": "вираз"
+        },
+        {
+          "@id": "конструкція",
+          "lexicalValue": "конструкція"
+        },
+        {
+          "@id": "освіта",
+          "lexicalValue": "освіта"
+        },
+        {
+          "@id": "бізнес",
+          "lexicalValue": "бізнес"
+        },
+        {
+          "@id": "чистий зв'язок",
+          "lexicalValue": "чистий зв'язок"
+        },
+        {
+          "@id": "компанія",
+          "lexicalValue": "компанія"
+        },
+        {
+          "@id": "критерій",
+          "lexicalValue": "критерій"
+        },
+        {
+          "@id": "достовірність",
+          "lexicalValue": "достовірність"
+        },
+        {
+          "@id": "достовірність",
+          "lexicalValue": "достовірність"
+        },
+        {
+          "@id": "стислість",
+          "lexicalValue": "стислість"
+        },
+        {
+          "@id": "інтернет",
+          "lexicalValue": "інтернет"
+        },
+        {
+          "@id": "суспільство",
+          "lexicalValue": "суспільство"
+        },
+        {
+          "@id": "звук",
+          "lexicalValue": "звук"
+        },
+        {
+          "@id": "дані",
+          "lexicalValue": "дані"
+        },
+        {
+          "@id": "дані",
+          "lexicalValue": "дані"
+        },
+        {
+          "@id": "графік",
+          "lexicalValue": "графік"
+        },
+        {
+          "@id": "технологія",
+          "lexicalValue": "технологія"
+        },
+        {
+          "@id": "квантовий",
+          "lexicalValue": "квантовий"
+        },
+        {
+          "@id": "як конвергенція",
+          "lexicalValue": "як конвергенція"
+        },
+        {
+          "@id": "інтернет",
+          "lexicalValue": "інтернет"
+        },
+        {
+          "@id": "звук",
+          "lexicalValue": "звук"
+        },
+        {
+          "@id": "графік",
+          "lexicalValue": "графік"
+        },
+        {
+          "@id": "дані",
+          "lexicalValue": "дані"
+        },
+        {
+          "@id": "відео",
+          "lexicalValue": "відео"
+        },
+        {
+          "@id": "інформативність",
+          "lexicalValue": "інформативність"
+        },
+        {
+          "@id": "критерій",
+          "lexicalValue": "критерій"
+        },
+        {
+          "@id": "канал",
+          "lexicalValue": "канал"
+        },
+        {
+          "@id": "інтернет",
+          "lexicalValue": "інтернет"
+        },
+        {
+          "@id": "інформативність",
+          "lexicalValue": "інформативність"
+        },
+        {
+          "@id": "стислість",
+          "lexicalValue": "стислість"
+        },
+        {
+          "@id": "стислість",
+          "lexicalValue": "стислість"
+        },
+        {
+          "@id": "достовірність",
+          "lexicalValue": "достовірність"
+        },
+        {
+          "@id": "квантовий",
+          "lexicalValue": "квантовий"
+        },
+        {
+          "@id": "технологія",
+          "lexicalValue": "технологія"
+        },
+        {
+          "@id": "відео",
+          "lexicalValue": "відео"
+        },
+        {
+          "@id": "дані",
+          "lexicalValue": "дані"
+        },
+        {
+          "@id": "стислість",
+          "lexicalValue": "стислість"
+        },
+        {
+          "@id": "інформативність",
+          "lexicalValue": "інформативність"
+        },
+        {
+          "@id": "технологія",
+          "lexicalValue": "технологія"
+        },
+        {
+          "@id": "комп'ютер",
+          "lexicalValue": "комп'ютер"
+        },
+        {
+          "@id": "інформативність",
+          "lexicalValue": "інформативність"
+        },
+        {
+          "@id": "достовірність",
+          "lexicalValue": "достовірність"
+        },
+        {
+          "@id": "графік",
+          "lexicalValue": "графік"
+        },
+        {
+          "@id": "звук",
+          "lexicalValue": "звук"
+        },
+        {
+          "@id": "молекула",
+          "lexicalValue": "молекула"
+        },
+        {
+          "@id": "атом",
+          "lexicalValue": "атом"
+        },
+        {
+          "@id": "нахабна поведінка",
+          "lexicalValue": "нахабна поведінка"
+        },
+        {
+          "@id": "середовище",
+          "lexicalValue": "середовище"
+        },
+        {
+          "@id": "суспільство",
+          "lexicalValue": "суспільство"
+        },
+        {
+          "@id": "інтернет",
+          "lexicalValue": "інтернет"
+        },
+        {
+          "@id": "достовірність",
+          "lexicalValue": "достовірність"
+        },
+        {
+          "@id": "інформативність",
+          "lexicalValue": "інформативність"
+        },
+        {
+          "@id": "цифрова нерівність",
+          "lexicalValue": "цифрова нерівність"
+        },
+        {
+          "@id": "суспільство",
+          "lexicalValue": "суспільство"
+        },
+        {
+          "@id": "розпад",
+          "lexicalValue": "розпад"
+        },
+        {
+          "@id": "поведінка",
+          "lexicalValue": "поведінка"
+        },
+        {
+          "@id": "конструкція",
+          "lexicalValue": "конструкція"
+        },
+        {
+          "@id": "вираз",
+          "lexicalValue": "вираз"
+        },
+        {
+          "@id": "освіта",
+          "lexicalValue": "освіта"
+        },
+        {
+          "@id": "організаційні потреба",
+          "lexicalValue": "організаційні потреба"
+        },
+        {
+          "@id": "графік",
+          "lexicalValue": "графік"
+        },
+        {
+          "@id": "відео",
+          "lexicalValue": "відео"
+        },
+        {
+          "@id": "молекула",
+          "lexicalValue": "молекула"
+        },
+        {
+          "@id": "частинка",
+          "lexicalValue": "частинка"
+        },
+        {
+          "@id": "частинка",
+          "lexicalValue": "частинка"
+        },
+        {
+          "@id": "атом",
+          "lexicalValue": "атом"
+        }
+      ],
+      "relation": [
+        {
+          "baseConcept": "технологія",
+          "depConcept": "квантові обчислення",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "бізнес",
+          "depConcept": "царина",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "суспільство",
+          "depConcept": "цифрова нерівність",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "критерій",
+          "depConcept": "інформативність",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "частинка",
+          "depConcept": "молекула",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "царина",
+          "depConcept": "освіта",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "царина",
+          "depConcept": "бізнес",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "відео",
+          "depConcept": "графік",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "атом",
+          "depConcept": "молекула",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "середовище",
+          "depConcept": "нахабна поведінка",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "освіта",
+          "depConcept": "царина",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "електронна бібліотека",
+          "depConcept": "пошук",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "здоров'я",
+          "depConcept": "освіта",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "інтернет",
+          "depConcept": "як конвергенція",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "здоров'я",
+          "depConcept": "організаційні потреба",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "організаційні потреба",
+          "depConcept": "здоров'я",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "бізнес",
+          "depConcept": "освіта",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "критерій",
+          "depConcept": "стислість",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "інтернет",
+          "depConcept": "канал",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "квантова фізика",
+          "depConcept": "світ",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "світ",
+          "depConcept": "квантова фізика",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "відео",
+          "depConcept": "звук",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "достовірність",
+          "depConcept": "критерій",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "операція",
+          "depConcept": "додавання",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "компанія",
+          "depConcept": "чистий зв'язок",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "розпад родити",
+          "depConcept": "поведінка",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "чистий зміст",
+          "depConcept": "кінокомпанія",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "банда",
+          "depConcept": "контроль",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "дані",
+          "depConcept": "звук",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "комп'ютер",
+          "depConcept": "технологія",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "кінокомпанія",
+          "depConcept": "чистий зміст",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "поведінка",
+          "depConcept": "розпад",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "інтернет",
+          "depConcept": "як",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "квантові обчислення",
+          "depConcept": "технологія",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "як",
+          "depConcept": "інтернет",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "графік",
+          "depConcept": "дані",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "звук",
+          "depConcept": "відео",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "стислість",
+          "depConcept": "критерій",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "атом",
+          "depConcept": "частинка",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "пошук",
+          "depConcept": "електронна бібліотека",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "поведінка",
+          "depConcept": "розпад родити",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "додавання",
+          "depConcept": "операція",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "контроль",
+          "depConcept": "банда",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "освіта",
+          "depConcept": "здоров'я",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "організаційні потреба",
+          "depConcept": "освіта",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "вираз",
+          "depConcept": "конструкція",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "освіта",
+          "depConcept": "бізнес",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "чистий зв'язок",
+          "depConcept": "компанія",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "критерій",
+          "depConcept": "достовірність",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "достовірність",
+          "depConcept": "стислість",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "інтернет",
+          "depConcept": "суспільство",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "звук",
+          "depConcept": "дані",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "дані",
+          "depConcept": "графік",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "технологія",
+          "depConcept": "квантовий",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "як конвергенція",
+          "depConcept": "інтернет",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "звук",
+          "depConcept": "графік",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "дані",
+          "depConcept": "відео",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "інформативність",
+          "depConcept": "критерій",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "канал",
+          "depConcept": "інтернет",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "інформативність",
+          "depConcept": "стислість",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "стислість",
+          "depConcept": "достовірність",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "квантовий",
+          "depConcept": "технологія",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "відео",
+          "depConcept": "дані",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "стислість",
+          "depConcept": "інформативність",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "технологія",
+          "depConcept": "комп'ютер",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "інформативність",
+          "depConcept": "достовірність",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "графік",
+          "depConcept": "звук",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "молекула",
+          "depConcept": "атом",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "нахабна поведінка",
+          "depConcept": "середовище",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "суспільство",
+          "depConcept": "інтернет",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "достовірність",
+          "depConcept": "інформативність",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "цифрова нерівність",
+          "depConcept": "суспільство",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "розпад",
+          "depConcept": "поведінка",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "конструкція",
+          "depConcept": "вираз",
+          "role": "NT"
+        },
+        {
+          "baseConcept": "освіта",
+          "depConcept": "організаційні потреба",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "графік",
+          "depConcept": "відео",
+          "role": "RT"
+        },
+        {
+          "baseConcept": "молекула",
+          "depConcept": "частинка",
+          "role": "BT"
+        },
+        {
+          "baseConcept": "частинка",
+          "depConcept": "атом",
+          "role": "NT"
+        }
+      ]
     }
   }
 }

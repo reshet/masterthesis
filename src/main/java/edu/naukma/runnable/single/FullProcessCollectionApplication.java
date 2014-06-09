@@ -162,7 +162,8 @@ public class FullProcessCollectionApplication implements CommandLineRunner{
     }
 
     private void extractCollectionTerms(String indexName){
-        SimpleTextSearcher searcher = new SimpleTextSearcher(path + "index/"+indexName+"/lucene/", indexName);
+        SimpleTextSearcher searcher =
+                new SimpleTextSearcher(path + "index/"+indexName+"/lucene/", indexName);
         int totalDocs = searcher.getIndexReader().numDocs();
         List<TermInDoc> allTerms = Lists.newLinkedList();
         for(int i = 0; i < totalDocs; i++){
